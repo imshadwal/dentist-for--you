@@ -1,0 +1,66 @@
+@import "tailwindcss";
+
+:root {
+	--font-sans: "Manrope", system-ui, sans-serif;
+	--color-heading: #294073;
+	--color-background: #fff;
+	--color-card-blue: #2b5d9e;
+	--color-accent-blue: #58b3fa;
+	--animate-image-zoom: image-zoom 16s ease-in-out infinite alternate;
+}
+
+@keyframes image-zoom {
+	from {
+		transform: scale(1);
+	}
+
+	to {
+		transform: scale(1.1);
+	}
+}
+
+@theme {
+	--font-sans: "Manrope", system-ui, sans-serif;
+	--color-heading: #294073;
+	--color-background: #fff;
+	--color-card-blue: #2b5d9e;
+	--color-accent-blue: #58b3fa;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+html {
+	width: 100%;
+	min-height: 100%;
+	margin: 0;
+	background: var(--color-background);
+	font-family: var(--font-sans);
+	scroll-behavior: smooth;
+}
+
+body {
+	width: 100%;
+	min-width: 320px;
+	min-height: 100vh;
+	margin: 0;
+	background: var(--color-background);
+	color: #1f2937;
+	font-family: var(--font-sans);
+}
+
+img,
+svg {
+	display: block;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	color: var(--color-heading);
+	font-family: var(--font-sans);
+}
