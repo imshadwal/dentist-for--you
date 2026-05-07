@@ -3,29 +3,33 @@ const navigationItems = ["Home", "About Us", "Treatments", "Contact Us"];
 ---
 
 <header
-	class="relative z-10 mx-auto flex w-[calc(100%-32px)] max-w-[1840px] items-center justify-between py-7 max-[760px]:items-start max-[760px]:gap-5 max-[760px]:py-5"
+  class="relative z-10 mx-auto flex w-[calc(100%-32px)] max-w-460 items-center justify-between py-7 max-[760px]:items-start max-[760px]:gap-5 max-[760px]:py-5"
 >
-	<a
-		class="inline-flex h-24 w-[74px] items-center max-[760px]:h-[76px] max-[760px]:w-[58px]"
-		href="/"
-		aria-label="Dentist For You home"
-	>
-		<img class="h-full w-full object-contain object-left" src="/images/logo-cropped.png" alt="Dentist For You" />
-	</a>
+  <a
+    class="inline-flex h-24 w-18.5 items-center max-[760px]:h-19 max-[760px]:w-14.5"
+    href="/"
+    aria-label="Dentist For You home"
+  >
+    <img
+      class="h-full w-full object-contain object-left"
+      src="/images/logo-cropped.png"
+      alt="Dentist For You"
+    />
+  </a>
 
-	<nav
-		class="flex items-center justify-end gap-[clamp(22px,4vw,72px)] text-[15px] font-bold leading-none max-[760px]:flex-wrap max-[760px]:gap-x-5 max-[760px]:gap-y-3.5 max-[760px]:text-[13px]"
-		aria-label="Primary navigation"
-	>
-		{
-			navigationItems.map((item) => (
-				<a
-					class="text-heading no-underline transition duration-200 hover:-translate-y-px hover:text-card-blue"
-					href={`#${item.toLowerCase().replaceAll(" ", "-")}`}
-				>
-					{item}
-				</a>
-			))
-		}
-	</nav>
+  <nav
+    class="flex items-center justify-end gap-[clamp(22px,4vw,72px)] text-[15px] font-bold leading-none max-[760px]:flex-wrap max-[760px]:gap-x-5 max-[760px]:gap-y-3.5 max-[760px]:text-[13px]"
+    aria-label="Primary navigation"
+  >
+    {
+      navigationItems.map((item) => (
+        <a
+          class="text-heading no-underline transition duration-200 hover:-translate-y-px hover:text-card-blue"
+          href={`#${item.toLowerCase().replaceAll(" ", "-")}`}
+        >
+          {item}
+        </a>
+      ))
+    }
+  </nav>
 </header>

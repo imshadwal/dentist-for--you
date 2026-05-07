@@ -1,0 +1,465 @@
+---
+const testimonials = [
+  {
+    tab: "Aesthetic dentistry",
+    title: "Christina's smile,",
+    subtitle: "transformed.",
+    summary:
+      "Christina felt self-conscious about the gaps and uneven shape of her teeth. She wanted a natural, brighter smile that still felt like her own - just more balanced, polished, and confident.",
+    highlights: [
+      "Smile design planning with digital preview",
+      "Minimal tooth preparation to preserve enamel",
+      "Placement of ultra-thin porcelain veneers",
+    ],
+    beforeImage:
+      "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=1600&q=80",
+    afterImage:
+      "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=1600&q=80",
+    beforeAlt: "Before aesthetic dentistry smile",
+    afterAlt: "After aesthetic dentistry smile",
+    portrait:
+      "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=900&q=80",
+    portraitAlt: "Portrait of Christina smiling",
+    caption:
+      "Christina's smile, before and after - confident, complete, and truly hers.",
+  },
+  {
+    tab: "Orthodontics",
+    title: "Liam's bite,",
+    subtitle: "rebalanced.",
+    summary:
+      "Crowding and a deep bite made cleaning difficult and left Liam hesitant to smile. A clear aligner series delivered steady, measurable progress without disrupting his schedule.",
+    highlights: [
+      "Digital bite analysis and precision mapping",
+      "Clear aligner series with weekly tracking",
+      "Custom retention plan to lock in results",
+    ],
+    beforeImage:
+      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=1600&q=80",
+    afterImage:
+      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=1600&q=80",
+    beforeAlt: "Before orthodontic alignment",
+    afterAlt: "After orthodontic alignment",
+    portrait:
+      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=900&q=80",
+    portraitAlt: "Portrait of Liam smiling",
+    caption: "Liam's alignment journey, step-by-step and on schedule.",
+  },
+  {
+    tab: "Implantology",
+    title: "Sophia's confidence,",
+    subtitle: "restored.",
+    summary:
+      "A missing molar had Sophia chewing on one side and hiding her smile in photos. A guided implant and custom ceramic crown brought back full function with a seamless match.",
+    highlights: [
+      "3D cone-beam scan and bone planning",
+      "Guided implant placement for precision",
+      "Custom ceramic crown matched to enamel",
+    ],
+    beforeImage:
+      "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=1600&q=80",
+    afterImage:
+      "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=1600&q=80",
+    beforeAlt: "Before dental implant restoration",
+    afterAlt: "After dental implant restoration",
+    portrait:
+      "https://images.unsplash.com/photo-1544723795-3fb6469f5b39?auto=format&fit=crop&w=900&q=80",
+    portraitAlt: "Portrait of Sophia smiling",
+    caption: "Sophia's implant blends in seamlessly with her natural smile.",
+  },
+  {
+    tab: "Whitening",
+    title: "Maya's brightness,",
+    subtitle: "renewed.",
+    summary:
+      "Years of coffee and tea left Maya's smile dull and uneven. A sensitivity-safe whitening protocol lifted the shade evenly, then take-home trays kept it radiant.",
+    highlights: [
+      "Shade assessment and sensitivity prep",
+      "In-chair whitening with gum protection",
+      "Custom take-home trays for maintenance",
+    ],
+    beforeImage:
+      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=1600&q=80",
+    afterImage:
+      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=1600&q=80",
+    beforeAlt: "Before teeth whitening",
+    afterAlt: "After teeth whitening",
+    portrait:
+      "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=900&q=80",
+    portraitAlt: "Portrait of Maya smiling",
+    caption: "Maya's whitening results look bright but still natural.",
+  },
+];
+
+const defaultTab = testimonials[0];
+---
+
+<section
+  class="mx-auto w-[calc(100%-32px)] max-w-460 py-[clamp(28px,5vw,84px)] max-[620px]:w-[calc(100%-28px)]"
+  id="testimonials"
+  aria-labelledby="testimonials-title"
+  data-testimonials
+>
+  <div class="text-center">
+    <p
+      class="m-0 text-[11px] font-bold tracking-[0.38em] text-card-blue/70 uppercase"
+    >
+      Testimonials
+    </p>
+    <h2
+      id="testimonials-title"
+      class="mt-3 text-[clamp(32px,4.4vw,56px)] font-extrabold leading-[1.02] text-heading"
+    >
+      Real stories. Real smiles.
+    </h2>
+    <p
+      class="mx-auto mt-4 max-w-180 text-[clamp(14px,1.05vw,18px)] leading-[1.45] text-heading/70"
+    >
+      Nothing speaks louder than the words of those who've experienced true,
+      visible transformation firsthand.
+    </p>
+  </div>
+
+  <div
+    class="mt-[clamp(18px,3vw,34px)] flex flex-wrap justify-center gap-[clamp(16px,3.4vw,44px)] border-b border-[#d6e6fb] pb-4 text-[14px] font-bold"
+    role="tablist"
+    aria-label="Testimonial categories"
+  >
+    {
+      testimonials.map((tab, index) => (
+        <button
+          type="button"
+          role="tab"
+          data-tab-trigger
+          data-tab-index={index}
+          aria-controls="testimonial-panel"
+          aria-selected={index === 0 ? "true" : "false"}
+          tabindex={index === 0 ? "0" : "-1"}
+          class={`relative border-b-2 pb-2 transition duration-200 ${
+            index === 0
+              ? "border-card-blue text-card-blue"
+              : "border-transparent text-heading/60 hover:text-heading"
+          }`}
+        >
+          {tab.tab}
+        </button>
+      ))
+    }
+  </div>
+
+  <div
+    class="mt-[clamp(24px,4.5vw,60px)] grid grid-cols-[minmax(220px,0.95fr)_minmax(280px,1.1fr)_minmax(220px,0.9fr)] gap-[clamp(18px,2.6vw,40px)] items-start max-[1100px]:grid-cols-1 max-[1100px]:gap-8"
+  >
+    <div role="tabpanel" id="testimonial-panel" data-tab-panel>
+      <h3
+        class="m-0 text-[clamp(22px,2.4vw,28px)] font-extrabold leading-[1.08] text-heading"
+      >
+        <span data-tab-title>{defaultTab.title}</span>
+        <span class="block" data-tab-subtitle>{defaultTab.subtitle}</span>
+      </h3>
+      <p
+        class="mt-4 max-w-170 text-[clamp(14px,1.02vw,17px)] leading-normal text-heading/70"
+        data-tab-summary
+      >
+        {defaultTab.summary}
+      </p>
+
+      <div class="mt-6">
+        <p class="m-0 text-[14px] font-bold text-heading">What we did</p>
+        <ul
+          class="mt-3 space-y-2 text-[14px] leading-[1.45] text-heading/70"
+          data-tab-list
+        >
+          {
+            defaultTab.highlights.map((item) => (
+              <li class="flex items-start gap-2">
+                <span
+                  class="mt-2 h-1.5 w-1.5 rounded-full bg-card-blue"
+                  aria-hidden="true"
+                />
+                <span>{item}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+
+    <div
+      class="compare-slider relative isolate w-full overflow-hidden rounded-2xl border border-[#d6e6fb] bg-[#f4f7fd] shadow-[0_24px_44px_rgba(31,63,117,0.18)]"
+      data-compare
+    >
+      <div
+        class="absolute left-4 top-4 z-10 rounded-full bg-white/85 px-3 py-1 text-[11px] font-bold text-heading shadow-[0_12px_24px_rgba(21,52,96,0.16)]"
+      >
+        Before
+      </div>
+      <div
+        class="absolute right-4 top-4 z-10 rounded-full bg-white/85 px-3 py-1 text-[11px] font-bold text-heading shadow-[0_12px_24px_rgba(21,52,96,0.16)]"
+      >
+        After
+      </div>
+
+      <img
+        class="compare-before absolute inset-0 h-full w-full object-cover"
+        src={defaultTab.beforeImage}
+        alt={defaultTab.beforeAlt}
+        data-before-image
+        loading="lazy"
+      />
+      <img
+        class="compare-after absolute inset-0 h-full w-full object-cover"
+        src={defaultTab.afterImage}
+        alt={defaultTab.afterAlt}
+        data-after-image
+        loading="lazy"
+      />
+
+      <div class="compare-divider absolute inset-y-0 z-10 w-0.5 bg-accent-blue">
+      </div>
+      <div
+        class="compare-handle absolute top-1/2 z-20 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 text-[11px] font-bold text-heading shadow-[0_18px_34px_rgba(18,44,88,0.25)] backdrop-blur-sm"
+        aria-hidden="true"
+      >
+        Drag
+      </div>
+
+      <input
+        class="absolute inset-0 z-30 h-full w-full cursor-ew-resize opacity-0"
+        type="range"
+        min="0"
+        max="100"
+        value="50"
+        data-compare-range
+        aria-label="Drag to compare"
+      />
+      <div class="pointer-events-none aspect-4/3 w-full"></div>
+    </div>
+
+    <figure
+      class="m-0 w-full max-w-[320px] justify-self-end rounded-2xl border border-[#d6e6fb] bg-[#f4f7fd] p-3 shadow-[0_18px_36px_rgba(31,63,117,0.16)] max-[1100px]:justify-self-start"
+    >
+      <img
+        class="h-55 w-full rounded-xl object-cover"
+        src={defaultTab.portrait}
+        alt={defaultTab.portraitAlt}
+        data-portrait-image
+        loading="lazy"
+      />
+      <figcaption
+        class="mt-4 text-[12px] leading-[1.45] text-heading/65"
+        data-portrait-caption
+      >
+        {defaultTab.caption}
+      </figcaption>
+    </figure>
+  </div>
+  <script
+    type="application/json"
+    data-testimonials-data
+    set:html={JSON.stringify(testimonials)}
+  />
+</section>
+
+<script>
+  const testimonialSections = document.querySelectorAll<HTMLElement>(
+    "[data-testimonials]",
+  );
+
+  testimonialSections.forEach((section) => {
+    const dataScript = section.querySelector<HTMLScriptElement>(
+      "[data-testimonials-data]",
+    );
+
+    if (!dataScript?.textContent) {
+      return;
+    }
+
+    let data = [];
+
+    try {
+      data = JSON.parse(dataScript.textContent);
+    } catch {
+      return;
+    }
+
+    if (!Array.isArray(data) || data.length === 0) {
+      return;
+    }
+
+    const triggers = Array.from(
+      section.querySelectorAll<HTMLButtonElement>("[data-tab-trigger]"),
+    );
+    const titleEl = section.querySelector<HTMLElement>("[data-tab-title]");
+    const subtitleEl = section.querySelector<HTMLElement>(
+      "[data-tab-subtitle]",
+    );
+    const summaryEl = section.querySelector<HTMLElement>("[data-tab-summary]");
+    const listEl = section.querySelector<HTMLUListElement>("[data-tab-list]");
+    const beforeImg = section.querySelector<HTMLImageElement>(
+      "[data-before-image]",
+    );
+    const afterImg =
+      section.querySelector<HTMLImageElement>("[data-after-image]");
+    const portraitImg = section.querySelector<HTMLImageElement>(
+      "[data-portrait-image]",
+    );
+    const captionEl = section.querySelector<HTMLElement>(
+      "[data-portrait-caption]",
+    );
+    const panelEl = section.querySelector<HTMLElement>("[data-tab-panel]");
+
+    const activeClasses = ["border-card-blue", "text-card-blue"];
+    const inactiveClasses = ["border-transparent", "text-heading/60"];
+
+    const renderHighlights = (items: string[]) => {
+      if (!listEl) {
+        return;
+      }
+
+      listEl.innerHTML = "";
+
+      items.forEach((item) => {
+        const listItem = document.createElement("li");
+        listItem.className = "flex items-start gap-2";
+
+        const dot = document.createElement("span");
+        dot.className = "mt-2 h-1.5 w-1.5 rounded-full bg-card-blue";
+        dot.setAttribute("aria-hidden", "true");
+
+        const text = document.createElement("span");
+        text.textContent = item;
+
+        listItem.append(dot, text);
+        listEl.appendChild(listItem);
+      });
+    };
+
+    const applyTab = (index: number) => {
+      const tab = data[index];
+      if (!tab) {
+        return;
+      }
+
+      triggers.forEach((button, buttonIndex) => {
+        const isActive = buttonIndex === index;
+        button.setAttribute("aria-selected", isActive ? "true" : "false");
+        button.setAttribute("tabindex", isActive ? "0" : "-1");
+
+        activeClasses.forEach((className) =>
+          button.classList.toggle(className, isActive),
+        );
+        inactiveClasses.forEach((className) =>
+          button.classList.toggle(className, !isActive),
+        );
+      });
+
+      if (panelEl) {
+        panelEl.setAttribute("aria-label", tab.tab);
+      }
+
+      if (titleEl) {
+        titleEl.textContent = tab.title;
+      }
+
+      if (subtitleEl) {
+        subtitleEl.textContent = tab.subtitle;
+      }
+
+      if (summaryEl) {
+        summaryEl.textContent = tab.summary;
+      }
+
+      renderHighlights(tab.highlights);
+
+      if (beforeImg) {
+        beforeImg.src = tab.beforeImage;
+        beforeImg.alt = tab.beforeAlt;
+      }
+
+      if (afterImg) {
+        afterImg.src = tab.afterImage;
+        afterImg.alt = tab.afterAlt;
+      }
+
+      if (portraitImg) {
+        portraitImg.src = tab.portrait;
+        portraitImg.alt = tab.portraitAlt;
+      }
+
+      if (captionEl) {
+        captionEl.textContent = tab.caption;
+      }
+    };
+
+    triggers.forEach((button) => {
+      button.addEventListener("click", () => {
+        const index = Number(button.dataset.tabIndex ?? 0);
+        applyTab(index);
+      });
+
+      button.addEventListener("keydown", (event) => {
+        if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") {
+          return;
+        }
+
+        event.preventDefault();
+        const currentIndex = Number(button.dataset.tabIndex ?? 0);
+        const delta = event.key === "ArrowRight" ? 1 : -1;
+        const nextIndex = (currentIndex + delta + data.length) % data.length;
+        const nextButton = triggers[nextIndex];
+
+        nextButton?.focus();
+        applyTab(nextIndex);
+      });
+    });
+
+    applyTab(0);
+
+    const compareSections =
+      section.querySelectorAll<HTMLElement>("[data-compare]");
+
+    compareSections.forEach((compareSection) => {
+      const range = compareSection.querySelector<HTMLInputElement>(
+        "[data-compare-range]",
+      );
+      if (!range) {
+        return;
+      }
+
+      const update = () => {
+        compareSection.style.setProperty("--compare", `${range.value}%`);
+      };
+
+      update();
+      range.addEventListener("input", update);
+    });
+  });
+</script>
+
+<style>
+  .compare-slider {
+    --compare: 50%;
+  }
+
+  .compare-slider img {
+    object-position: center 65%;
+  }
+
+  .compare-before {
+    filter: sepia(28%) saturate(125%) brightness(0.92) contrast(1.05);
+  }
+
+  .compare-after {
+    clip-path: inset(0 calc(100% - var(--compare)) 0 0);
+    filter: brightness(1.08) saturate(1.1) contrast(1.02);
+  }
+
+  .compare-divider {
+    left: calc(var(--compare) - 1px);
+  }
+
+  .compare-handle {
+    left: calc(var(--compare) - 24px);
+  }
+</style>
