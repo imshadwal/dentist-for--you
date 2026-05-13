@@ -1,0 +1,158 @@
+---
+
+---
+
+<section
+  class="mx-auto w-[calc(100%-32px)] max-w-460 py-[clamp(40px,8vw,100px)] max-[620px]:w-[calc(100%-28px)]"
+  id="contact-form-section"
+  aria-labelledby="form-title"
+>
+  <div class="text-center mb-[clamp(40px,6vw,80px)]">
+    <p
+      class="m-0 text-[11px] font-bold tracking-[0.38em] text-card-blue/70 uppercase"
+    >
+      Reach Out
+    </p>
+    <h2
+      id="form-title"
+      class="mt-3 text-[clamp(36px,4.4vw,56px)] font-extrabold leading-[1.05] text-heading"
+    >
+      We're just a message away
+    </h2>
+  </div>
+
+  <!-- Contact Form -->
+  <div class="max-w-2xl mx-auto">
+    <form class="space-y-6" method="POST" action="/api/contact">
+      <div class="grid grid-cols-2 gap-6 max-[620px]:grid-cols-1">
+        <!-- Name -->
+        <div class="flex flex-col">
+          <label for="name" class="text-sm font-semibold text-heading mb-2">
+            Full Name *
+          </label>
+          <input
+            id="name"
+            name="name"
+            type="text"
+            required
+            placeholder="Your full name"
+            class="px-4 py-3 rounded-lg border border-[#d6e6fb] bg-white text-heading placeholder:text-heading/50 transition-all duration-200 focus:outline-none focus:border-card-blue focus:ring-2 focus:ring-accent-blue/30"
+          />
+        </div>
+
+        <!-- Email -->
+        <div class="flex flex-col">
+          <label for="email" class="text-sm font-semibold text-heading mb-2">
+            Email Address *
+          </label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            required
+            placeholder="your@email.com"
+            class="px-4 py-3 rounded-lg border border-[#d6e6fb] bg-white text-heading placeholder:text-heading/50 transition-all duration-200 focus:outline-none focus:border-card-blue focus:ring-2 focus:ring-accent-blue/30"
+          />
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 gap-6 max-[620px]:grid-cols-1">
+        <!-- Phone -->
+        <div class="flex flex-col">
+          <label for="phone" class="text-sm font-semibold text-heading mb-2">
+            Phone Number
+          </label>
+          <input
+            id="phone"
+            name="phone"
+            type="tel"
+            placeholder="+44 (0) 201 234 5678"
+            class="px-4 py-3 rounded-lg border border-[#d6e6fb] bg-white text-heading placeholder:text-heading/50 transition-all duration-200 focus:outline-none focus:border-card-blue focus:ring-2 focus:ring-accent-blue/30"
+          />
+        </div>
+
+        <!-- Service Interest -->
+        <div class="flex flex-col">
+          <label for="service" class="text-sm font-semibold text-heading mb-2">
+            Service Interest *
+          </label>
+          <select
+            id="service"
+            name="service"
+            required
+            class="px-4 py-3 rounded-lg border border-[#d6e6fb] bg-white text-heading transition-all duration-200 focus:outline-none focus:border-card-blue focus:ring-2 focus:ring-accent-blue/30"
+          >
+            <option value="">Select a service</option>
+            <option value="pain-relief">Pain Relief</option>
+            <option value="teeth-replacement">Teeth Replacement</option>
+            <option value="cosmetic">Cosmetic Dentistry</option>
+            <option value="preventive">Preventive Dentistry</option>
+            <option value="kids">Kids Dentistry</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Message -->
+      <div class="flex flex-col">
+        <label for="message" class="text-sm font-semibold text-heading mb-2">
+          Message *
+        </label>
+        <textarea
+          id="message"
+          name="message"
+          required
+          rows="6"
+          placeholder="Tell us about your dental needs and how we can help..."
+          class="px-4 py-3 rounded-lg border border-[#d6e6fb] bg-white text-heading placeholder:text-heading/50 transition-all duration-200 focus:outline-none focus:border-card-blue focus:ring-2 focus:ring-accent-blue/30 resize-none font-sans"
+        ></textarea>
+      </div>
+
+      <!-- Checkbox -->
+      <div class="flex items-start gap-3">
+        <input
+          id="consent"
+          name="consent"
+          type="checkbox"
+          required
+          class="mt-1 rounded border-[#d6e6fb] cursor-pointer accent-card-blue"
+        />
+        <label for="consent" class="text-sm text-heading/70">
+          I agree to be contacted about my inquiry and consent to receiving
+          communications from Dentist For You.
+        </label>
+      </div>
+
+      <!-- Submit Button -->
+      <div class="flex gap-4 pt-4">
+        <button
+          type="submit"
+          class="flex-1 inline-flex min-h-14.5 items-center justify-center gap-3 rounded-full bg-linear-to-r from-accent-blue to-card-blue py-0 pr-7 pl-3 text-base font-extrabold text-white no-underline shadow-[0_18px_34px_rgba(43,93,158,0.26)] transition duration-200 hover:-translate-y-0.5 hover:shadow-[0_22px_42px_rgba(43,93,158,0.32)] max-[620px]:min-h-13 max-[620px]:text-sm"
+        >
+          <span
+            class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/30 bg-white/20"
+            aria-hidden="true"
+          >
+            <svg
+              class="h-4.5 w-4.5"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                d="M5 12h14M12 5l7 7-7 7"
+                stroke-linecap="round"
+                stroke-linejoin="round"></path>
+            </svg>
+          </span>
+          Send Message
+        </button>
+      </div>
+    </form>
+
+    <p class="mt-6 text-center text-[12px] text-heading/60">
+      We'll get back to you within 24 hours. Your information is safe with us.
+    </p>
+  </div>
+</section>

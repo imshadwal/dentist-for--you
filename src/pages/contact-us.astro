@@ -1,0 +1,19 @@
+---
+import ContactUsHero from "../components/ContactUsHero.astro";
+import ContactUsForm from "../components/ContactUsForm.astro";
+import ContactUsLocations from "../components/ContactUsLocations.astro";
+import ContactUsFAQ from "../components/ContactUsFAQ.astro";
+import SiteHeader from "../components/SiteHeader.astro";
+import Layout from "../layouts/Layout.astro";
+import "../styles/global.css";
+---
+
+<Layout title="Contact Us - Dentist For You">
+  <SiteHeader />
+  <main>
+    <ContactUsHero />
+    <ContactUsForm />
+    <ContactUsLocations />
+    <ContactUsFAQ />
+  </main>
+</Layout>

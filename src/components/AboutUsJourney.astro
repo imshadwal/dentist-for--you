@@ -1,0 +1,142 @@
+---
+const milestones = [
+  {
+    year: "2008",
+    title: "The Beginning",
+    description: "Founded with a singular vision: to revolutionize dental care through innovation and human-centered design.",
+    icon: "✨"
+  },
+  {
+    year: "2012",
+    title: "Recognition",
+    description: "Awarded Best Aesthetic Dentistry Practice by the International Dental Association.",
+    icon: "🏆"
+  },
+  {
+    year: "2017",
+    title: "Expansion",
+    description: "Opened our state-of-the-art facility featuring cutting-edge CEREC technology and comfort-first treatment rooms.",
+    icon: "🚀"
+  },
+  {
+    year: "2023",
+    title: "Community",
+    description: "Reached 5,000+ transformed smiles and established the Smile Forward scholarship program.",
+    icon: "❤️"
+  },
+];
+---
+
+<section
+  class="mx-auto w-[calc(100%-32px)] max-w-460 py-[clamp(40px,8vw,100px)] max-[620px]:w-[calc(100%-28px)]"
+  id="our-journey"
+  aria-labelledby="journey-title"
+>
+  <div class="text-center mb-[clamp(40px,6vw,80px)]">
+    <p class="m-0 text-[11px] font-bold tracking-[0.38em] text-card-blue/70 uppercase">
+      Our Evolution
+    </p>
+    <h2
+      id="journey-title"
+      class="mt-3 text-[clamp(36px,4.4vw,56px)] font-extrabold leading-[1.05] text-heading"
+    >
+      A timeline of passion
+    </h2>
+  </div>
+
+  <!-- Timeline -->
+  <div class="relative">
+    <!-- Vertical line on desktop, hidden on mobile -->
+    <div
+      class="absolute left-1/2 top-0 bottom-0 w-0.5 bg-linear-to-b from-accent-blue via-card-blue to-accent-blue/30 transform -translate-x-1/2 max-[800px]:hidden"
+      aria-hidden="true"
+    ></div>
+
+    <!-- Timeline items -->
+    <div class="space-y-[clamp(40px,6vw,80px)] max-[800px]:space-y-8">
+      {
+        milestones.map((milestone, index) => (
+          <div
+            class={`grid grid-cols-[1fr_auto_1fr] gap-[clamp(20px,3vw,40px)] items-center max-[800px]:grid-cols-1 max-[800px]:gap-4`}
+          >
+            <!-- Left content (alternate) -->
+            <div
+              class={`${
+                index % 2 === 0 ? "text-right" : "max-[800px]:order-2"
+              } max-[800px]:text-left`}
+            >
+              <div
+                class={`${
+                  index % 2 === 0
+                    ? "max-[800px]:hidden"
+                    : "max-[800px]:block hidden"
+                }`}
+              >
+                <p class="text-[13px] font-bold tracking-[0.32em] text-card-blue/60 uppercase">
+                  {milestone.year}
+                </p>
+                <h3 class="mt-2 text-[clamp(22px,2vw,28px)] font-extrabold text-heading">
+                  {milestone.title}
+                </h3>
+                <p class="mt-2 text-[14px] leading-[1.4] text-heading/70 max-w-140">
+                  {milestone.description}
+                </p>
+              </div>
+            </div>
+
+            <!-- Center dot -->
+            <div class="flex flex-col items-center max-[800px]:order-1">
+              <div class="relative flex h-16 w-16 items-center justify-center">
+                <div
+                  class="absolute inset-0 rounded-full bg-linear-to-br from-accent-blue/20 to-card-blue/20 animate-pulse"
+                  aria-hidden="true"
+                ></div>
+                <div class="relative flex h-12 w-12 items-center justify-center rounded-full bg-white border-2 border-card-blue shadow-[0_8px_16px_rgba(43,93,158,0.15)]">
+                  <span class="text-xl">{milestone.icon}</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right content -->
+            <div
+              class={`${
+                index % 2 === 1 ? "text-left" : "max-[800px]:order-2 hidden max-[800px]:block"
+              } max-[800px]:text-left`}
+            >
+              <div
+                class={`${
+                  index % 2 === 1
+                    ? "max-[800px]:hidden"
+                    : "max-[800px]:block hidden"
+                }`}
+              >
+                <p class="text-[13px] font-bold tracking-[0.32em] text-card-blue/60 uppercase">
+                  {milestone.year}
+                </p>
+                <h3 class="mt-2 text-[clamp(22px,2vw,28px)] font-extrabold text-heading">
+                  {milestone.title}
+                </h3>
+                <p class="mt-2 text-[14px] leading-[1.4] text-heading/70 max-w-140">
+                  {milestone.description}
+                </p>
+              </div>
+            </div>
+
+            <!-- Mobile timeline info -->
+            <div class="max-[800px]:col-span-3 max-[800px]:order-3 hidden max-[800px]:block">
+              <p class="text-[13px] font-bold tracking-[0.32em] text-card-blue/60 uppercase">
+                {milestone.year}
+              </p>
+              <h3 class="mt-2 text-[22px] font-extrabold text-heading">
+                {milestone.title}
+              </h3>
+              <p class="mt-2 text-[14px] leading-[1.4] text-heading/70">
+                {milestone.description}
+              </p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

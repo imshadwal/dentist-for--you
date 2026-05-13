@@ -1,0 +1,126 @@
+---
+const process = [
+  {
+    step: "01",
+    title: "Consultation",
+    description: "Meet with our specialists to discuss your concerns and goals",
+  },
+  {
+    step: "02",
+    title: "Diagnosis",
+    description: "Advanced imaging and testing to understand your specific needs",
+  },
+  {
+    step: "03",
+    title: "Treatment Plan",
+    description: "Customized strategy with transparent pricing and timeline",
+  },
+  {
+    step: "04",
+    title: "Treatment",
+    description: "Expert care with comfort and precision using latest technology",
+  },
+  {
+    step: "05",
+    title: "Follow-up",
+    description: "Post-treatment care instructions and scheduled check-ins",
+  },
+];
+---
+
+<section
+  class="mx-auto w-[calc(100%-32px)] max-w-460 py-[clamp(40px,8vw,100px)] max-[620px]:w-[calc(100%-28px)]"
+  id="treatment-process"
+  aria-labelledby="process-title"
+>
+  <div class="text-center mb-[clamp(40px,6vw,80px)]">
+    <p class="m-0 text-[11px] font-bold tracking-[0.38em] text-card-blue/70 uppercase">
+      Your Journey
+    </p>
+    <h2
+      id="process-title"
+      class="mt-3 text-[clamp(36px,4.4vw,56px)] font-extrabold leading-[1.05] text-heading"
+    >
+      Treatment made simple
+    </h2>
+  </div>
+
+  <!-- Process Timeline -->
+  <div class="relative">
+    <!-- Connecting line on desktop -->
+    <div
+      class="absolute top-12 left-0 right-0 h-0.5 bg-linear-to-r from-accent-blue via-card-blue to-accent-blue/30 max-[900px]:hidden"
+      aria-hidden="true"
+    ></div>
+
+    <!-- Timeline items -->
+    <div class="grid grid-cols-5 gap-4 max-[900px]:grid-cols-1 max-[900px]:gap-8">
+      {
+        process.map((item, index) => (
+          <div class="relative flex flex-col items-center max-[900px]:items-start">
+            <!-- Step circle -->
+            <div class="relative z-1 mb-6 max-[900px]:mb-4">
+              <div
+                class="flex h-24 w-24 items-center justify-center rounded-full bg-white border-2 border-card-blue shadow-[0_8px_16px_rgba(43,93,158,0.15)] max-[900px]:h-16 max-[900px]:w-16"
+              >
+                <div class="text-center">
+                  <p class="text-[10px] font-bold tracking-[0.2em] text-card-blue/60 uppercase">
+                    Step
+                  </p>
+                  <p class="text-[clamp(20px,2vw,28px)] font-extrabold text-heading leading-tight">
+                    {item.step}
+                  </p>
+                </div>
+              </div>
+
+              <!-- Pulsing background -->
+              <div
+                class="absolute inset-0 rounded-full bg-accent-blue/20 animate-pulse"
+                aria-hidden="true"
+              ></div>
+            </div>
+
+            <!-- Content -->
+            <div class="grow">
+              <h3 class="text-[clamp(16px,1.5vw,20px)] font-extrabold text-heading text-center max-[900px]:text-left">
+                {item.title}
+              </h3>
+              <p class="mt-2 text-[13px] leading-[1.4] text-heading/70 text-center max-[900px]:text-left">
+                {item.description}
+              </p>
+            </div>
+
+            <!-- Vertical line for mobile -->
+            {index < process.length - 1 && (
+              <div
+                class="hidden max-[900px]:block absolute left-7 top-24 h-8 w-0.5 bg-linear-to-b from-card-blue to-accent-blue/30"
+                aria-hidden="true"
+              ></div>
+            )}
+          </div>
+        ))
+      }
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="mt-[clamp(40px,8vw,60px)] flex justify-center">
+    <a
+      class="inline-flex min-h-14.5 items-center gap-3 rounded-full bg-linear-to-r from-accent-blue to-card-blue py-0 pr-7 pl-3 text-base font-extrabold text-white no-underline shadow-[0_18px_34px_rgba(43,93,158,0.26)] transition duration-200 hover:-translate-y-0.5 hover:shadow-[0_22px_42px_rgba(43,93,158,0.32)] max-[620px]:min-h-13 max-[620px]:pr-5.5 max-[620px]:text-sm"
+      href="#contact-us"
+    >
+      <span
+        class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/30 bg-white/20"
+        aria-hidden="true"
+      >
+        <svg class="h-4.5 w-4.5" viewBox="0 0 24 24" role="img">
+          <path
+            d="M7 2.75a.75.75 0 0 1 .75.75V5h8.5V3.5a.75.75 0 0 1 1.5 0V5H19a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3V8a3 3 0 0 1 3-3h1.25V3.5A .75.75 0 0 1 7 2.75ZM3.5 10v8A1.5 1.5 0 0 0 5 19.5h14a1.5 1.5 0 0 0 1.5-1.5v-8h-17Zm3 3.25a.75.75 0 0 1 .75-.75h2.5a.75.75 0 0 1 0 1.5h-2.5a.75.75 0 0 1-.75-.75Zm0 3a.75.75 0 0 1 .75-.75h7.5a.75.75 0 0 1 0 1.5h-7.5a.75.75 0 0 1-.75-.75Z"
+            fill="currentColor"
+          ></path>
+        </svg>
+      </span>
+      Start your journey
+    </a>
+  </div>
+</section>

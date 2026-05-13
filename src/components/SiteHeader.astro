@@ -1,5 +1,10 @@
 ---
-const navigationItems = ["Home", "About Us", "Treatments", "Contact Us"];
+const navigationItems = [
+  { label: "Home", href: "/" },
+  { label: "About Us", href: "/about" },
+  { label: "Treatments", href: "/treatments" },
+  { label: "Contact Us", href: "/contact-us" },
+];
 ---
 
 <header
@@ -25,9 +30,9 @@ const navigationItems = ["Home", "About Us", "Treatments", "Contact Us"];
       navigationItems.map((item) => (
         <a
           class="text-heading no-underline transition duration-200 hover:-translate-y-px hover:text-card-blue"
-          href={`#${item.toLowerCase().replaceAll(" ", "-")}`}
+          href={item.href}
         >
-          {item}
+          {item.label}
         </a>
       ))
     }

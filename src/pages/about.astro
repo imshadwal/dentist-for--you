@@ -1,0 +1,21 @@
+---
+import AboutUsHero from "../components/AboutUsHero.astro";
+import AboutUsJourney from "../components/AboutUsJourney.astro";
+import AboutUsValues from "../components/AboutUsValues.astro";
+import AboutUsTeam from "../components/AboutUsTeam.astro";
+import AboutUsWhyChoose from "../components/AboutUsWhyChoose.astro";
+import SiteHeader from "../components/SiteHeader.astro";
+import Layout from "../layouts/Layout.astro";
+import "../styles/global.css";
+---
+
+<Layout title="About Us - Dentist For You">
+  <SiteHeader />
+  <main>
+    <AboutUsHero />
+    <AboutUsJourney />
+    <AboutUsValues />
+    <AboutUsWhyChoose />
+    <AboutUsTeam />
+  </main>
+</Layout>

@@ -1,0 +1,90 @@
+---
+const features = [
+  {
+    title: "Advanced Technology",
+    description: "Latest diagnostic tools and treatment equipment for superior results",
+    icon: "🔬",
+  },
+  {
+    title: "Expert Specialists",
+    description: "Board-certified dentists with years of specialized experience",
+    icon: "👨‍⚕️",
+  },
+  {
+    title: "Pain-Free Experience",
+    description: "Gentle techniques and sedation options for complete comfort",
+    icon: "😌",
+  },
+  {
+    title: "Customized Plans",
+    description: "Personalized treatment strategies tailored to your needs",
+    icon: "📋",
+  },
+  {
+    title: "Fast Results",
+    description: "Efficient procedures with minimal downtime",
+    icon: "⚡",
+  },
+  {
+    title: "Warranty Guarantee",
+    description: "Confidence backed by our satisfaction guarantee",
+    icon: "✅",
+  },
+];
+---
+
+<section
+  class="mx-auto w-[calc(100%-32px)] max-w-460 py-[clamp(40px,8vw,100px)] max-[620px]:w-[calc(100%-28px)]"
+  id="treatment-guarantees"
+  aria-labelledby="guarantees-title"
+>
+  <div class="text-center mb-[clamp(40px,6vw,80px)]">
+    <p class="m-0 text-[11px] font-bold tracking-[0.38em] text-card-blue/70 uppercase">
+      Treatment Excellence
+    </p>
+    <h2
+      id="guarantees-title"
+      class="mt-3 text-[clamp(36px,4.4vw,56px)] font-extrabold leading-[1.05] text-heading"
+    >
+      What makes our treatments exceptional
+    </h2>
+  </div>
+
+  <!-- Features Grid -->
+  <div class="grid grid-cols-3 gap-[clamp(14px,2vw,22px)] max-[900px]:grid-cols-2 max-[620px]:grid-cols-1">
+    {
+      features.map((feature) => (
+        <article
+          class="group relative flex flex-col h-full min-h-60 rounded-2xl border border-[#d6e6fb] p-[clamp(18px,2.5vw,28px)] shadow-[0_8px_16px_rgba(31,63,117,0.08)] transition-all duration-300 hover:shadow-[0_20px_40px_rgba(31,63,117,0.15)] hover:border-card-blue/50"
+        >
+          <!-- Background gradient on hover -->
+          <div
+            class="absolute inset-0 rounded-2xl bg-linear-to-br from-accent-blue/5 to-card-blue/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+            aria-hidden="true"
+          ></div>
+
+          <!-- Content -->
+          <div class="relative z-1 flex flex-col h-full">
+            <div class="mb-4">
+              <span class="text-3xl">{feature.icon}</span>
+            </div>
+
+            <h3 class="text-[clamp(16px,1.5vw,20px)] font-extrabold text-heading mb-2">
+              {feature.title}
+            </h3>
+
+            <p class="text-[13px] leading-normal text-heading/70 grow">
+              {feature.description}
+            </p>
+
+            <!-- Bottom accent -->
+            <div
+              class="mt-4 h-1 w-4 bg-linear-to-r from-accent-blue to-card-blue rounded-full transform transition-all duration-300 group-hover:w-8"
+              aria-hidden="true"
+            ></div>
+          </div>
+        </article>
+      ))
+    }
+  </div>
+</section>

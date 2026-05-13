@@ -1,0 +1,92 @@
+---
+const values = [
+  {
+    title: "Precision",
+    description: "Every treatment is an act of artistry. We combine cutting-edge technology with meticulous craftsmanship to create results that exceed expectations.",
+    color: "from-accent-blue to-card-blue"
+  },
+  {
+    title: "Compassion",
+    description: "Your comfort is our priority. We create a judgment-free sanctuary where anxiety dissolves and trust flourishes.",
+    color: "from-card-blue to-accent-blue"
+  },
+  {
+    title: "Innovation",
+    description: "We continuously evolve our methods, staying ahead of dental science to bring you the most advanced treatments available.",
+    color: "from-accent-blue via-card-blue to-accent-blue"
+  },
+  {
+    title: "Transparency",
+    description: "No surprises, no hidden agendas. We explain everything clearly and involve you in every decision about your care.",
+    color: "from-card-blue via-accent-blue to-card-blue"
+  },
+];
+---
+
+<section
+  class="mx-auto w-[calc(100%-32px)] max-w-460 py-[clamp(40px,8vw,100px)] max-[620px]:w-[calc(100%-28px)]"
+  id="our-values"
+  aria-labelledby="values-title"
+>
+  <div class="text-center mb-[clamp(40px,6vw,80px)]">
+    <p class="m-0 text-[11px] font-bold tracking-[0.38em] text-card-blue/70 uppercase">
+      Core Philosophy
+    </p>
+    <h2
+      id="values-title"
+      class="mt-3 text-[clamp(36px,4.4vw,56px)] font-extrabold leading-[1.05] text-heading"
+    >
+      What drives us every day
+    </h2>
+  </div>
+
+  <!-- Values Grid -->
+  <div class="grid grid-cols-2 gap-[clamp(16px,2.5vw,28px)] max-[800px]:grid-cols-1">
+    {
+      values.map((value, index) => (
+        <article
+          class="group relative h-full min-h-[280px] overflow-hidden rounded-2xl p-[clamp(24px,3vw,40px)] transition-all duration-300 hover:shadow-[0_24px_48px_rgba(43,93,158,0.18)]"
+        >
+          <!-- Gradient background -->
+          <div
+            class={`absolute inset-0 bg-linear-to-br ${value.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300`}
+            aria-hidden="true"
+          ></div>
+
+          <!-- Border gradient overlay -->
+          <div
+            class={`absolute inset-0 rounded-2xl border border-transparent bg-linear-to-br ${value.color} bg-clip-border opacity-0 group-hover:opacity-20 transition-opacity duration-300`}
+            style="padding: 1px;"
+            aria-hidden="true"
+          ></div>
+
+          <!-- Content -->
+          <div class="relative z-1 flex flex-col h-full">
+            <div class="flex items-center gap-3 mb-4">
+              <div
+                class={`h-10 w-10 rounded-xl bg-linear-to-br ${value.color} flex items-center justify-center transform transition-transform duration-300 group-hover:scale-110`}
+                aria-hidden="true"
+              >
+                <div class="h-5 w-5 rounded-full bg-white/30"></div>
+              </div>
+            </div>
+
+            <h3 class="text-[clamp(20px,2vw,24px)] font-extrabold text-heading mb-3">
+              {value.title}
+            </h3>
+
+            <p class="text-[14px] leading-[1.5] text-heading/70 flex-grow">
+              {value.description}
+            </p>
+
+            <!-- Bottom accent line -->
+            <div
+              class={`mt-6 h-1 w-8 bg-linear-to-r ${value.color} rounded-full transform transition-all duration-300 group-hover:w-12`}
+              aria-hidden="true"
+            ></div>
+          </div>
+        </article>
+      ))
+    }
+  </div>
+</section>
