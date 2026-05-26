@@ -4,29 +4,32 @@
 
 <section class="mx-auto w-full max-w-[1440px] py-24 px-6 md:px-16 bg-white" id="treatment-calculator">
   <div class="text-center mb-16">
-    <span class="text-xs font-bold tracking-[0.3em] text-slate-400 uppercase">Treatment Calculator</span>
+    <p class="m-0 text-[11px] font-bold tracking-[0.38em] text-card-blue/70 uppercase">Treatment Calculator</p>
     <h2 class="mt-3 text-4xl font-extrabold tracking-tight text-heading">Plan your smile journey</h2>
     <p class="mt-2 text-sm text-heading/70">Estimate costs and treatment time based on your smile goals. Interactive. Free. Personalized.</p>
   </div>
 
-  <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch" data-calculator>
     
+    <!-- Left Panel: Form Selections -->
     <div class="lg:col-span-3 flex flex-col gap-6">
       
+      <!-- 01. Select Goals -->
       <div class="bg-[#f8fafc] border border-slate-100 rounded-2xl p-6 shadow-xs flex-1">
         <h3 class="text-xs font-bold uppercase tracking-wider text-heading mb-4">
           <span class="text-slate-300 mr-1 font-mono">01.</span> Select goals
         </h3>
         <div class="space-y-3.5">
           {[
-            { label: 'Straighter teeth', checked: false },
-            { label: 'Replace missing tooth', checked: true },
-            { label: 'Whiter smile', checked: false },
-            { label: 'Complete makeover', checked: false }
+            { id: 'straight', label: 'Straighter teeth', checked: false },
+            { id: 'replace', label: 'Replace missing tooth', checked: true },
+            { id: 'white', label: 'Whiter smile', checked: false },
+            { id: 'makeover', label: 'Complete makeover', checked: false }
           ].map((goal) => (
             <label class="flex items-center text-xs text-slate-600 font-semibold cursor-pointer select-none">
               <input 
                 type="checkbox" 
+                data-goal={goal.id}
                 checked={goal.checked} 
                 class="rounded border-slate-300 text-card-blue focus:ring-card-blue mr-3 w-4 h-4 transition-colors" 
               />
@@ -36,6 +39,7 @@
         </div>
       </div>
 
+      <!-- 02. Preferred Method -->
       <div class="bg-[#f8fafc] border border-slate-100 rounded-2xl p-6 shadow-xs">
         <h3 class="text-xs font-bold uppercase tracking-wider text-heading mb-3.5">
           <span class="text-slate-300 mr-1 font-mono">02.</span> Preferred method
@@ -43,9 +47,11 @@
         <div class="flex gap-1.5 flex-wrap">
           {['Aligners', 'Veneers', 'Implants'].map((method) => (
             <button 
+              type="button"
+              data-method-btn={method}
               class={`px-4 py-1.5 rounded-full text-[11px] font-bold border transition-all duration-200 cursor-pointer ${
                 method === 'Implants' 
-                  ? 'bg-card-blue text-white border-transparent shadow-xs' 
+                  ? 'bg-card-blue text-white border-transparent shadow-xs active-method' 
                   : 'bg-white text-slate-500 border-slate-200 hover:border-slate-300'
               }`}
             >
@@ -55,67 +61,84 @@
         </div>
       </div>
 
+      <!-- 03. Loyalty Program -->
       <div class="bg-[#f8fafc] border border-slate-100 rounded-2xl p-6 shadow-xs">
         <h3 class="text-xs font-bold uppercase tracking-wider text-heading mb-3.5">
           <span class="text-slate-300 mr-1 font-mono">03.</span> Loyalty program
         </h3>
         <div class="space-y-2.5">
           <label class="flex items-center text-xs font-semibold text-slate-600 cursor-pointer">
-            <input type="radio" name="loyalty" class="text-card-blue border-slate-300 mr-2.5 w-4 h-4" /> Celestia member
+            <input type="radio" name="loyalty" data-loyalty="member" class="text-card-blue border-slate-300 mr-2.5 w-4 h-4 cursor-pointer" /> Celestia member
           </label>
           <label class="flex items-center text-xs font-semibold text-slate-600 cursor-pointer">
-            <input type="radio" name="loyalty" checked class="text-card-blue border-slate-300 mr-2.5 w-4 h-4" /> Not enrolled
+            <input type="radio" name="loyalty" data-loyalty="none" checked class="text-card-blue border-slate-300 mr-2.5 w-4 h-4 cursor-pointer" /> Not enrolled
           </label>
         </div>
       </div>
     </div>
 
+    <!-- Center Panel: 3D Visualizer -->
     <div class="lg:col-span-5 bg-gradient-to-b from-[#f8fafc] to-[#edf4fc] border border-slate-100 rounded-2xl p-6 shadow-xs flex flex-col justify-between items-center relative overflow-hidden min-h-[420px]">
       <div class="w-full flex justify-between items-center z-10">
         <h3 class="text-xs font-bold uppercase tracking-wider text-heading">
-          <span class="text-slate-300 mr-1 font-mono">04.</span> Select tooth
+          <span class="text-slate-300 mr-1 font-mono">04.</span> Visualizer
         </h3>
-        <label class="text-[11px] font-bold text-slate-400 flex items-center cursor-pointer">
-          <input type="checkbox" checked class="mr-1.5 rounded border-slate-300 text-card-blue" /> All
+        <label class="text-[11px] font-bold text-slate-400 flex items-center cursor-pointer select-none">
+          <input type="checkbox" id="calc-highlight-toggle" checked class="mr-1.5 rounded border-slate-300 text-card-blue cursor-pointer" /> Highlight all
         </label>
       </div>
       
-      <div class="w-68 h-68 my-auto relative flex items-center justify-center">
+      <div class="w-76 h-76 my-auto relative flex items-center justify-center">
+        <!-- Interactive pulse circles -->
         <div class="absolute inset-0 rounded-full border border-dashed border-slate-300/60 animate-[spin_60s_linear_infinite]"></div>
-        <img src="/images/glass-jaw.png" alt="3D Teeth Model Visualizer" class="w-4/5 h-4/5 object-contain z-10 drop-shadow-sm mix-blend-multiply" />
-        <span class="absolute bottom-0 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-[9px] tracking-wider font-bold text-slate-400 shadow-xs border border-slate-100 uppercase">
-          360° Interactive
+        <div class="absolute w-64 h-64 rounded-full bg-[radial-gradient(circle,rgba(88,179,250,0.1)_0%,transparent_70%)] animate-pulse"></div>
+        
+        <img 
+          id="calc-jaw-image"
+          src="/images/treatment_calculator/3d_transparent.png" 
+          alt="3D Teeth Model Visualizer" 
+          class="w-full h-full object-contain z-10 transition-all duration-500 mix-blend-multiply scale-95 hover:scale-100 cursor-pointer filter drop-shadow-[0_10px_20px_rgba(88,179,250,0.15)]" 
+        />
+        
+        <span class="absolute bottom-0 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-[9px] tracking-wider font-bold text-slate-400 shadow-xs border border-slate-100 uppercase select-none z-20">
+          3D Interactive Model
         </span>
       </div>
     </div>
 
-    <div class="lg:col-span-4 bg-[#294073] text-white rounded-2xl p-6 shadow-md flex flex-col justify-between">
+    <!-- Right Panel: Output Result Card -->
+    <div class="lg:col-span-4 bg-[#294073] text-white rounded-2xl p-6 shadow-md flex flex-col justify-between transition-all duration-300">
       <div>
         <span class="text-[10px] uppercase font-bold tracking-widest text-white/40 font-mono">Output Result</span>
         
         <div class="grid grid-cols-2 gap-4 mt-6 border-b border-white/10 pb-6">
           <div>
             <p class="text-[11px] text-white/50 font-medium">Treatment complexity</p>
-            <h4 class="text-base font-bold mt-1 text-accent-blue flex items-center gap-1.5">
+            <h4 class="text-base font-bold mt-1 text-accent-blue flex items-center gap-1.5" id="calc-complexity">
               <span class="w-2 h-2 rounded-full bg-accent-blue animate-pulse"></span> Medium
             </h4>
           </div>
           <div>
             <p class="text-[11px] text-white/50 font-medium">Treatment time (est.)</p>
-            <h4 class="text-base font-bold mt-1">3 weeks</h4>
+            <h4 class="text-base font-bold mt-1" id="calc-time">3 weeks</h4>
           </div>
         </div>
 
         <div class="mt-6 border-b border-white/10 pb-6">
-          <p class="text-[11px] text-white/50 font-medium mb-3">Recommended specialists</p>
+          <p class="text-[11px] text-white/50 font-medium mb-3">Recommended specialist</p>
           <div class="space-y-2">
-            <div class="flex items-center space-x-3 bg-white/5 p-2 rounded-xl border border-white/5">
-              <div class="w-8 h-8 rounded-full bg-slate-300 overflow-hidden">
-                <img src="/images/team/doctor2.jpg" class="w-full h-full object-cover" alt="Dr. James Chen" />
+            <div class="flex items-center space-x-3 bg-white/5 p-2.5 rounded-xl border border-white/5">
+              <div class="w-9 h-9 rounded-full bg-slate-300 overflow-hidden ring-2 ring-white/10">
+                <img 
+                  id="calc-specialist-avatar"
+                  src="/images/team/doctor2.png" 
+                  class="w-full h-full object-cover" 
+                  alt="Dr. James Chen" 
+                />
               </div>
               <div>
-                <h5 class="text-xs font-bold text-white">Dr. James Chen</h5>
-                <p class="text-[10px] text-white/40">Orthodontic Specialist</p>
+                <h5 class="text-xs font-bold text-white" id="calc-specialist-name">Dr. James Chen</h5>
+                <p class="text-[10px] text-white/40" id="calc-specialist-role">Orthodontic Specialist</p>
               </div>
             </div>
           </div>
@@ -124,10 +147,279 @@
 
       <div class="mt-8 lg:mt-0">
         <p class="text-[11px] text-white/50 font-medium">Estimated cost range</p>
-        <h2 class="text-3xl font-black text-white tracking-tight mt-1">$2,400 - $3,100*</h2>
+        <h2 class="text-3xl font-black text-white tracking-tight mt-1" id="calc-cost">$2,400 - $3,100*</h2>
         <p class="text-[9px] text-white/30 mt-2.5 leading-normal">*Estimated costs scale depending on required physical custom guides or temporary crowns.</p>
       </div>
     </div>
 
   </div>
 </section>
+
+<script>
+  // Client-side calculator logic
+  document.addEventListener('DOMContentLoaded', () => {
+    const calculator = document.querySelector('[data-calculator]');
+    if (!calculator) return;
+
+    // Elements
+    const straightCheck = calculator.querySelector('[data-goal="straight"]') as HTMLInputElement;
+    const replaceCheck = calculator.querySelector('[data-goal="replace"]') as HTMLInputElement;
+    const whiteCheck = calculator.querySelector('[data-goal="white"]') as HTMLInputElement;
+    const makeoverCheck = calculator.querySelector('[data-goal="makeover"]') as HTMLInputElement;
+
+    const methodButtons = calculator.querySelectorAll('[data-method-btn]');
+    const loyaltyMember = calculator.querySelector('[data-loyalty="member"]') as HTMLInputElement;
+    const loyaltyNone = calculator.querySelector('[data-loyalty="none"]') as HTMLInputElement;
+
+    const complexityEl = calculator.querySelector('#calc-complexity') as HTMLElement;
+    const timeEl = calculator.querySelector('#calc-time') as HTMLElement;
+    const specialistAvatar = calculator.querySelector('#calc-specialist-avatar') as HTMLImageElement;
+    const specialistName = calculator.querySelector('#calc-specialist-name') as HTMLElement;
+    const specialistRole = calculator.querySelector('#calc-specialist-role') as HTMLElement;
+    const costEl = calculator.querySelector('#calc-cost') as HTMLElement;
+    const jawImage = calculator.querySelector('#calc-jaw-image') as HTMLImageElement;
+    const highlightToggle = calculator.querySelector('#calc-highlight-toggle') as HTMLInputElement;
+
+    let selectedMethod = 'Implants';
+
+    // Doctor specialist dataset
+    const specialists = {
+      chen: {
+        name: 'Dr. James Chen',
+        role: 'Orthodontic Specialist',
+        avatar: '/images/team/doctor2.png'
+      },
+      rodriguez: {
+        name: 'Dr. Elena Rodriguez',
+        role: 'Oral Surgeon',
+        avatar: '/images/team/doctor3.png'
+      },
+      thompson: {
+        name: 'Dr. Marcus Thompson',
+        role: 'Cosmetic Specialist',
+        avatar: '/images/team/doctor4.png'
+      },
+      mitchell: {
+        name: 'Dr. Sarah Mitchell',
+        role: 'Principal Dentist & Founder',
+        avatar: '/images/team/doctor1.png'
+      }
+    };
+
+    // Auto-select preferred method when goals are toggled
+    const handleGoalChange = (changedGoal: string, isChecked: boolean) => {
+      if (!isChecked) return;
+
+      // De-select other exclusive major goals to make selections cleaner
+      if (changedGoal === 'makeover') {
+        straightCheck.checked = false;
+        replaceCheck.checked = false;
+        whiteCheck.checked = false;
+      } else if (changedGoal === 'straight' || changedGoal === 'replace' || changedGoal === 'white') {
+        makeoverCheck.checked = false;
+      }
+
+      // Auto-switch method buttons for convenient UX
+      if (changedGoal === 'straight') {
+        updateMethodActive('Aligners');
+      } else if (changedGoal === 'replace') {
+        updateMethodActive('Implants');
+      } else if (changedGoal === 'white') {
+        updateMethodActive('Veneers');
+      } else if (changedGoal === 'makeover') {
+        updateMethodActive('Veneers');
+      }
+    };
+
+    const updateMethodActive = (methodName: string) => {
+      selectedMethod = methodName;
+      methodButtons.forEach(btn => {
+        const btnMethod = btn.getAttribute('data-method-btn');
+        if (btnMethod === methodName) {
+          btn.className = 'px-4 py-1.5 rounded-full text-[11px] font-bold border transition-all duration-200 cursor-pointer bg-card-blue text-white border-transparent shadow-xs active-method';
+        } else {
+          btn.className = 'px-4 py-1.5 rounded-full text-[11px] font-bold border transition-all duration-200 cursor-pointer bg-white text-slate-500 border-slate-200 hover:border-slate-300';
+        }
+      });
+      calculateOutput();
+    };
+
+    // Cost, complexity, timeline, and specialist calculations
+    const calculateOutput = () => {
+      let isStraight = straightCheck.checked;
+      let isReplace = replaceCheck.checked;
+      let isWhite = whiteCheck.checked;
+      let isMakeover = makeoverCheck.checked;
+
+      // If nothing is checked, clear or show default
+      if (!isStraight && !isReplace && !isWhite && !isMakeover) {
+        complexityEl.innerHTML = '<span class="w-2 h-2 rounded-full bg-slate-400 animate-pulse"></span> None Selected';
+        complexityEl.style.color = '#94a3b8';
+        timeEl.textContent = '--';
+        costEl.textContent = '$0';
+        specialistName.textContent = 'Select a goal';
+        specialistRole.textContent = 'To see specialist';
+        specialistAvatar.src = '/images/logo-cropped.png';
+        return;
+      }
+
+      let complexity = 'Low';
+      let complexityColor = '#58b3fa'; // Accent blue
+      let complexityBg = 'bg-accent-blue';
+      let timeText = '1 week';
+      let doc = specialists.mitchell;
+      let minCost = 500;
+      let maxCost = 800;
+
+      // 1. Calculate values based on selected goals & methods
+      if (isMakeover) {
+        complexity = 'High';
+        complexityColor = '#f43f5e'; // Rose red
+        complexityBg = 'bg-rose-500';
+        timeText = selectedMethod === 'Implants' ? '4 - 6 months' : '3 - 4 weeks';
+        doc = selectedMethod === 'Implants' ? specialists.rodriguez : specialists.mitchell;
+        minCost = selectedMethod === 'Implants' ? 9500 : 7500;
+        maxCost = selectedMethod === 'Implants' ? 14000 : 9800;
+      } else if (isReplace) {
+        complexity = 'High';
+        complexityColor = '#f43f5e';
+        complexityBg = 'bg-rose-500';
+        timeText = '3 - 6 months';
+        doc = specialists.rodriguez;
+        minCost = 2800;
+        maxCost = 4200;
+      } else if (isStraight) {
+        complexity = 'Medium';
+        complexityColor = '#fbbf24'; // Warm amber
+        complexityBg = 'bg-amber-400';
+        timeText = selectedMethod === 'Aligners' ? '6 - 12 months' : '3 weeks';
+        doc = selectedMethod === 'Aligners' ? specialists.chen : specialists.mitchell;
+        minCost = selectedMethod === 'Aligners' ? 3400 : 4500;
+        maxCost = selectedMethod === 'Aligners' ? 5200 : 6000;
+      } else if (isWhite) {
+        complexity = 'Low';
+        complexityColor = '#58b3fa';
+        complexityBg = 'bg-accent-blue';
+        timeText = selectedMethod === 'Veneers' ? '2 weeks' : '1 - 2 visits';
+        doc = selectedMethod === 'Veneers' ? specialists.mitchell : specialists.thompson;
+        minCost = selectedMethod === 'Veneers' ? 2200 : 350;
+        maxCost = selectedMethod === 'Veneers' ? 3800 : 650;
+      }
+
+      // Add combinations of multiple checked goals
+      if (!isMakeover) {
+        let count = (isStraight ? 1 : 0) + (isReplace ? 1 : 0) + (isWhite ? 1 : 0);
+        if (count > 1) {
+          complexity = 'High';
+          complexityColor = '#f43f5e';
+          complexityBg = 'bg-rose-500';
+          timeText = '3 - 6 months';
+          doc = specialists.mitchell; // Team lead handles complex combine cases
+          if (isStraight) minCost += 2000, maxCost += 3000;
+          if (isReplace) minCost += 2500, maxCost += 3500;
+          if (isWhite) minCost += 300, maxCost += 500;
+        }
+      }
+
+      // 2. Loyalty discount factor
+      if (loyaltyMember.checked) {
+        minCost = Math.round(minCost * 0.9);
+        maxCost = Math.round(maxCost * 0.9);
+      }
+
+      // Format cost output
+      const formatCurrency = (val: number) => {
+        return new Intl.NumberFormat('en-US', {
+          style: 'currency',
+          currency: 'USD',
+          maximumFractionDigits: 0
+        }).format(val);
+      };
+
+      // Apply to UI
+      complexityEl.innerHTML = `<span class="w-2 h-2 rounded-full ${complexityBg} animate-pulse"></span> ${complexity}`;
+      complexityEl.style.color = complexityColor;
+      timeEl.textContent = timeText;
+      costEl.textContent = `${formatCurrency(minCost)} - ${formatCurrency(maxCost)}*`;
+      
+      // Update recommended specialist card
+      specialistName.textContent = doc.name;
+      specialistRole.textContent = doc.role;
+      specialistAvatar.src = doc.avatar;
+
+      // 3. Swap visualizer image dynamically to show 3D dental angles
+      if (isMakeover) {
+        jawImage.src = "/images/treatment_calculator/3d_makeover.png";
+      } else if (isReplace) {
+        jawImage.src = "/images/treatment_calculator/3d_transparent.png";
+      } else if (isStraight) {
+        jawImage.src = "/images/treatment_calculator/3d_aligners.png";
+      } else if (isWhite) {
+        jawImage.src = "/images/treatment_calculator/3d_whitening.png";
+      }
+    };
+
+    // Set up goal selection listeners
+    straightCheck.addEventListener('change', () => {
+      handleGoalChange('straight', straightCheck.checked);
+      calculateOutput();
+    });
+    replaceCheck.addEventListener('change', () => {
+      handleGoalChange('replace', replaceCheck.checked);
+      calculateOutput();
+    });
+    whiteCheck.addEventListener('change', () => {
+      handleGoalChange('white', whiteCheck.checked);
+      calculateOutput();
+    });
+    makeoverCheck.addEventListener('change', () => {
+      handleGoalChange('makeover', makeoverCheck.checked);
+      calculateOutput();
+    });
+
+    // Method button click listeners
+    methodButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const method = btn.getAttribute('data-method-btn');
+        if (method) updateMethodActive(method);
+      });
+    });
+
+    // Loyalty changes
+    loyaltyMember.addEventListener('change', calculateOutput);
+    loyaltyNone.addEventListener('change', calculateOutput);
+
+    // Interactive jaw image highlight/rotation toggle
+    highlightToggle.addEventListener('change', () => {
+      if (highlightToggle.checked) {
+        jawImage.style.filter = 'drop-shadow(0 12px 24px rgba(88,179,250,0.3)) saturate(1.2) brightness(1.05)';
+        jawImage.classList.add('scale-100');
+        jawImage.classList.remove('scale-95');
+      } else {
+        jawImage.style.filter = 'drop-shadow(0 4px 8px rgba(0,0,0,0.1)) saturate(0.8) brightness(0.95)';
+        jawImage.classList.add('scale-95');
+        jawImage.classList.remove('scale-100');
+      }
+    });
+
+    // Jaw model interactive click effect
+    jawImage.addEventListener('click', () => {
+      // Simulate quick rotation or zoom refresh animation
+      jawImage.classList.add('rotate-6', 'scale-105');
+      setTimeout(() => {
+        jawImage.classList.remove('rotate-6', 'scale-105');
+      }, 300);
+    });
+
+    // Initial calculation
+    calculateOutput();
+  });
+</script>
+
+<style>
+  /* Extra transitions for active state */
+  .active-method {
+    transform: scale(1.05);
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+</style>
