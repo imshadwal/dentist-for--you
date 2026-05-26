@@ -31,109 +31,165 @@ const team = [
 ];
 ---
 
-<section
-  class="mx-auto w-[calc(100%-32px)] max-w-460 py-[clamp(40px,8vw,100px)] max-[620px]:w-[calc(100%-28px)]"
+<section 
+  class="mx-auto w-full max-w-[1440px] py-24 px-6 md:px-16 grid grid-cols-1 lg:grid-cols-3 gap-12 items-start overflow-hidden" 
   id="meet-team"
   aria-labelledby="team-title"
 >
-  <div class="text-center mb-[clamp(40px,6vw,80px)]">
-    <p class="m-0 text-[11px] font-bold tracking-[0.38em] text-card-blue/70 uppercase">
-      Expertise
-    </p>
-    <h2
-      id="team-title"
-      class="mt-3 text-[clamp(36px,4.4vw,56px)] font-extrabold leading-[1.05] text-heading"
-    >
-      Specialists in excellence
-    </h2>
-    <p class="mx-auto mt-4 max-w-180 text-[clamp(14px,1.05vw,18px)] leading-[1.45] text-heading/70">
-      Our board-certified team brings decades of combined experience and unwavering commitment to your care.
-    </p>
-  </div>
-
-  <!-- Team Grid -->
-  <div class="grid grid-cols-2 gap-[clamp(16px,2.5vw,28px)] max-[900px]:grid-cols-1">
-    {
-      team.map((member) => (
-        <article
-          class="group relative overflow-hidden rounded-2xl border border-[#d6e6fb] shadow-[0_12px_24px_rgba(31,63,117,0.12)] transition-all duration-300 hover:shadow-[0_24px_48px_rgba(31,63,117,0.18)]"
-        >
-          <!-- Image container -->
-          <div class="relative h-70 max-[620px]:h-60 overflow-hidden bg-linear-to-br from-accent-blue/10 to-card-blue/10">
-            <div
-              class="absolute inset-0 bg-linear-to-b from-transparent via-transparent to-white/5"
-              aria-hidden="true"
-            ></div>
-
-            {member.image ? (
-              <img
-                src={member.image}
-                alt={member.name}
-                class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-                loading="lazy"
-              />
-            ) : (
-              <div class="flex items-center justify-center h-full bg-linear-to-br from-accent-blue/20 to-card-blue/20">
-                <div class="text-center">
-                  <div class="text-5xl font-extrabold text-card-blue/30">
-                    {member.name.charAt(0)}{member.name.split(" ")[1]?.charAt(0)}
-                  </div>
-                </div>
-              </div>
-            )}
-
-            <!-- Gradient overlay on hover -->
-            <div
-              class="absolute inset-0 bg-linear-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-              aria-hidden="true"
-            ></div>
-          </div>
-
-          <!-- Content -->
-          <div class="p-[clamp(18px,2.5vw,28px)]">
-            <p class="text-[12px] font-bold tracking-[0.32em] text-card-blue/60 uppercase mb-2">
-              {member.specialty}
-            </p>
-            <h3 class="text-[clamp(18px,1.8vw,22px)] font-extrabold text-heading mb-1">
-              {member.name}
-            </h3>
-            <p class="text-[13px] font-semibold text-card-blue mb-3">
-              {member.role}
-            </p>
-            <p class="text-[13px] leading-normal text-heading/70">
-              {member.bio}
-            </p>
-
-            <!-- Accent line -->
-            <div
-              class="mt-4 h-1 w-6 bg-linear-to-r from-accent-blue to-card-blue rounded-full transform transition-all duration-300 group-hover:w-12"
-              aria-hidden="true"
-            ></div>
-          </div>
-        </article>
-      ))
-    }
-  </div>
-
-  <!-- CTA -->
-  <div class="mt-[clamp(40px,8vw,60px)] flex justify-center">
-    <a
-      class="inline-flex min-h-14.5 items-center gap-3 rounded-full bg-linear-to-r from-accent-blue to-card-blue py-0 pr-7 pl-3 text-base font-extrabold text-white no-underline shadow-[0_18px_34px_rgba(43,93,158,0.26)] transition duration-200 hover:-translate-y-0.5 hover:shadow-[0_22px_42px_rgba(43,93,158,0.32)] max-[620px]:min-h-13 max-[620px]:pr-5.5 max-[620px]:text-sm"
-      href="#contact-us"
-    >
-      <span
-        class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/30 bg-white/20"
-        aria-hidden="true"
-      >
-        <svg class="h-4.5 w-4.5" viewBox="0 0 24 24" role="img">
-          <path
-            d="M7 2.75a.75.75 0 0 1 .75.75V5h8.5V3.5a.75.75 0 0 1 1.5 0V5H19a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3V8a3 3 0 0 1 3-3h1.25V3.5A.75.75 0 0 1 7 2.75ZM3.5 10v8A1.5 1.5 0 0 0 5 19.5h14a1.5 1.5 0 0 0 1.5-1.5v-8h-17Zm3 3.25a.75.75 0 0 1 .75-.75h2.5a.75.75 0 0 1 0 1.5h-2.5a.75.75 0 0 1-.75-.75Zm0 3a.75.75 0 0 1 .75-.75h7.5a.75.75 0 0 1 0 1.5h-7.5a.75.75 0 0 1-.75-.75Z"
-              fill="currentColor"
-            ></path>
-          </svg>
+  <div class="lg:col-span-1 lg:sticky lg:top-24 flex flex-col justify-between h-full z-10 bg-white">
+    <div>
+      <div class="flex items-center gap-3">
+        <span id="team-title" class="text-xs font-bold tracking-[0.3em] text-slate-400 uppercase">
+          Specialists
         </span>
-        Meet our team
+        <div class="flex -space-x-2 overflow-hidden">
+          <div class="inline-block h-5 w-5 rounded-full ring-2 ring-white bg-slate-200"></div>
+          <div class="inline-block h-5 w-5 rounded-full ring-2 ring-white bg-slate-300"></div>
+          <div class="inline-block h-5 w-5 rounded-full ring-2 ring-white bg-slate-400"></div>
+          <div class="inline-block h-5 w-5 rounded-full ring-2 ring-white bg-[#2b5d9e] flex items-center justify-center text-[8px] font-bold text-white">+14</div>
+        </div>
+      </div>
+
+      <h2 class="mt-4 text-4xl font-extrabold leading-[1.15] text-[#294073] tracking-tight">
+        Meet the minds<br />behind your smile
+      </h2>
+      
+      <p class="mt-6 text-sm leading-relaxed text-[#294073]/70 max-w-sm">
+        Our team of dedicated professionals brings precision, empathy, and artistry to every treatment — combining years of experience with a shared passion for truly personalized care.
+      </p>
+      
+      <a href="#all-specialists" class="inline-flex items-center text-sm font-bold text-[#2b5d9e] mt-6 hover:opacity-80 transition-opacity">
+        View all specialists <span class="ml-2">→</span>
       </a>
-    </a>
+    </div>
+
+    <div class="flex items-center space-x-6 mt-16 lg:mt-32">
+      <span class="text-sm font-bold text-[#294073]">
+        <span id="carousel-counter">01</span> <span class="text-slate-300 font-normal">/ {String(team.length).padStart(2, '0')}</span>
+      </span>
+      <div class="flex space-x-2">
+        <button id="slide-prev" class="w-10 h-10 rounded-full border border-slate-200 flex items-center justify-center text-slate-400 hover:border-slate-400 hover:text-[#294073] transition-colors cursor-pointer" aria-label="Previous specialist">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        </button>
+        <button id="slide-next" class="w-10 h-10 rounded-full border border-slate-200 flex items-center justify-center text-slate-400 hover:border-slate-400 hover:text-[#294073] transition-colors cursor-pointer" aria-label="Next specialist">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="lg:col-span-2 w-full relative">
+    <div 
+      id="carousel-track" 
+      class="flex flex-row overflow-x-auto gap-6 scroll-smooth snap-x snap-mandatory [-ms-overflow-style:none] [scrollbar-width:none] pb-4 select-none cursor-grab active:cursor-grabbing"
+    >
+      {
+        team.map((member) => (
+          <article class="w-[290px] min-w-[290px] md:w-[320px] md:min-w-[320px] snap-start group relative overflow-hidden rounded-2xl border border-slate-100 bg-[#f8fafc] shadow-sm transition-all duration-300 flex flex-col justify-between">
+            <div>
+              <div class="relative h-80 overflow-hidden bg-slate-100">
+                {member.image ? (
+                  <img
+                    src={member.image}
+                    alt={member.name}
+                    class="h-full w-full object-cover grayscale-[15%] transition-transform duration-300 group-hover:scale-105 pointer-events-none"
+                    loading="lazy"
+                  />
+                ) : (
+                  <div class="flex items-center justify-center h-full bg-linear-to-br from-[#58b3fa]/20 to-[#2b5d9e]/20">
+                    <div class="text-5xl font-extrabold text-[#2b5d9e]/30">
+                      {member.name.charAt(0)}{member.name.split(" ")[1]?.charAt(0)}
+                    </div>
+                  </div>
+                )}
+                <span class="absolute top-4 left-4 bg-white/90 backdrop-blur-md text-[10px] uppercase tracking-wider font-bold text-[#294073] px-3 py-1 rounded-full border border-white/20 shadow-sm">
+                  {member.specialty.split(" & ")[0]}
+                </span>
+              </div>
+
+              <div class="p-6">
+                <h3 class="text-lg font-bold text-[#294073] tracking-tight mb-0.5">
+                  {member.name}
+                </h3>
+                <p class="text-[11px] font-semibold text-slate-400">
+                  {member.role}
+                </p>
+                <p class="text-xs text-slate-500 mt-4 leading-relaxed line-clamp-3">
+                  {member.bio}
+                </p>
+              </div>
+            </div>
+          </article>
+        ))
+      }
+    </div>
   </div>
 </section>
+
+<script>
+  const track = document.getElementById('carousel-track') as HTMLElement;
+  const nextBtn = document.getElementById('slide-next');
+  const prevBtn = document.getElementById('slide-prev');
+  const counter = document.getElementById('carousel-counter');
+
+  if (track && nextBtn && prevBtn && counter) {
+    const getCardWidth = () => track.firstElementChild?.getBoundingClientRect().width || 320;
+    const gap = 24;
+
+    // Direct Arrow Pushes Loop Mechanics
+    nextBtn.addEventListener('click', () => {
+      const maxScroll = track.scrollWidth - track.clientWidth;
+      if (Math.ceil(track.scrollLeft) >= maxScroll) {
+        track.scrollTo({ left: 0, behavior: 'smooth' });
+      } else {
+        track.scrollBy({ left: getCardWidth() + gap, behavior: 'smooth' });
+      }
+    });
+
+    prevBtn.addEventListener('click', () => {
+      if (track.scrollLeft <= 0) {
+        track.scrollTo({ left: track.scrollWidth, behavior: 'smooth' });
+      } else {
+        track.scrollBy({ left: -(getCardWidth() + gap), behavior: 'smooth' });
+      }
+    });
+
+    // Dynamic Tracking Counter Logic
+    track.addEventListener('scroll', () => {
+      const currentScroll = track.scrollLeft;
+      const cardSpace = getCardWidth() + gap;
+      const index = Math.round(currentScroll / cardSpace);
+      counter.textContent = String(Math.min(index + 1, track.children.length)).padStart(2, '0');
+    });
+
+    // Inertial Mouse Drag Setup
+    let isDown = false;
+    let startX: number;
+    let scrollLeft: number;
+
+    track.addEventListener('mousedown', (e) => {
+      isDown = true;
+      track.classList.replace('cursor-grab', 'cursor-grabbing');
+      startX = e.pageX - track.offsetLeft;
+      scrollLeft = track.scrollLeft;
+    });
+
+    track.addEventListener('mouseleave', () => {
+      isDown = false;
+      track.classList.replace('cursor-grabbing', 'cursor-grab');
+    });
+
+    track.addEventListener('mouseup', () => {
+      isDown = false;
+      track.classList.replace('cursor-grabbing', 'cursor-grab');
+    });
+
+    track.addEventListener('mousemove', (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - track.offsetLeft;
+      const walk = (x - startX) * 1.5;
+      track.scrollLeft = scrollLeft - walk;
+    });
+  }
+</script>
