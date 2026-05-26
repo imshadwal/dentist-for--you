@@ -51,67 +51,51 @@
       </div>
     </div>
 
-    <!-- Right: Visual Element -->
+    <!-- Right: Premium Interactive Visual Element -->
     <div
-      class="relative flex items-center justify-center h-[400px] max-[980px]:h-[300px] max-[620px]:h-[280px]"
+      class="about-hero-visual relative group flex items-center justify-center h-[420px] max-[980px]:h-[320px] max-[620px]:h-[280px] rounded-3xl overflow-hidden shadow-[0_24px_48px_rgba(43,93,158,0.2)] border border-[#d6e6fb] bg-[#f8fafc]"
       aria-hidden="true"
     >
-      <div class="absolute inset-0 rounded-3xl overflow-hidden">
-        <div
-          class="absolute inset-0 bg-linear-to-br from-accent-blue/20 to-card-blue/20 backdrop-blur-3xl"
-        >
-        </div>
-        <svg
-          class="w-full h-full object-contain p-8"
-          viewBox="0 0 200 200"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <defs>
-            <linearGradient
-              id="smile-gradient"
-              x1="0%"
-              y1="0%"
-              x2="100%"
-              y2="100%"
-            >
-              <stop offset="0%" style="stop-color:#58b3fa;stop-opacity:1"
-              ></stop>
-              <stop offset="100%" style="stop-color:#2b5d9e;stop-opacity:1"
-              ></stop>
-            </linearGradient>
-          </defs>
+      <!-- Background Luxury Lounge with Zoom Effect -->
+      <img
+        class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+        src="/images/about/clinic_lounge.png"
+        alt="Dentist For You Luxury Lounge"
+        loading="lazy"
+      />
+      <!-- Soft dark/blue glass overlay for contrast -->
+      <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(41,64,115,0.25)_0%,rgba(41,64,115,0.65)_100%)] opacity-85 backdrop-blur-[1px]"></div>
 
-          <!-- Smile/Tooth Icon -->
-          <circle
-            cx="100"
-            cy="100"
-            r="90"
-            fill="url(#smile-gradient)"
-            opacity="0.1"></circle>
-          <circle
-            cx="100"
-            cy="100"
-            r="70"
-            fill="none"
-            stroke="url(#smile-gradient)"
-            stroke-width="2"></circle>
+      <!-- Conceptual Glassy Tooth sculpture floating on top -->
+      <div class="relative z-10 w-4/5 h-4/5 flex items-center justify-center">
+        <!-- Pulse circles -->
+        <div class="absolute w-56 h-56 rounded-full border border-white/10 animate-[spin_40s_linear_infinite]"></div>
+        <div class="absolute w-44 h-44 rounded-full bg-[radial-gradient(circle,rgba(88,179,250,0.15)_0%,transparent_70%)] animate-pulse"></div>
 
-          <!-- Tooth elements -->
-          <g fill="url(#smile-gradient)" opacity="0.8">
-            <rect x="60" y="80" width="20" height="35" rx="3"></rect>
-            <rect x="90" y="75" width="20" height="40" rx="3"></rect>
-            <rect x="120" y="80" width="20" height="35" rx="3"></rect>
-          </g>
-
-          <!-- Smile curve -->
-          <path
-            d="M 70 120 Q 100 140 130 120"
-            stroke="url(#smile-gradient)"
-            stroke-width="3"
-            fill="none"
-            stroke-linecap="round"></path>
-        </svg>
+        <img
+          class="relative h-[85%] w-auto object-contain z-10 animate-float filter drop-shadow-[0_15px_30px_rgba(88,179,250,0.4)] transition-all duration-300 mix-blend-multiply group-hover:scale-105"
+          src="/images/about/clinic_art.png"
+          alt="Science meets Artistry Concept"
+        />
       </div>
     </div>
   </div>
 </section>
+
+<style>
+  @keyframes float {
+    0% {
+      transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+      transform: translateY(-8px) rotate(1deg);
+    }
+    100% {
+      transform: translateY(0px) rotate(0deg);
+    }
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+</style>
