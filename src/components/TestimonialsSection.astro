@@ -11,8 +11,8 @@ const testimonials = [
       "Minimal tooth preparation to preserve enamel",
       "Placement of ultra-thin porcelain veneers",
     ],
-    beforeImage: "/images/testimonials/teeth_smile.png",
-    afterImage: "/images/testimonials/teeth_smile.png",
+    beforeImage: "/images/testimonials/aesthetic_before.png",
+    afterImage: "/images/testimonials/aesthetic_after.png",
     beforeAlt: "Before aesthetic dentistry smile",
     afterAlt: "After aesthetic dentistry smile",
     portrait:
@@ -32,8 +32,8 @@ const testimonials = [
       "Clear aligner series with weekly tracking",
       "Custom retention plan to lock in results",
     ],
-    beforeImage: "/images/testimonials/teeth_smile.png",
-    afterImage: "/images/testimonials/teeth_smile.png",
+    beforeImage: "/images/testimonials/ortho_before.png",
+    afterImage: "/images/testimonials/ortho_after.png",
     beforeAlt: "Before orthodontic alignment",
     afterAlt: "After orthodontic alignment",
     portrait:
@@ -52,8 +52,8 @@ const testimonials = [
       "Guided implant placement for precision",
       "Custom ceramic crown matched to enamel",
     ],
-    beforeImage: "/images/testimonials/teeth_smile.png",
-    afterImage: "/images/testimonials/teeth_smile.png",
+    beforeImage: "/images/testimonials/implant_before.png",
+    afterImage: "/images/testimonials/implant_after.png",
     beforeAlt: "Before dental implant restoration",
     afterAlt: "After dental implant restoration",
     portrait:
@@ -72,8 +72,8 @@ const testimonials = [
       "In-chair whitening with gum protection",
       "Custom take-home trays for maintenance",
     ],
-    beforeImage: "/images/testimonials/teeth_smile.png",
-    afterImage: "/images/testimonials/teeth_smile.png",
+    beforeImage: "/images/testimonials/whitening_before.png",
+    afterImage: "/images/testimonials/whitening_after.png",
     beforeAlt: "Before teeth whitening",
     afterAlt: "After teeth whitening",
     portrait:
@@ -439,19 +439,21 @@ const defaultTab = testimonials[0];
   }
 
   .compare-before {
-    filter: sepia(28%) saturate(125%) brightness(0.92) contrast(1.05);
+    clip-path: inset(0 calc(100% - var(--compare)) 0 0);
+    z-index: 2;
   }
 
   .compare-after {
-    clip-path: inset(0 calc(100% - var(--compare)) 0 0);
-    filter: brightness(1.08) saturate(1.1) contrast(1.02);
+    z-index: 1;
   }
 
   .compare-divider {
     left: calc(var(--compare) - 1px);
+    z-index: 10;
   }
 
   .compare-handle {
     left: calc(var(--compare) - 24px);
+    z-index: 20;
   }
 </style>
