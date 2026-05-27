@@ -1,4 +1,5 @@
 ---
+// src/components/SiteHeader.astro
 const navigationItems = [
   { label: "Home", href: "/" },
   { label: "About Us", href: "/about" },
@@ -8,28 +9,33 @@ const navigationItems = [
 ---
 
 <header
-  class="relative z-10 mx-auto flex w-[calc(100%-32px)] max-w-460 items-center justify-between py-7 max-[760px]:items-start max-[760px]:gap-5 max-[760px]:py-5"
+  id="site-header"
+  class="mx-auto flex items-center justify-between py-6 px-4"
 >
-  <a
-    class="inline-flex h-24 w-18.5 items-center max-[760px]:h-19 max-[760px]:w-14.5"
-    href="/"
-    aria-label="Dentist For You home"
-  >
-    <img
-      class="h-full w-full object-contain object-left"
-      src="/images/logo-cropped.png"
-      alt="Dentist For You"
-    />
-  </a>
+  <!-- 1. Left Side: Logo Wrapper (aligned left) -->
+  <div class="header-left flex justify-start w-32 transition-all duration-500">
+    <a
+      class="header-logo-link inline-flex h-16 w-32 items-center justify-start transition-all duration-500"
+      href="/"
+      aria-label="Dentist For You home"
+    >
+      <img
+        class="h-full w-auto object-contain object-left"
+        src="/images/logo-cropped.png"
+        alt="Dentist For You"
+      />
+    </a>
+  </div>
 
+  <!-- 2. Center: Navigation Links (perfectly centered) -->
   <nav
-    class="flex items-center justify-end gap-[clamp(22px,4vw,72px)] text-[15px] font-bold leading-none max-[760px]:flex-wrap max-[760px]:gap-x-5 max-[760px]:gap-y-3.5 max-[760px]:text-[13px]"
+    class="header-nav flex items-center justify-center gap-10 text-[15px] font-extrabold leading-none transition-all duration-500"
     aria-label="Primary navigation"
   >
     {
       navigationItems.map((item) => (
         <a
-          class="text-heading no-underline transition duration-200 hover:-translate-y-px hover:text-card-blue"
+          class="nav-link text-heading no-underline transition-all duration-300 relative py-1 px-0"
           href={item.href}
         >
           {item.label}
@@ -37,4 +43,174 @@ const navigationItems = [
       ))
     }
   </nav>
+
+  <!-- 3. Right Side: Spacer (balances the logo on the left) -->
+  <div class="header-right flex justify-end w-32 transition-all duration-500 max-[760px]:hidden"></div>
 </header>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const header = document.getElementById('site-header');
+    
+    if (header) {
+      const handleScroll = () => {
+        if (window.scrollY > 40) {
+          header.classList.add('scrolled');
+        } else {
+          header.classList.remove('scrolled');
+        }
+      };
+      
+      window.addEventListener('scroll', handleScroll, { passive: true });
+      // Execute once on load to verify initial scroll state
+      handleScroll();
+    }
+  });
+</script>
+
+<style>
+  /* PREMIUM FLOATING PILL STYLES WITH GLASSMORPHISM AND FLUID TRANSITIONS */
+  #site-header {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 32px);
+    max-w: 1200px;
+    z-index: 1000;
+    transition: 
+      top 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+      width 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+      max-width 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+      padding 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+      background-color 0.4s ease,
+      border-color 0.4s ease,
+      box-shadow 0.4s ease,
+      border-radius 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    background-color: transparent;
+    border: 1px solid transparent;
+    border-radius: 0px;
+    margin-top: 12px;
+  }
+
+  /* Scrolled floating-pill state (iOS Liquid Glass design) */
+  #site-header.scrolled {
+    top: 16px;
+    width: fit-content;
+    min-width: 560px;
+    max-width: 90vw;
+    padding-left: 28px;
+    padding-right: 28px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: rgba(255, 255, 255, 0.82);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-color: rgba(214, 230, 251, 0.5);
+    border-radius: 9999px;
+    box-shadow: 
+      0 12px 30px rgba(31, 63, 117, 0.06),
+      0 0 0 1px rgba(255, 255, 255, 0.4) inset;
+    margin-top: 0px;
+  }
+
+  /* Logo Transition inside floating pill */
+  .header-logo-link {
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), width 0.4s ease, height 0.4s ease;
+  }
+
+  #site-header.scrolled .header-logo-link {
+    transform: scale(0.85);
+    width: 90px;
+    height: 36px;
+  }
+
+  /* Nav Links Layout Spacing */
+  .header-nav {
+    transition: gap 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  #site-header.scrolled .header-nav {
+    gap: 24px;
+  }
+
+  /* Left and Right column balancing & smooth scroll collapse transitions */
+  .header-left {
+    transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .header-right {
+    transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+  }
+
+  #site-header.scrolled .header-left {
+    width: auto;
+  }
+
+  #site-header.scrolled .header-right {
+    width: 0px;
+    opacity: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  /* Premium Hover underline effect for navigation links */
+  .nav-link {
+    font-weight: 800;
+    color: var(--color-heading);
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(to right, var(--color-accent-blue), var(--color-card-blue));
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .nav-link:hover {
+    color: var(--color-card-blue);
+    transform: translateY(-1px);
+  }
+
+  .nav-link:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+
+  /* Responsive Adjustments for Mobile Viewports */
+  @media (max-width: 760px) {
+    #site-header {
+      width: calc(100% - 24px) !important;
+      margin-top: 8px !important;
+    }
+    
+    #site-header.scrolled {
+      top: 8px !important;
+      width: calc(100% - 24px) !important;
+      min-width: unset !important;
+      border-radius: 20px !important;
+      padding: 10px 16px !important;
+    }
+
+    #site-header.scrolled .header-logo-link {
+      transform: scale(0.8) !important;
+      width: 80px !important;
+      height: 32px !important;
+    }
+
+    .header-nav {
+      gap: 14px !important;
+      font-size: 13px !important;
+    }
+
+    #site-header.scrolled .header-nav {
+      gap: 12px !important;
+    }
+  }
+</style>
