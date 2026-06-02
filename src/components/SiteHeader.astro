@@ -12,10 +12,10 @@ const navigationItems = [
   id="site-header"
   class="mx-auto flex items-center justify-between py-6 px-4"
 >
-  <!-- 1. Left Side: Logo Wrapper (aligned left) -->
-  <div class="header-left flex justify-start w-32 transition-all duration-500">
+  <!-- 1. Left Side: Logo Wrapper -->
+  <div class="header-left flex justify-start w-32 max-[760px]:w-24 transition-all duration-500">
     <a
-      class="header-logo-link inline-flex h-16 w-32 items-center justify-start transition-all duration-500"
+      class="header-logo-link inline-flex h-16 w-32 max-[760px]:w-24 items-center justify-start transition-all duration-500"
       href="/"
       aria-label="Dentist For You home"
     >
@@ -27,9 +27,9 @@ const navigationItems = [
     </a>
   </div>
 
-  <!-- 2. Center: Navigation Links (perfectly centered) -->
+  <!-- 2. Center: Navigation Links (Desktop Only) -->
   <nav
-    class="header-nav flex items-center justify-center gap-10 text-[15px] font-extrabold leading-none transition-all duration-500"
+    class="header-nav hidden md:flex items-center justify-center gap-10 text-[15px] font-extrabold leading-none transition-all duration-500"
     aria-label="Primary navigation"
   >
     {
@@ -44,14 +44,91 @@ const navigationItems = [
     }
   </nav>
 
-  <!-- 3. Right Side: Spacer (balances the logo on the left) -->
-  <div class="header-right flex justify-end w-32 transition-all duration-500 max-[760px]:hidden"></div>
+  <!-- 3. Right Side: Desktop Spacer (Balances the logo on desktop) -->
+  <div class="header-right hidden md:flex justify-end w-32 transition-all duration-500"></div>
+
+  <!-- 4. Mobile Mode: Premium Hamburger Menu Toggle (Mobile Only) -->
+  <div class="header-mobile-toggle flex md:hidden items-center gap-3 transition-all duration-500">
+    <!-- Sleek vertical glass line divider (fades in on scroll) -->
+    <div class="header-divider"></div>
+    <button
+      id="mobile-menu-toggle"
+      class="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-50/60 border border-slate-200/50 text-heading shadow-3xs cursor-pointer active:scale-95 transition-all backdrop-blur-md"
+      aria-label="Toggle Navigation Menu"
+    >
+      <div class="hamburger-icon relative w-4.5 h-3 flex flex-col justify-between pointer-events-none">
+        <span class="w-full h-0.5 bg-heading rounded-full transition-transform"></span>
+        <span class="w-full h-0.5 bg-heading rounded-full transition-opacity"></span>
+        <span class="w-full h-0.5 bg-heading rounded-full transition-transform"></span>
+      </div>
+    </button>
+  </div>
 </header>
+
+<!-- Mobile Navigation Overlay (Breathtaking Liquid Glass Dashboard) -->
+<div
+  id="mobile-menu-overlay"
+  class="fixed inset-0 z-[2000] opacity-0 pointer-events-none transition-all duration-500 flex flex-col justify-between p-8"
+>
+  <!-- Frosted backing glass layer -->
+  <div class="absolute inset-0 bg-white/94 backdrop-blur-2xl -z-10"></div>
+  <div class="absolute inset-0 bg-radial-gradient(circle_at_top_right,rgba(88,179,250,0.12)_0%,transparent_70%) -z-10"></div>
+
+  <!-- Top Row -->
+  <div class="flex items-center justify-between w-full">
+    <img
+      src="/images/logo-cropped.png"
+      alt="Dentist For You"
+      class="h-10 w-auto object-contain"
+    />
+    <button
+      id="mobile-menu-close"
+      class="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-100/80 border border-slate-200/60 text-heading shadow-3xs cursor-pointer active:scale-95 transition-all"
+      aria-label="Close Navigation Menu"
+    >
+      <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+  </div>
+
+  <!-- Centered list stack of navigation links -->
+  <div class="flex flex-col items-center justify-center my-auto w-full">
+    <nav class="flex flex-col items-center gap-6" aria-label="Mobile navigation">
+      {
+        navigationItems.map((item, idx) => (
+          <a
+            class="mobile-nav-link text-3xl font-black text-heading tracking-tight no-underline hover:text-card-blue transition-all duration-500 opacity-0 translate-y-4"
+            href={item.href}
+            data-index={idx}
+          >
+            {item.label}
+          </a>
+        ))
+      }
+    </nav>
+    
+    <a
+      href="#contact-us"
+      id="mobile-menu-cta"
+      class="mt-12 inline-flex min-h-12 items-center justify-center text-center gap-2.5 rounded-full bg-linear-to-r from-accent-blue to-card-blue px-8 text-sm font-extrabold text-white no-underline shadow-md hover:scale-[1.02] active:scale-[0.98] transition-all opacity-0 translate-y-4"
+    >
+      Schedule a visit
+    </a>
+  </div>
+
+  <!-- Bottom credentials footer -->
+  <div class="flex flex-col items-center gap-1.5 w-full text-center border-t border-slate-100 pt-6">
+    <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">76 Wimpole Street, London</p>
+    <p class="text-[10px] font-bold text-card-blue tracking-wide">+44 20 1234 5678</p>
+  </div>
+</div>
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
     const header = document.getElementById('site-header');
     
+    // Scroll contraction handler
     if (header) {
       const handleScroll = () => {
         if (window.scrollY > 40) {
@@ -62,9 +139,44 @@ const navigationItems = [
       };
       
       window.addEventListener('scroll', handleScroll, { passive: true });
-      // Execute once on load to verify initial scroll state
       handleScroll();
     }
+
+    // Hamburger trigger handler
+    const overlay = document.getElementById('mobile-menu-overlay');
+    const toggle = document.getElementById('mobile-menu-toggle');
+    const closeBtn = document.getElementById('mobile-menu-close');
+    const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+    
+    if (toggle && overlay) {
+      toggle.addEventListener('click', () => {
+        overlay.classList.add('mobile-menu-active');
+        document.body.style.overflow = 'hidden'; // Stop background scroll
+        
+        // Dynamic sequenced transitions slide-in delays
+        mobileLinks.forEach((link, idx) => {
+          (link as HTMLElement).style.transitionDelay = `${idx * 0.08}s`;
+        });
+      });
+    }
+
+    const closeOverlay = () => {
+      if (overlay) {
+        overlay.classList.remove('mobile-menu-active');
+        document.body.style.overflow = '';
+        mobileLinks.forEach((link) => {
+          (link as HTMLElement).style.transitionDelay = '0s';
+        });
+      }
+    };
+
+    if (closeBtn) {
+      closeBtn.addEventListener('click', closeOverlay);
+    }
+
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', closeOverlay);
+    });
   });
 </script>
 
@@ -125,15 +237,6 @@ const navigationItems = [
     height: 36px;
   }
 
-  /* Nav Links Layout Spacing */
-  .header-nav {
-    transition: gap 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-
-  #site-header.scrolled .header-nav {
-    gap: 24px;
-  }
-
   /* Left and Right column balancing & smooth scroll collapse transitions */
   .header-left {
     transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
@@ -152,6 +255,19 @@ const navigationItems = [
     opacity: 0;
     pointer-events: none;
     overflow: hidden;
+  }
+
+  /* Sleek glass line divider visible only on scrolled mobile pill */
+  .header-divider {
+    width: 1px;
+    height: 20px;
+    background-color: rgba(214, 230, 251, 0.7);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  #site-header.scrolled .header-divider {
+    opacity: 1;
   }
 
   /* Premium Hover underline effect for navigation links */
@@ -183,6 +299,23 @@ const navigationItems = [
     transform-origin: left;
   }
 
+  /* MOBILE OVERLAY STYLING */
+  #mobile-menu-overlay.mobile-menu-active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  #mobile-menu-overlay.mobile-menu-active .mobile-nav-link {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  #mobile-menu-overlay.mobile-menu-active #mobile-menu-cta {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.5s ease 0.35s, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.35s;
+  }
+
   /* Responsive Adjustments for Mobile Viewports */
   @media (max-width: 760px) {
     #site-header {
@@ -192,25 +325,17 @@ const navigationItems = [
     
     #site-header.scrolled {
       top: 8px !important;
-      width: calc(100% - 24px) !important;
-      min-width: unset !important;
-      border-radius: 20px !important;
-      padding: 10px 16px !important;
+      width: fit-content !important;
+      min-width: 172px !important;
+      max-width: 90vw !important;
+      border-radius: 9999px !important;
+      padding: 6px 14px !important;
     }
 
     #site-header.scrolled .header-logo-link {
       transform: scale(0.8) !important;
-      width: 80px !important;
-      height: 32px !important;
-    }
-
-    .header-nav {
-      gap: 14px !important;
-      font-size: 13px !important;
-    }
-
-    #site-header.scrolled .header-nav {
-      gap: 12px !important;
+      width: 76px !important;
+      height: 30px !important;
     }
   }
 </style>

@@ -64,3 +64,13 @@ h6 {
 	color: var(--color-heading);
 	font-family: var(--font-sans);
 }
+
+main {
+	padding-top: 104px;
+}
+
+@media (max-width: 760px) {
+	main {
+		padding-top: 80px;
+	}
+}
