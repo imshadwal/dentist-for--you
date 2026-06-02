@@ -1,34 +1,14 @@
 ---
-const values = [
-  {
-    title: "Precision",
-    description: "Every treatment is an act of artistry. We combine cutting-edge technology with meticulous craftsmanship to create results that exceed expectations.",
-    color: "from-accent-blue to-card-blue"
-  },
-  {
-    title: "Compassion",
-    description: "Your comfort is our priority. We create a judgment-free sanctuary where anxiety dissolves and trust flourishes.",
-    color: "from-card-blue to-accent-blue"
-  },
-  {
-    title: "Innovation",
-    description: "We continuously evolve our methods, staying ahead of dental science to bring you the most advanced treatments available.",
-    color: "from-accent-blue via-card-blue to-accent-blue"
-  },
-  {
-    title: "Transparency",
-    description: "No surprises, no hidden agendas. We explain everything clearly and involve you in every decision about your care.",
-    color: "from-card-blue via-accent-blue to-card-blue"
-  },
-];
+// src/components/AboutUsValues.astro
 ---
 
 <section
-  class="mx-auto w-[calc(100%-32px)] max-w-460 py-[clamp(40px,8vw,100px)] max-[620px]:w-[calc(100%-28px)]"
+  class="mx-auto w-[calc(100%-32px)] max-w-460 py-24 max-[620px]:w-[calc(100%-28px)] overflow-visible"
   id="our-values"
   aria-labelledby="values-title"
 >
-  <div class="text-center mb-[clamp(40px,6vw,80px)]">
+  <!-- 1. Header (Centered) -->
+  <div class="text-center mb-16">
     <p class="m-0 text-[11px] font-bold tracking-[0.38em] text-card-blue/70 uppercase">
       Core Philosophy
     </p>
@@ -38,55 +18,186 @@ const values = [
     >
       What drives us every day
     </h2>
+    <p class="mx-auto mt-4 max-w-xl text-sm text-heading/70 leading-relaxed">
+      Every treatment is an act of artistry. We combine meticulous craftsmanship with clinical empathy to create results that exceed expectations.
+    </p>
   </div>
 
-  <!-- Values Grid -->
-  <div class="grid grid-cols-2 gap-[clamp(16px,2.5vw,28px)] max-[800px]:grid-cols-1">
-    {
-      values.map((value, index) => (
-        <article
-          class="group relative h-full min-h-[280px] overflow-hidden rounded-2xl p-[clamp(24px,3vw,40px)] transition-all duration-300 hover:shadow-[0_24px_48px_rgba(43,93,158,0.18)]"
-        >
-          <!-- Gradient background -->
-          <div
-            class={`absolute inset-0 bg-linear-to-br ${value.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300`}
-            aria-hidden="true"
-          ></div>
+  <!-- 2. Three Visual Concept Cards (Side-by-side) -->
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+    
+    <!-- Visual Card 1: Clinical Artistry -->
+    <div class="group relative overflow-hidden rounded-3xl border border-slate-100 bg-white p-4 shadow-xs transition-all duration-300 hover:shadow-md">
+      <div class="relative h-64 overflow-hidden rounded-2xl bg-slate-50">
+        <img 
+          src="/images/about/clinic_art.png" 
+          alt="Clinical Artistry & Concept" 
+          class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+        />
+        <div class="absolute inset-0 bg-linear-to-t from-slate-950/40 via-transparent to-transparent"></div>
+        <span class="absolute bottom-4 left-4 bg-white/90 backdrop-blur-md text-[10px] uppercase tracking-wider font-bold text-heading px-3 py-1 rounded-full shadow-2xs">Artistry & Science</span>
+      </div>
+      <div class="mt-4 px-2">
+        <h3 class="text-base font-extrabold text-heading tracking-tight mb-1.5">Precision Craftsmanship</h3>
+        <p class="text-xs text-heading/70 leading-relaxed">Combining advanced clinical knowledge with standard-setting aesthetic standards.</p>
+      </div>
+    </div>
 
-          <!-- Border gradient overlay -->
-          <div
-            class={`absolute inset-0 rounded-2xl border border-transparent bg-linear-to-br ${value.color} bg-clip-border opacity-0 group-hover:opacity-20 transition-opacity duration-300`}
-            style="padding: 1px;"
-            aria-hidden="true"
-          ></div>
+    <!-- Visual Card 2: Soothing Practice Sanctuary -->
+    <div class="group relative overflow-hidden rounded-3xl border border-slate-100 bg-white p-4 shadow-xs transition-all duration-300 hover:shadow-md">
+      <div class="relative h-64 overflow-hidden rounded-2xl bg-slate-50">
+        <img 
+          src="/images/about/clinic_lounge.png" 
+          alt="Luxury Soothing Lounge" 
+          class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+        />
+        <div class="absolute inset-0 bg-linear-to-t from-slate-950/40 via-transparent to-transparent"></div>
+        <span class="absolute bottom-4 left-4 bg-white/90 backdrop-blur-md text-[10px] uppercase tracking-wider font-bold text-heading px-3 py-1 rounded-full shadow-2xs">Patient Comfort</span>
+      </div>
+      <div class="mt-4 px-2">
+        <h3 class="text-base font-extrabold text-heading tracking-tight mb-1.5 font-bold">Luxury Spa Environment</h3>
+        <p class="text-xs text-heading/70 leading-relaxed">Relaxing spaces with aromatherapy and premium lounges to dissolve clinical anxiety.</p>
+      </div>
+    </div>
 
-          <!-- Content -->
-          <div class="relative z-1 flex flex-col h-full">
-            <div class="flex items-center gap-3 mb-4">
-              <div
-                class={`h-10 w-10 rounded-xl bg-linear-to-br ${value.color} flex items-center justify-center transform transition-transform duration-300 group-hover:scale-110`}
-                aria-hidden="true"
-              >
-                <div class="h-5 w-5 rounded-full bg-white/30"></div>
-              </div>
-            </div>
-
-            <h3 class="text-[clamp(20px,2vw,24px)] font-extrabold text-heading mb-3">
-              {value.title}
-            </h3>
-
-            <p class="text-[14px] leading-[1.5] text-heading/70 flex-grow">
-              {value.description}
-            </p>
-
-            <!-- Bottom accent line -->
-            <div
-              class={`mt-6 h-1 w-8 bg-linear-to-r ${value.color} rounded-full transform transition-all duration-300 group-hover:w-12`}
-              aria-hidden="true"
-            ></div>
+    <!-- Visual Card 3: Advanced Dental Science -->
+    <div class="group relative overflow-hidden rounded-3xl border border-slate-100 bg-white p-4 shadow-xs transition-all duration-300 hover:shadow-md">
+      <div class="relative h-64 overflow-hidden rounded-2xl bg-linear-to-b from-slate-50 to-white flex items-center justify-center border border-slate-50">
+        <div class="absolute inset-0 bg-linear-to-br from-[#58b3fa]/5 to-transparent"></div>
+        <div class="relative w-40 h-40 flex items-center justify-center shrink-0">
+          <div class="absolute inset-2 rounded-full bg-linear-to-b from-white to-slate-50 shadow-inner border border-white/60 flex items-center justify-center">
+            <img 
+              src="/images/treatments/excellence_shield.png" 
+              alt="Holographic Excellence Shield" 
+              class="h-[80%] w-auto object-contain z-10 animate-float mix-blend-multiply group-hover:scale-105 transition-transform duration-500"
+            />
           </div>
-        </article>
-      ))
-    }
+        </div>
+        <span class="absolute bottom-4 left-4 bg-white/90 backdrop-blur-md text-[10px] uppercase tracking-wider font-bold text-heading px-3 py-1 rounded-full shadow-2xs">Tech Excellence</span>
+      </div>
+      <div class="mt-4 px-2">
+        <h3 class="text-base font-extrabold text-heading tracking-tight mb-1.5 font-bold">Cutting-Edge Equipment</h3>
+        <p class="text-xs text-heading/70 leading-relaxed">Utilizing advanced 3D scanning, laser diagnostics, and digital alignment systems.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 3. Core Tagline Statement -->
+  <div class="text-center max-w-3xl mx-auto mb-16 px-4">
+    <p class="text-xl md:text-2xl font-extrabold text-heading leading-relaxed tracking-tight">
+      We are on a mission to redefine the dental experience, creating a <span class="bg-linear-to-r from-accent-blue to-card-blue bg-clip-text text-transparent">judgment-free sanctuary</span> where anxiety dissolves and clinical artistry flourishes.
+    </p>
+  </div>
+
+  <!-- 4. Four Statistics Cards (Side-by-side) -->
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-6" data-counter-section>
+    
+    <!-- Stat 1: Experience -->
+    <div class="group relative overflow-hidden rounded-2xl border border-slate-100 bg-[#f8fafc] p-6 shadow-xs text-center flex flex-col justify-center items-center hover:border-card-blue/30 transition-all duration-300">
+      <span class="text-4xl font-black text-card-blue mb-1">
+        <span data-counter data-target="15">0</span>+
+      </span>
+      <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest font-mono">Years of Mastery</span>
+    </div>
+
+    <!-- Stat 2: Happy Patients -->
+    <div class="group relative overflow-hidden rounded-2xl border border-slate-100 bg-[#f8fafc] p-6 shadow-xs text-center flex flex-col justify-center items-center hover:border-card-blue/30 transition-all duration-300">
+      <span class="text-4xl font-black text-card-blue mb-1">
+        <span data-counter data-target="10">0</span>k+
+      </span>
+      <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest font-mono">Soothed Smiles</span>
+    </div>
+
+    <!-- Stat 3: Satisfaction -->
+    <div class="group relative overflow-hidden rounded-2xl border border-slate-100 bg-[#f8fafc] p-6 shadow-xs text-center flex flex-col justify-center items-center hover:border-card-blue/30 transition-all duration-300">
+      <span class="text-4xl font-black text-card-blue mb-1">
+        <span data-counter data-target="99.4">0</span>%
+      </span>
+      <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest font-mono">Satisfaction Rating</span>
+    </div>
+
+    <!-- Stat 4: Specialists -->
+    <div class="group relative overflow-hidden rounded-2xl border border-slate-100 bg-[#f8fafc] p-6 shadow-xs text-center flex flex-col justify-center items-center hover:border-card-blue/30 transition-all duration-300">
+      <span class="text-4xl font-black text-card-blue mb-1">
+        <span data-counter data-target="14">0</span>+
+      </span>
+      <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest font-mono">Elite Specialists</span>
+    </div>
+
   </div>
 </section>
+
+<script>
+  const counterSections = document.querySelectorAll("[data-counter-section]");
+  const counterFormatter = new Intl.NumberFormat("en-US", {
+    maximumFractionDigits: 1,
+  });
+
+  const animateCounter = (counter: Element) => {
+    const targetStr = (counter as HTMLElement).dataset.target ?? "0";
+    const target = Number(targetStr);
+    const isFloat = targetStr.includes(".");
+    const duration = 1300;
+    const startTime = performance.now();
+
+    const tick = (currentTime: number) => {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const easedProgress = 1 - Math.pow(1 - progress, 3);
+      
+      let currentValue;
+      if (isFloat) {
+        currentValue = Math.round(target * easedProgress * 10) / 10;
+      } else {
+        currentValue = Math.round(target * easedProgress);
+      }
+
+      counter.textContent = counterFormatter.format(currentValue);
+
+      if (progress < 1) {
+        requestAnimationFrame(tick);
+      }
+    };
+
+    requestAnimationFrame(tick);
+  };
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) {
+          return;
+        }
+
+        entry.target.querySelectorAll("[data-counter]").forEach((counter) => {
+          counter.textContent = "0";
+          animateCounter(counter);
+        });
+      });
+    },
+    {
+      threshold: 0.2,
+    },
+  );
+
+  counterSections.forEach((section) => observer.observe(section));
+</script>
+
+<style>
+  @keyframes float {
+    0% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-4px);
+    }
+    100% {
+      transform: translateY(0px);
+    }
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+</style>

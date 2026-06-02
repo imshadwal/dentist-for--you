@@ -57,7 +57,8 @@ const milestones = [
       {
         milestones.map((milestone, index) => (
           <div
-            class={`grid grid-cols-[1fr_auto_1fr] gap-[clamp(20px,3vw,40px)] items-center max-[800px]:grid-cols-1 max-[800px]:gap-4`}
+            data-timeline-item
+            class="grid grid-cols-[1fr_auto_1fr] gap-[clamp(20px,3vw,40px)] items-center max-[800px]:grid-cols-1 max-[800px]:gap-4 transition-all duration-700 timeline-row"
           >
             <!-- Left content (alternate) -->
             <div
@@ -66,7 +67,7 @@ const milestones = [
               } max-[800px]:text-left`}
             >
               <div
-                class={`${
+                class={`timeline-text-container ${
                   index % 2 === 0
                     ? "max-[800px]:hidden"
                     : "max-[800px]:block hidden"
@@ -78,7 +79,7 @@ const milestones = [
                 <h3 class="mt-2 text-[clamp(22px,2vw,28px)] font-extrabold text-heading">
                   {milestone.title}
                 </h3>
-                <p class="mt-2 text-[14px] leading-[1.4] text-heading/70 max-w-140">
+                <p class="mt-2 text-[14px] leading-[1.4] text-heading/70 max-w-140 ml-auto max-[800px]:ml-0">
                   {milestone.description}
                 </p>
               </div>
@@ -87,12 +88,9 @@ const milestones = [
             <!-- Center dot -->
             <div class="flex flex-col items-center max-[800px]:order-1">
               <div class="relative flex h-16 w-16 items-center justify-center">
-                <div
-                  class="absolute inset-0 rounded-full bg-linear-to-br from-accent-blue/20 to-card-blue/20 animate-pulse"
-                  aria-hidden="true"
-                ></div>
-                <div class="relative flex h-12 w-12 items-center justify-center rounded-full bg-white border-2 border-card-blue shadow-[0_8px_16px_rgba(43,93,158,0.15)]">
-                  <span class="text-xl">{milestone.icon}</span>
+                <div class="timeline-glow" aria-hidden="true"></div>
+                <div class="timeline-dot">
+                  <span class="timeline-icon">{milestone.icon}</span>
                 </div>
               </div>
             </div>
@@ -104,7 +102,7 @@ const milestones = [
               } max-[800px]:text-left`}
             >
               <div
-                class={`${
+                class={`timeline-text-container ${
                   index % 2 === 1
                     ? "max-[800px]:hidden"
                     : "max-[800px]:block hidden"
@@ -123,7 +121,7 @@ const milestones = [
             </div>
 
             <!-- Mobile timeline info -->
-            <div class="max-[800px]:col-span-3 max-[800px]:order-3 hidden max-[800px]:block">
+            <div class="timeline-text-container max-[800px]:col-span-3 max-[800px]:order-3 hidden max-[800px]:block">
               <p class="text-[13px] font-bold tracking-[0.32em] text-card-blue/60 uppercase">
                 {milestone.year}
               </p>
@@ -140,3 +138,107 @@ const milestones = [
     </div>
   </div>
 </section>
+
+<script>
+  const timelineItems = document.querySelectorAll("[data-timeline-item]");
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-active");
+        } else {
+          entry.target.classList.remove("is-active");
+        }
+      });
+    },
+    {
+      rootMargin: "-25% 0px -25% 0px",
+      threshold: 0.1,
+    }
+  );
+
+  timelineItems.forEach((item) => observer.observe(item));
+</script>
+
+<style>
+  .timeline-row {
+    opacity: 0.4;
+    filter: grayscale(30%);
+    transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .timeline-row.is-active {
+    opacity: 1;
+    filter: grayscale(0%);
+  }
+
+  .timeline-glow {
+    position: absolute;
+    inset: 0;
+    border-radius: 9999px;
+    background: linear-gradient(135deg, rgba(88, 179, 250, 0.15) 0%, rgba(43, 93, 158, 0.15) 100%);
+    transform: scale(0.85);
+    opacity: 0.2;
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .is-active .timeline-glow {
+    transform: scale(1.3);
+    opacity: 1;
+    background: linear-gradient(135deg, rgba(88, 179, 250, 0.45) 0%, rgba(43, 93, 158, 0.45) 100%);
+    box-shadow: 0 0 25px rgba(88, 179, 250, 0.4);
+    animation: timeline-pulse 2s infinite alternate ease-in-out;
+  }
+
+  .timeline-dot {
+    position: relative;
+    display: flex;
+    height: 48px;
+    width: 48px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+    background-color: #fff;
+    border: 2px solid var(--color-card-blue);
+    box-shadow: 0 8px 16px rgba(43, 93, 158, 0.15);
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 10;
+  }
+
+  .is-active .timeline-dot {
+    border-color: var(--color-accent-blue);
+    background: linear-gradient(135deg, #fff 0%, #f0f7ff 100%);
+    transform: scale(1.18);
+    box-shadow: 0 12px 24px rgba(88, 179, 250, 0.35);
+  }
+
+  .timeline-icon {
+    font-size: 20px;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .is-active .timeline-icon {
+    transform: scale(1.22) rotate(8deg);
+  }
+
+  .timeline-text-container {
+    transform: translateY(10px);
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .is-active .timeline-text-container {
+    transform: translateY(0);
+  }
+
+  @keyframes timeline-pulse {
+    0% {
+      transform: scale(1.2);
+      box-shadow: 0 0 20px rgba(88, 179, 250, 0.35);
+    }
+    100% {
+      transform: scale(1.4);
+      box-shadow: 0 0 35px rgba(43, 93, 158, 0.65);
+    }
+  }
+</style>

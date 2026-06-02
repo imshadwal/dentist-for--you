@@ -6,7 +6,6 @@ const treatmentCategories = [
     title: "Pain Relief",
     emoji: "💊",
     tagline: "Immediate, gentle soothing care",
-    backDescription: "Advanced root canal therapy and gentle extractions designed to relieve active pain and restore absolute comfort.",
     description: "Advanced, immediate solutions for dental pain, nerve discomfort, and root canal therapy.",
     color: "from-rose-500 to-red-500",
     glowColor: "shadow-rose-100/50 bg-rose-500/10",
@@ -22,7 +21,6 @@ const treatmentCategories = [
     title: "Teeth Replacement",
     emoji: "✨",
     tagline: "Smile restoration, built to last",
-    backDescription: "Permanent, natural-looking replacements created with clinical precision and jaw-alignment comfort.",
     description: "Restore full bite function and aesthetic natural appearance with modern implantology options.",
     color: "from-blue-500 to-indigo-500",
     glowColor: "shadow-blue-100/50 bg-blue-500/10",
@@ -38,7 +36,6 @@ const treatmentCategories = [
     title: "Cosmetic Dentistry",
     emoji: "💎",
     tagline: "Radiant, symmetric smile designs",
-    backDescription: "Aesthetic dental artistry using custom veneers, teeth whitening, and clear aligners for high confidence.",
     description: "Design your perfect, symmetrical, and radiant smile with aesthetic dental artistry.",
     color: "from-purple-500 to-pink-500",
     glowColor: "shadow-purple-100/50 bg-purple-500/10",
@@ -47,7 +44,6 @@ const treatmentCategories = [
       "Smile Makeover",
       "Teeth Whitening",
       "Clear Aligners",
-      "Braces & Aligners",
       "Laminates & Veneers",
     ],
   },
@@ -56,7 +52,6 @@ const treatmentCategories = [
     title: "Preventive Dentistry",
     emoji: "🛡️",
     tagline: "Protecting your long-term health",
-    backDescription: "Routine diagnostic scans, deep cleanings, and gum care to preserve your natural enamel.",
     description: "Protect and maintain healthy enamel, clean gums, and fresh breath with routine diagnostic care.",
     color: "from-teal-500 to-emerald-500",
     glowColor: "shadow-teal-100/50 bg-teal-500/10",
@@ -65,7 +60,6 @@ const treatmentCategories = [
       "Advanced Gum Treatment",
       "Bad Breath Treatment",
       "Teeth Cleaning",
-      "Mouth Ulcers",
     ],
   },
   {
@@ -73,7 +67,6 @@ const treatmentCategories = [
     title: "Kids Dentistry",
     emoji: "🦷",
     tagline: "Comforting and friendly pediatric care",
-    backDescription: "Gentle, pain-free dental checkups and cavity prevention in a playful, comforting clinical atmosphere.",
     description: "Specialized, comforting, and pain-free pediatric dental care for healthy growing smiles.",
     color: "from-amber-500 to-orange-500",
     glowColor: "shadow-amber-100/50 bg-amber-500/10",
@@ -82,7 +75,6 @@ const treatmentCategories = [
       "Pediatric Dental Checkup",
       "Kids Cavity Treatment",
       "Fluoride Treatment",
-      "Habit Counseling",
     ],
   },
 ];
@@ -104,121 +96,108 @@ const treatmentCategories = [
       Every smile deserves specialized care
     </h2>
     <p class="mx-auto mt-4 max-w-lg text-sm text-heading/70 leading-relaxed">
-      Explore our elite treatments through our interactive cards below, showcasing advanced clinical concepts and specialized care.
+      Explore our premium interactive horizontal menu, showcasing advanced clinical concepts and specialized care.
     </p>
   </div>
 
-  <!-- Centered flex-wrap list of card wrappers -->
+  <!-- Premium Interactive Horizontal Services Carousel (Flex Accordion) -->
   <div 
-    class="flex flex-wrap gap-8 justify-center items-center w-full"
-    id="categories-container"
+    class="services-accordion"
+    data-accordion-container
   >
     {
-      treatmentCategories.map((category, idx) => (
-        /* Stable slot wrapper to perfectly maintain grid dimensions and handle perspective */
-        <div
-          class="category-card-wrapper translate-y-8 opacity-0"
-          data-index={idx}
-          data-wrapper-id={category.id}
+      treatmentCategories.map((category) => (
+        <div 
+          class="accordion-item group"
+          data-accordion-item
+          data-id={category.id}
         >
-          <article
-            class="category-showcase-card group"
-            data-card-id={category.id}
-          >
-            <!-- FRONT FACE (Compact Visual State) -->
-            <div class="card-face-front">
-              <!-- Accent color gradient line at top -->
-              <div class={`absolute top-0 left-0 right-0 h-1 bg-linear-to-r ${category.color}`}></div>
+          <!-- Card Body Flex Layout -->
+          <div class="relative w-full h-full flex flex-row overflow-hidden">
+            
+            <!-- LEFT SECTION (Visual / Clinical orb) -->
+            <div class="left-visual-section">
+              <!-- top color bar -->
+              <div class={`absolute top-0 left-0 right-0 h-1.5 bg-linear-to-r ${category.color}`}></div>
 
-              <div class="flex flex-col h-full justify-between items-center w-full">
-                <!-- Upper Section (Visual clinical concept with 3D model) -->
-                <div class="card-visual-section">
-                  <div class="card-orb-frame relative flex items-center justify-center rounded-full">
-                    <div class={`absolute inset-0 rounded-full ${category.glowColor} blur-md transition-transform duration-500 group-hover:scale-110`}></div>
-                    <div class="absolute inset-1 rounded-full bg-linear-to-b from-white to-slate-50/50 shadow-inner border border-white/60 overflow-hidden flex items-center justify-center">
-                      <img
-                        src={category.image}
-                        alt={`${category.title} Concept`}
-                        class="h-[75%] w-auto object-contain z-10 animate-float mix-blend-multiply transition-transform duration-500 group-hover:scale-105"
-                      />
-                    </div>
+              <!-- background clinical gradient -->
+              <div class="absolute inset-0 bg-linear-to-b from-[#f8fafc] to-[#f1f5f9] overflow-hidden -z-10">
+                <!-- floating blur orbs -->
+                <div class={`absolute -bottom-8 -right-8 w-28 h-28 rounded-full ${category.glowColor} blur-xl opacity-40 transition-transform duration-700 group-hover:scale-125`}></div>
+              </div>
+
+              <!-- Floating 3D image orb -->
+              <div class="absolute inset-0 flex items-center justify-center p-4 pb-16">
+                <div class="relative w-32 h-32 flex items-center justify-center">
+                  <div class={`absolute inset-0 rounded-full ${category.glowColor} blur-md transition-transform duration-500 group-hover:scale-110`}></div>
+                  <div class="absolute inset-1.5 rounded-full bg-linear-to-b from-white to-slate-50 shadow-inner border border-white/60 flex items-center justify-center">
+                    <img
+                      src={category.image}
+                      alt={`${category.title} Concept`}
+                      class="h-[80%] w-auto object-contain z-10 animate-float transition-transform duration-500 group-hover:scale-[1.03]"
+                    />
                   </div>
                 </div>
-                
-                <!-- Lower Section (Title & Emoji) -->
-                <div class="card-info-section w-full">
-                  <div class="flex items-center gap-3">
-                    <div class={`flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-linear-to-br ${category.color} text-white shadow-sm`}>
-                      <span class="text-base">{category.emoji}</span>
-                    </div>
-                    <h3 class="text-lg font-extrabold text-heading tracking-tight">{category.title}</h3>
-                  </div>
+              </div>
 
-                  <p class="mt-3 text-xs text-heading/75 leading-relaxed card-description line-clamp-2">
+              <!-- Pill Title (Bottom Center) -->
+              <span 
+                class="service-title-pill"
+                style={`--active-gradient: linear-gradient(135deg, ${category.id === 'pain-relief' ? '#f43f5e, #ef4444' : category.id === 'teeth-replacement' ? '#3b82f6, #6366f1' : category.id === 'cosmetic-dentistry' ? '#a855f7, #ec4899' : category.id === 'preventive-dentistry' ? '#14b8a6, #10b981' : '#f59e0b, #f97316'})`}
+              >
+                <span class="mr-1.5">{category.emoji}</span> {category.title}
+              </span>
+            </div>
+
+            <!-- RIGHT SECTION (Sliding content panel) -->
+            <div class="right-content-panel">
+              <!-- diagonal arrow icon -->
+              <div class="absolute top-5 right-5 w-7 h-7 rounded-full bg-white shadow-3xs border border-slate-100/80 flex items-center justify-center text-slate-400 group-hover:text-accent-blue transition-colors duration-300">
+                <svg class="h-3 w-3 transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
+                </svg>
+              </div>
+
+              <!-- sliding panel details -->
+              <div class="panel-body">
+                <div class="flex flex-col gap-1 text-left">
+                  <span class="text-[9px] font-bold text-accent-blue tracking-[0.2em] uppercase">SERVICE</span>
+                  <h3 class="text-[16px] font-black text-heading leading-tight tracking-tight mt-1">
+                    {category.tagline}
+                  </h3>
+                  <p class="text-[11px] text-heading/75 leading-relaxed mt-1.5">
                     {category.description}
                   </p>
 
-                  <div class="compact-footer mt-4 flex items-center justify-between border-t border-slate-100 pt-3 w-full">
-                    <span class="text-[10px] font-bold text-accent-blue/80 tracking-wider uppercase">Hover to reveal details</span>
-                    <svg class="h-3.5 w-3.5 text-accent-blue/80 animate-pulse" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-                    </svg>
+                  <h4 class="text-[9px] font-bold text-slate-400 uppercase tracking-widest mt-4 mb-2">Procedures</h4>
+                  <div class="flex flex-wrap gap-1">
+                    {category.treatments.map((treatment) => (
+                      <span class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-white border border-slate-200/50 text-[9px] font-bold text-heading/85 shadow-3xs">
+                        <span class="inline-flex h-3 w-3 items-center justify-center rounded-full bg-linear-to-br from-accent-blue to-card-blue text-[5px] text-white">✓</span>
+                        {treatment}
+                      </span>
+                    ))}
                   </div>
                 </div>
+
+                <div class="mt-4">
+                  <a 
+                    href="#contact-us" 
+                    class={`inline-flex items-center justify-center text-center w-full py-2 px-3 rounded-lg bg-linear-to-r ${category.color} text-white text-[11px] font-bold shadow-md hover:scale-[1.02] active:scale-[0.98] transition-all no-underline`}
+                  >
+                    Book {category.title}
+                  </a>
+                </div>
               </div>
             </div>
 
-            <!-- BACK FACE (Flip revealed details, matching reference design exactly!) -->
-            <div class="card-face-back">
-              <!-- Top Row (Category Service Label & Diagonal Arrow Badge) -->
-              <div class="flex items-center justify-between w-full">
-                <span class="text-[10px] font-bold text-slate-400 tracking-widest uppercase">SERVICE</span>
-                <div class="w-8 h-8 rounded-full bg-white shadow-3xs border border-slate-100/80 flex items-center justify-center text-slate-400">
-                  <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
-                  </svg>
-                </div>
-              </div>
-
-              <!-- Content Row -->
-              <div class="flex flex-col w-full text-left my-auto">
-                <h3 class="text-[18px] font-extrabold text-heading tracking-tight leading-[1.2]">
-                  {category.tagline}
-                </h3>
-                <p class="text-xs text-heading/75 leading-relaxed mt-2.5">
-                  {category.backDescription}
-                </p>
-
-                <!-- Procedures Tag Row -->
-                <h4 class="text-[9px] font-bold text-slate-400 uppercase tracking-widest mt-4 mb-2">Available Procedures</h4>
-                <div class="flex flex-wrap gap-1.5">
-                  {category.treatments.map((treatment) => (
-                    <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-white border border-slate-200/60 text-[9px] font-bold text-heading/85 shadow-3xs">
-                      <span class="inline-flex h-3 w-3 items-center justify-center rounded-full bg-linear-to-br from-accent-blue to-card-blue text-[6px] text-white">✓</span>
-                      {treatment}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              <!-- CTA Row -->
-              <div class="w-full">
-                <a 
-                  href="#contact-us" 
-                  class={`inline-flex items-center justify-center text-center w-full py-2.5 px-4 rounded-xl bg-linear-to-r ${category.color} text-white text-xs font-bold shadow-md hover:scale-[1.02] active:scale-[0.98] transition-all no-underline`}
-                >
-                  Book {category.title} Consultation
-                </a>
-              </div>
-            </div>
-
-          </article>
+          </div>
         </div>
       ))
     }
   </div>
 
-  <!-- CTA -->
+  <!-- Explore CTA -->
   <div class="mt-16 flex justify-center">
     <a
       class="inline-flex min-h-14.5 items-center gap-3 rounded-full bg-linear-to-r from-accent-blue to-card-blue py-0 pr-7 pl-3 text-base font-extrabold text-white no-underline shadow-[0_18px_34px_rgba(43,93,158,0.26)] transition duration-200 hover:-translate-y-0.5 hover:shadow-[0_22px_42px_rgba(43,93,158,0.32)] max-[620px]:min-h-13 max-[620px]:pr-5.5 max-[620px]:text-sm"
@@ -242,37 +221,39 @@ const treatmentCategories = [
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
-    const wrappers = document.querySelectorAll('.category-card-wrapper');
-    
-    // Intersection Observer for scroll-triggered slide-ins
-    const observerOptions = {
-      root: null,
-      threshold: 0.1,
-      rootMargin: '0px 0px -40px 0px'
-    };
+    const items = document.querySelectorAll('[data-accordion-item]');
 
-    const observer = new IntersectionObserver((entries, observer) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const el = entry.target as HTMLElement;
-          const delay = Number(el.dataset.index ?? 0) * 80;
-          
-          setTimeout(() => {
-            el.style.transform = 'translateY(0)';
-            el.style.opacity = '1';
-          }, delay);
-          
-          observer.unobserve(entry.target);
-        }
+    // Initially all closed, no items[0] active on load!
+
+    items.forEach(item => {
+      // Tap toggle for touchscreens
+      item.addEventListener('click', () => {
+        items.forEach(i => {
+          if (i !== item) {
+            i.classList.remove('is-active');
+          }
+        });
+        item.classList.add('is-active');
       });
-    }, observerOptions);
 
-    wrappers.forEach(wrapper => observer.observe(wrapper));
+      // Hover triggers on desktop
+      item.addEventListener('mouseenter', () => {
+        items.forEach(i => i.classList.remove('is-active'));
+        item.classList.add('is-active');
+      });
+    });
+
+    // Reset back to all closed when mouse leaves container
+    const container = document.querySelector('[data-accordion-container]');
+    if (container) {
+      container.addEventListener('mouseleave', () => {
+        items.forEach(i => i.classList.remove('is-active'));
+      });
+    }
   });
 </script>
 
 <style>
-  /* Custom self-contained styles for high performance animations */
   @keyframes float {
     0% {
       transform: translateY(0px);
@@ -289,103 +270,208 @@ const treatmentCategories = [
     animation: float 6s ease-in-out infinite;
   }
 
-  /* STABLE SLOT WRAPPER (Portrait Ratio, matches our team cards perfectly) */
-  .category-card-wrapper {
-    width: 320px;
-    height: 450px;
-    perspective: 1200px;
-    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s ease;
+  /* FLEX ACCORDION CONTAINER (Enforce space/gaps) */
+  .services-accordion {
+    display: flex;
+    flex-direction: row;
+    gap: 28px; /* Spacious gaps between cards */
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    height: 350px; /* Square-like ratio height */
+    overflow: visible;
+  }
+
+  /* BASE ACCORDION ITEM (Slightly taller square-like shape) */
+  .accordion-item {
+    position: relative;
+    height: 100%;
+    border-radius: 24px;
+    overflow: hidden;
+    cursor: pointer;
+    width: 240px; /* Base card width */
+    flex-shrink: 0;
+    transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 10px 35px rgba(41, 64, 115, 0.05);
+    border: 1px solid rgba(226, 232, 240, 0.8);
+  }
+
+  /* EXPANDED ACCORDION ITEM */
+  .accordion-item:hover,
+  .accordion-item.is-active {
+    width: 520px; /* Expanded card width */
+    box-shadow: 
+      0 24px 60px rgba(31, 63, 117, 0.14),
+      0 0 30px rgba(88, 179, 250, 0.06);
+    border-color: rgba(88, 179, 250, 0.25);
+  }
+
+  /* SHRINK NEIGHBORS ON ACCORDION CONTAINER HOVER */
+  .services-accordion:hover .accordion-item:not(:hover) {
+    width: 160px; /* Shrinks proportionally to fit expanded card */
+    opacity: 0.85;
+  }
+
+  /* LEFT VISUAL SECTION */
+  .left-visual-section {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    flex-shrink: 0;
+    transition: width 0.7s cubic-bezier(0.16, 1, 0.3, 1);
     z-index: 10;
   }
 
-  /* 3D CARD CONTAINER */
-  .category-showcase-card {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    transform-style: preserve-3d;
-    transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s ease;
-    border-radius: 24px;
-    cursor: pointer;
-    box-shadow: 0 4px 20px rgba(41, 64, 115, 0.04);
+  .accordion-item:hover .left-visual-section,
+  .accordion-item.is-active .left-visual-section {
+    width: 240px;
   }
 
-  /* FLIP TRIGGERS ON WRAPPER HOVER */
-  .category-card-wrapper:hover .category-showcase-card {
-    transform: rotateY(180deg);
-    box-shadow: 
-      0 24px 60px rgba(31, 63, 117, 0.16),
-      0 0 30px rgba(88, 179, 250, 0.08);
+  /* RIGHT CONTENT PANEL (Sliding box, compact padding) */
+  .right-content-panel {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 280px; /* Wider panel for better text layout */
+    background-color: #f1f5f9;
+    border-left: 1px solid #e2e8f0;
+    transform: translateX(100%);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+    z-index: 15;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
-  /* FRONT & BACK FACES */
-  .card-face-front,
-  .card-face-back {
-    position: absolute;
-    inset: 0;
-    width: 100%;
+  .accordion-item:hover .right-content-panel,
+  .accordion-item.is-active .right-content-panel {
+    transform: translateX(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* TEXT ENTRANCE SLIDE ANIMATION */
+  .panel-body {
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 0.5s ease 0.15s, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.15s;
     height: 100%;
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-    border-radius: 24px;
-    overflow: hidden;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 24px;
-    transition: border-color 0.3s ease;
   }
 
-  /* FRONT FACE STYLE */
-  .card-face-front {
-    background-color: rgba(255, 255, 255, 0.98);
-    border: 1px solid #f1f5f9;
-    z-index: 2;
+  .accordion-item:hover .panel-body,
+  .accordion-item.is-active .panel-body {
+    opacity: 1;
+    transform: translateY(0);
   }
 
-  /* BACK FACE STYLE (Theme matches reference exactly!) */
-  .card-face-back {
-    transform: rotateY(180deg);
-    background-color: #f1f5f9;
-    border: 1px solid #e2e8f0;
-    z-index: 1;
+  /* TITLE PILL BUTTON (DYNAMIC ACTIVE GRADIENTS) */
+  .service-title-pill {
+    position: absolute;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 8px 18px;
+    border-radius: 9999px;
+    background-color: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 0 4px 12px rgba(41, 64, 115, 0.08);
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--color-heading);
+    white-space: nowrap;
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 20;
   }
 
-  .category-card-wrapper:hover .card-face-front {
-    border-color: rgba(88, 179, 250, 0.2);
+  .accordion-item:hover .service-title-pill,
+  .accordion-item.is-active .service-title-pill {
+    bottom: 20px;
+    background: var(--active-gradient);
+    color: #fff;
+    border-color: transparent;
+    box-shadow: 0 8px 16px rgba(43, 93, 158, 0.25);
   }
 
-  /* INNER LAYOUT UTILS */
-  .card-visual-section {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-top: 16px;
+  /* RESPONSIVE RESPONSIVENESS ACCORDION */
+  @media (max-width: 1100px) {
+    .services-accordion {
+      flex-direction: column;
+      height: auto;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .accordion-item {
+      width: 100%;
+      max-width: 500px;
+      height: 180px;
+    }
+
+    .accordion-item:hover,
+    .accordion-item.is-active {
+      width: 100%;
+      height: 250px;
+    }
+
+    .services-accordion:hover .accordion-item:not(:hover) {
+      width: 100%;
+      height: 140px;
+    }
+
+    .left-visual-section {
+      width: 100%;
+    }
+
+    .accordion-item:hover .left-visual-section,
+    .accordion-item.is-active .left-visual-section {
+      width: 200px;
+    }
+
+    .right-content-panel {
+      width: calc(100% - 200px);
+    }
   }
 
-  .card-orb-frame {
-    width: 180px;
-    height: 180px;
-  }
+  @media (max-width: 500px) {
+    .accordion-item {
+      height: 200px;
+    }
 
-  .card-info-section {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-  }
+    .accordion-item:hover,
+    .accordion-item.is-active {
+      height: 380px;
+    }
 
-  .compact-footer {
-    width: 100%;
-  }
+    .accordion-item:hover .left-visual-section,
+    .accordion-item.is-active .left-visual-section {
+      width: 100%;
+      height: 180px;
+    }
 
-  /* Responsive Stacking for small viewports */
-  @media (max-width: 680px) {
-    .category-card-wrapper {
-      width: 100% !important;
-      max-width: 320px !important;
-      height: 450px !important;
+    .right-content-panel {
+      width: 100%;
+      height: 200px;
+      top: auto;
+      bottom: 0;
+      border-left: none;
+      border-top: 1px solid #e2e8f0;
+      transform: translateY(100%);
+    }
+
+    .accordion-item:hover .right-content-panel,
+    .accordion-item.is-active .right-content-panel {
+      transform: translateY(0);
     }
   }
 </style>

@@ -1,4 +1,5 @@
 ---
+// src/layouts/Layout.astro
 interface Props {
   title?: string;
   description?: string;
@@ -8,7 +9,9 @@ const {
   title = "Dentist For You",
   description = "A premium dental care landing page for confident, personalized smiles.",
 } = Astro.props;
+
 import Footer from "../components/Footer.astro";
+import SiteHeader from "../components/SiteHeader.astro";
 ---
 
 <!doctype html>
@@ -29,7 +32,139 @@ import Footer from "../components/Footer.astro";
     <title>{title}</title>
   </head>
   <body>
-    <slot />
-    <Footer />
+    <!-- Beautiful, glowing gradient background canvas that matches the dentist-for-you page theme -->
+    <div class="canva-glow-background">
+      <div class="glow-orb glow-orb-1"></div>
+      <div class="glow-orb glow-orb-2"></div>
+      <div class="glow-orb glow-orb-3"></div>
+    </div>
+
+    <!-- Render SiteHeader here! Housed outside `.canva-app-canvas` to guarantee true position: fixed viewport tracking -->
+    <SiteHeader />
+
+    <!-- The floating main app card housing everything -->
+    <div class="canva-app-canvas">
+      <slot />
+      <Footer />
+    </div>
   </body>
 </html>
+
+<style is:global>
+  /* PREMIUM CANVA-LIKE APP CANVAS LAYOUT SYSTEM */
+  
+  html, body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    width: 100%;
+    background: #edf4fc; /* Fallback baseline background */
+    overflow-x: hidden;
+  }
+
+  /* 1. Viewport Glowing Background Gradient Canvas */
+  .canva-glow-background {
+    position: fixed;
+    inset: 0;
+    z-index: -10;
+    overflow: hidden;
+    /* Elegant gradient reflecting luxury clinical spa aesthetic */
+    background: linear-gradient(135deg, #f3f8fe 0%, #f6f3ff 50%, #effefa 100%);
+    pointer-events: none;
+  }
+
+  /* 2. Floating and Drifting Orbs for Theme Glow */
+  .glow-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(100px);
+    opacity: 0.65;
+    mix-blend-mode: multiply;
+    pointer-events: none;
+  }
+
+  .glow-orb-1 {
+    top: -10%;
+    left: -10%;
+    width: 60vw;
+    height: 60vw;
+    background: radial-gradient(circle, rgba(88, 179, 250, 0.25) 0%, rgba(88, 179, 250, 0) 70%);
+    animation: canva-drift-1 25s ease-in-out infinite alternate;
+  }
+
+  .glow-orb-2 {
+    bottom: -15%;
+    right: -10%;
+    width: 65vw;
+    height: 65vw;
+    background: radial-gradient(circle, rgba(168, 85, 247, 0.15) 0%, rgba(168, 85, 247, 0) 70%);
+    animation: canva-drift-2 30s ease-in-out infinite alternate;
+  }
+
+  .glow-orb-3 {
+    top: 35%;
+    right: 15%;
+    width: 50vw;
+    height: 50vw;
+    background: radial-gradient(circle, rgba(20, 184, 166, 0.12) 0%, rgba(20, 184, 166, 0) 70%);
+    animation: canva-drift-3 20s ease-in-out infinite alternate-reverse;
+  }
+
+  @keyframes canva-drift-1 {
+    0% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(3%, 5%) scale(1.08); }
+    100% { transform: translate(0, 0) scale(1); }
+  }
+  @keyframes canva-drift-2 {
+    0% { transform: translate(0, 0) scale(1.08); }
+    50% { transform: translate(-4%, -3%) scale(0.96); }
+    100% { transform: translate(0, 0) scale(1.08); }
+  }
+  @keyframes canva-drift-3 {
+    0% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(4%, -4%) scale(1.12); }
+    100% { transform: translate(0, 0) scale(1); }
+  }
+
+  /* 3. Rounded Floating Container Card (App Canvas) */
+  .canva-app-canvas {
+    position: relative;
+    width: calc(100% - 48px); /* 24px uniform padding from left/right screen edges */
+    max-width: 1720px;
+    margin: 24px auto; /* 24px padding from top/bottom screen edges */
+    background: rgba(255, 255, 255, 0.94); /* High quality white background with low transparency */
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    border-radius: 32px; /* Premium rounded dashboard corners */
+    border: 1px solid rgba(226, 232, 240, 0.85);
+    box-shadow: 
+      0 24px 60px rgba(41, 64, 115, 0.06),
+      0 4px 16px rgba(41, 64, 115, 0.01),
+      0 0 0 1px rgba(255, 255, 255, 0.5) inset;
+    min-height: calc(100vh - 48px);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* Avoids children overlapping with rounded corners */
+    z-index: 10;
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* Responsive Canvas Margins */
+  @media (max-width: 1024px) {
+    .canva-app-canvas {
+      width: calc(100% - 32px); /* 16px padding on tablet */
+      margin: 16px auto;
+      min-height: calc(100vh - 32px);
+      border-radius: 24px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .canva-app-canvas {
+      width: calc(100% - 20px); /* 10px padding on mobile */
+      margin: 10px auto;
+      min-height: calc(100vh - 20px);
+      border-radius: 20px;
+    }
+  }
+</style>

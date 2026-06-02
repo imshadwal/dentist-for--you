@@ -46,7 +46,7 @@ const process = [
   </div>
 
   <!-- Process Timeline -->
-  <div class="relative">
+  <div class="relative" data-process-container>
     <!-- Connecting line on desktop -->
     <div
       class="absolute top-12 left-0 right-0 h-0.5 bg-linear-to-r from-accent-blue via-card-blue to-accent-blue/30 max-[900px]:hidden"
@@ -57,12 +57,14 @@ const process = [
     <div class="grid grid-cols-5 gap-4 max-[900px]:grid-cols-1 max-[900px]:gap-8">
       {
         process.map((item, index) => (
-          <div class="relative flex flex-col items-center max-[900px]:items-start">
+          <div 
+            data-process-item 
+            data-step-index={index} 
+            class="relative flex flex-col items-center max-[900px]:items-start transition-all duration-500 process-row"
+          >
             <!-- Step circle -->
             <div class="relative z-1 mb-6 max-[900px]:mb-4">
-              <div
-                class="flex h-24 w-24 items-center justify-center rounded-full bg-white border-2 border-card-blue shadow-[0_8px_16px_rgba(43,93,158,0.15)] max-[900px]:h-16 max-[900px]:w-16"
-              >
+              <div class="process-dot">
                 <div class="text-center">
                   <p class="text-[10px] font-bold tracking-[0.2em] text-card-blue/60 uppercase">
                     Step
@@ -74,14 +76,11 @@ const process = [
               </div>
 
               <!-- Pulsing background -->
-              <div
-                class="absolute inset-0 rounded-full bg-accent-blue/20 animate-pulse"
-                aria-hidden="true"
-              ></div>
+              <div class="process-glow" aria-hidden="true"></div>
             </div>
 
             <!-- Content -->
-            <div class="grow">
+            <div class="grow process-text-container">
               <h3 class="text-[clamp(16px,1.5vw,20px)] font-extrabold text-heading text-center max-[900px]:text-left">
                 {item.title}
               </h3>
@@ -93,7 +92,7 @@ const process = [
             <!-- Vertical line for mobile -->
             {index < process.length - 1 && (
               <div
-                class="hidden max-[900px]:block absolute left-7 top-24 h-8 w-0.5 bg-linear-to-b from-card-blue to-accent-blue/30"
+                class="hidden max-[900px]:block absolute left-7 top-20 h-8 w-0.5 bg-linear-to-b from-card-blue to-accent-blue/30"
                 aria-hidden="true"
               ></div>
             )}
@@ -124,3 +123,145 @@ const process = [
     </a>
   </div>
 </section>
+
+<script>
+  const container = document.querySelector("[data-process-container]");
+  const items = document.querySelectorAll("[data-process-item]");
+
+  if (container && items.length > 0) {
+    const isDesktop = () => window.innerWidth > 900;
+
+    // Desktop: Staggered sequential highlight when row enters view
+    const containerObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && isDesktop()) {
+            items.forEach((item, index) => {
+              setTimeout(() => {
+                if (isDesktop()) {
+                  item.classList.add("is-active");
+                }
+              }, index * 200);
+            });
+          } else if (!entry.isIntersecting && isDesktop()) {
+            items.forEach((item) => {
+              item.classList.remove("is-active");
+            });
+          }
+        });
+      },
+      {
+        threshold: 0.25,
+      }
+    );
+
+    containerObserver.observe(container);
+
+    // Mobile: IntersectionObserver per step as they scroll vertically
+    const itemObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!isDesktop()) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-active");
+            } else {
+              entry.target.classList.remove("is-active");
+            }
+          }
+        });
+      },
+      {
+        rootMargin: "-20% 0px -20% 0px",
+        threshold: 0.1,
+      }
+    );
+
+    items.forEach((item) => itemObserver.observe(item));
+
+    // Handle resizing: reset active states if switching modes
+    window.addEventListener("resize", () => {
+      if (isDesktop()) {
+        items.forEach((item) => itemObserver.unobserve(item));
+      } else {
+        items.forEach((item) => {
+          itemObserver.observe(item);
+        });
+      }
+    });
+  }
+</script>
+
+<style>
+  .process-row {
+    opacity: 0.35;
+    transform: translateY(15px);
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .process-row.is-active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .process-glow {
+    position: absolute;
+    inset: 0;
+    border-radius: 9999px;
+    background: rgba(88, 179, 250, 0.15);
+    transform: scale(0.9);
+    opacity: 0.1;
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .is-active .process-glow {
+    transform: scale(1.25);
+    opacity: 1;
+    background: linear-gradient(135deg, rgba(88, 179, 250, 0.45) 0%, rgba(43, 93, 158, 0.45) 100%);
+    box-shadow: 0 0 25px rgba(88, 179, 250, 0.45);
+    animation: process-pulse 2s infinite alternate ease-in-out;
+  }
+
+  .process-dot {
+    position: relative;
+    display: flex;
+    height: 96px;
+    width: 96px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+    background-color: #fff;
+    border: 2px solid var(--color-card-blue);
+    box-shadow: 0 8px 16px rgba(43, 93, 158, 0.15);
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 10;
+  }
+
+  @media (max-width: 900px) {
+    .process-dot {
+      height: 64px;
+      width: 64px;
+    }
+  }
+
+  .is-active .process-dot {
+    border-color: var(--color-accent-blue);
+    background: linear-gradient(135deg, #fff 0%, #f0f7ff 100%);
+    transform: scale(1.12);
+    box-shadow: 0 12px 24px rgba(88, 179, 250, 0.35);
+  }
+
+  .process-text-container {
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  @keyframes process-pulse {
+    0% {
+      transform: scale(1.15);
+      box-shadow: 0 0 20px rgba(88, 179, 250, 0.35);
+    }
+    100% {
+      transform: scale(1.3);
+      box-shadow: 0 0 35px rgba(43, 93, 158, 0.65);
+    }
+  }
+</style>

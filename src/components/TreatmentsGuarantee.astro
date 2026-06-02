@@ -1,90 +1,430 @@
 ---
+// src/components/TreatmentsGuarantee.astro
 const features = [
   {
-    title: "Advanced Technology",
-    description: "Latest diagnostic tools and treatment equipment for superior results",
+    id: "advanced-tech",
+    title: "Advanced Tech",
+    tagline: "Standard-setting clinical gear",
+    description: "Equipped with state-of-the-art diagnostic tools, 3D intraoral scanners, and soft-tissue lasers to ensure high surgical precision and comfortable recovery.",
     icon: "🔬",
+    color: "from-blue-500 to-cyan-500",
+    glowColor: "shadow-blue-100/50 bg-blue-500/10",
+    image: "/images/treatments/3d_technology.png",
   },
   {
+    id: "expert-specs",
     title: "Expert Specialists",
-    description: "Board-certified dentists with years of specialized experience",
+    tagline: "Board-certified clinical mastery",
+    description: "Every treatment is directed by a dedicated board-certified specialist with extensive fellowship training and standard-setting clinical experience.",
     icon: "👨‍⚕️",
+    color: "from-indigo-500 to-purple-500",
+    glowColor: "shadow-indigo-100/50 bg-indigo-500/10",
+    image: "/images/treatments/3d_specialists.png",
   },
   {
-    title: "Pain-Free Experience",
-    description: "Gentle techniques and sedation options for complete comfort",
+    id: "pain-free",
+    title: "Pain-Free Care",
+    tagline: "Sanctuary of clinical comfort",
+    description: "Our comfort pathways combine gentle manual techniques, modern sedation options, and aromatherapy to completely eliminate treatment anxiety.",
     icon: "😌",
+    color: "from-teal-500 to-emerald-500",
+    glowColor: "shadow-teal-100/50 bg-teal-500/10",
+    image: "/images/treatments/3d_pain_free.png",
   },
   {
+    id: "custom-plans",
     title: "Customized Plans",
-    description: "Personalized treatment strategies tailored to your needs",
+    tagline: "Pathways built for your timeline",
+    description: "No templates. We design custom treatment plans fully mapped to your specific jaw structure, aesthetic goals, comfort choices, and schedule.",
     icon: "📋",
+    color: "from-amber-500 to-orange-500",
+    glowColor: "shadow-amber-100/50 bg-amber-500/10",
+    image: "/images/treatments/3d_plans.png",
   },
   {
+    id: "fast-results",
     title: "Fast Results",
-    description: "Efficient procedures with minimal downtime",
+    tagline: "Shorter timelines, high accuracy",
+    description: "Leveraging 3D printing and digital setups to deliver extremely fast, precise treatments with significantly minimized healing downtime.",
     icon: "⚡",
+    color: "from-rose-500 to-pink-500",
+    glowColor: "shadow-rose-100/50 bg-rose-500/10",
+    image: "/images/treatments/3d_fast_results.png",
   },
   {
-    title: "Warranty Guarantee",
-    description: "Confidence backed by our satisfaction guarantee",
+    id: "warranty-guar",
+    title: "Warranty Policy",
+    tagline: "Standing behind our artistry",
+    description: "We are committed to delivering standard-setting clinical longevity. Every major procedure is backed by our comprehensive warranty policy.",
     icon: "✅",
+    color: "from-emerald-500 to-sky-500",
+    glowColor: "shadow-emerald-100/50 bg-emerald-500/10",
+    image: "/images/treatments/3d_warranty.png",
   },
 ];
 ---
 
 <section
-  class="mx-auto w-[calc(100%-32px)] max-w-460 py-[clamp(40px,8vw,100px)] max-[620px]:w-[calc(100%-28px)]"
+  class="mx-auto w-[calc(100%-32px)] max-w-460 py-[clamp(40px,8vw,100px)] max-[620px]:w-[calc(100%-28px)] overflow-visible"
   id="treatment-guarantees"
   aria-labelledby="guarantees-title"
 >
-  <div class="text-center mb-[clamp(40px,6vw,80px)]">
+  <div class="text-center mb-16">
     <p class="m-0 text-[11px] font-bold tracking-[0.38em] text-card-blue/70 uppercase">
       Treatment Excellence
     </p>
     <h2
       id="guarantees-title"
-      class="mt-3 text-[clamp(36px,4.4vw,56px)] font-extrabold leading-[1.05] text-heading"
+      class="mt-3 text-4xl font-extrabold leading-[1.08] text-heading tracking-tight"
     >
       What makes our treatments exceptional
     </h2>
+    <p class="mx-auto mt-4 max-w-lg text-sm text-heading/70 leading-relaxed">
+      Discover our foundational promises, engineered to merge clinical mastery with standard-setting patient care.
+    </p>
   </div>
 
-  <!-- Features Grid -->
-  <div class="grid grid-cols-3 gap-[clamp(14px,2vw,22px)] max-[900px]:grid-cols-2 max-[620px]:grid-cols-1">
+  <!-- Premium Interactive Horizontal Guarantees Accordion Carousel (All 6 in One Row) -->
+  <div 
+    class="guarantees-accordion"
+    data-guarantee-container
+  >
     {
       features.map((feature) => (
-        <article
-          class="group relative flex flex-col h-full min-h-60 rounded-2xl border border-[#d6e6fb] p-[clamp(18px,2.5vw,28px)] shadow-[0_8px_16px_rgba(31,63,117,0.08)] transition-all duration-300 hover:shadow-[0_20px_40px_rgba(31,63,117,0.15)] hover:border-card-blue/50"
+        <div 
+          class="accordion-item group"
+          data-guarantee-item
+          data-id={feature.id}
         >
-          <!-- Background gradient on hover -->
-          <div
-            class="absolute inset-0 rounded-2xl bg-linear-to-br from-accent-blue/5 to-card-blue/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-            aria-hidden="true"
-          ></div>
+          <!-- Card Body Flex Layout -->
+          <div class="relative w-full h-full flex flex-row overflow-hidden">
+            
+            <!-- LEFT SECTION (Visual / Clinical orb) -->
+            <div class="left-visual-section">
+              <!-- top color bar -->
+              <div class={`absolute top-0 left-0 right-0 h-1.5 bg-linear-to-r ${feature.color}`}></div>
 
-          <!-- Content -->
-          <div class="relative z-1 flex flex-col h-full">
-            <div class="mb-4">
-              <span class="text-3xl">{feature.icon}</span>
+              <!-- background clinical gradient -->
+              <div class="absolute inset-0 bg-linear-to-b from-[#f8fafc] to-[#f1f5f9] overflow-hidden -z-10">
+                <!-- floating blur orbs -->
+                <div class={`absolute -bottom-8 -right-8 w-28 h-28 rounded-full ${feature.glowColor} blur-xl opacity-40 transition-transform duration-700 group-hover:scale-125`}></div>
+              </div>
+
+              <!-- Floating 3D image orb -->
+              <div class="absolute inset-0 flex items-center justify-center p-4 pb-16">
+                <div class="relative w-32 h-32 flex items-center justify-center">
+                  <div class={`absolute inset-0 rounded-full ${feature.glowColor} blur-md transition-transform duration-500 group-hover:scale-110`}></div>
+                  <div class="absolute inset-1.5 rounded-full bg-linear-to-b from-white to-slate-50 shadow-inner border border-white/60 flex items-center justify-center">
+                    <img
+                      src={feature.image}
+                      alt={`${feature.title} Concept`}
+                      class="h-[80%] w-auto object-contain z-10 animate-float transition-transform duration-500 group-hover:scale-[1.03]"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <!-- Pill Title (Bottom Center) -->
+              <span 
+                class="service-title-pill"
+                style={`--active-gradient: linear-gradient(135deg, ${feature.id === 'advanced-tech' ? '#3b82f6, #06b6d4' : feature.id === 'expert-specs' ? '#6366f1, #a855f7' : feature.id === 'pain-free' ? '#14b8a6, #10b981' : feature.id === 'custom-plans' ? '#f59e0b, #f97316' : feature.id === 'fast-results' ? '#f43f5e, #ec4899' : '#10b981, #0ea5e9'})`}
+              >
+                <span class="mr-1.5">{feature.icon}</span> {feature.title}
+              </span>
             </div>
 
-            <h3 class="text-[clamp(16px,1.5vw,20px)] font-extrabold text-heading mb-2">
-              {feature.title}
-            </h3>
+            <!-- RIGHT SECTION (Sliding content panel) -->
+            <div class="right-content-panel">
+              <!-- diagonal arrow icon -->
+              <div class="absolute top-5 right-5 w-7 h-7 rounded-full bg-white shadow-3xs border border-slate-100/80 flex items-center justify-center text-slate-400 group-hover:text-accent-blue transition-colors duration-300">
+                <svg class="h-3 w-3 transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
+                </svg>
+              </div>
 
-            <p class="text-[13px] leading-normal text-heading/70 grow">
-              {feature.description}
-            </p>
+              <!-- sliding panel details -->
+              <div class="panel-body">
+                <div class="flex flex-col gap-1 text-left">
+                  <span class="text-[9px] font-bold text-accent-blue tracking-[0.2em] uppercase">GUARANTEE</span>
+                  <h3 class="text-[16px] font-black text-heading leading-tight tracking-tight mt-1">
+                    {feature.tagline}
+                  </h3>
+                  <p class="text-[11px] text-heading/75 leading-relaxed mt-1.5">
+                    {feature.description}
+                  </p>
+                </div>
 
-            <!-- Bottom accent -->
-            <div
-              class="mt-4 h-1 w-4 bg-linear-to-r from-accent-blue to-card-blue rounded-full transform transition-all duration-300 group-hover:w-8"
-              aria-hidden="true"
-            ></div>
+                <div class="mt-4">
+                  <a 
+                    href="#contact-us" 
+                    class={`inline-flex items-center justify-center text-center w-full py-2 px-3 rounded-lg bg-linear-to-r ${feature.color} text-white text-[11px] font-bold shadow-md hover:scale-[1.02] active:scale-[0.98] transition-all no-underline`}
+                  >
+                    Inspect Guarantee
+                  </a>
+                </div>
+              </div>
+            </div>
+
           </div>
-        </article>
+        </div>
       ))
     }
   </div>
 </section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const items = document.querySelectorAll('[data-guarantee-item]');
+
+    // Initially all closed, no items[0] active on load!
+
+    items.forEach(item => {
+      // Tap toggle for touchscreens
+      item.addEventListener('click', () => {
+        items.forEach(i => {
+          if (i !== item) {
+            i.classList.remove('is-active');
+          }
+        });
+        item.classList.add('is-active');
+      });
+
+      // Hover triggers on desktop
+      item.addEventListener('mouseenter', () => {
+        items.forEach(i => i.classList.remove('is-active'));
+        item.classList.add('is-active');
+      });
+    });
+
+    // Reset back to all closed when mouse leaves container
+    const container = document.querySelector('[data-guarantee-container]');
+    if (container) {
+      container.addEventListener('mouseleave', () => {
+        items.forEach(i => i.classList.remove('is-active'));
+      });
+    }
+  });
+</script>
+
+<style>
+  @keyframes float {
+    0% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-4px);
+    }
+    100% {
+      transform: translateY(0px);
+    }
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  /* FLEX ACCORDION CONTAINER (Enforce space/gaps) */
+  .guarantees-accordion {
+    display: flex;
+    flex-direction: row;
+    gap: 28px; /* Spacious gaps between cards - identical to categories */
+    width: 100%;
+    max-width: 1600px; /* Wider to beautifully accommodate all 6 cards of 240px in a row */
+    margin: 0 auto;
+    height: 350px; /* Square-like ratio height */
+    overflow: visible;
+  }
+
+  /* BASE ACCORDION ITEM (Slightly taller square-like shape) */
+  .accordion-item {
+    position: relative;
+    height: 100%;
+    border-radius: 24px;
+    overflow: hidden;
+    cursor: pointer;
+    width: 240px; /* Base card width - identical to categories */
+    flex-shrink: 0;
+    transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 10px 35px rgba(41, 64, 115, 0.05);
+    border: 1px solid rgba(226, 232, 240, 0.8);
+  }
+
+  /* EXPANDED ACCORDION ITEM */
+  .accordion-item:hover,
+  .accordion-item.is-active {
+    width: 520px; /* Expanded card width - identical to categories */
+    box-shadow: 
+      0 24px 60px rgba(31, 63, 117, 0.14),
+      0 0 30px rgba(88, 179, 250, 0.06);
+    border-color: rgba(88, 179, 250, 0.25);
+  }
+
+  /* SHRINK NEIGHBORS ON ACCORDION CONTAINER HOVER */
+  .guarantees-accordion:hover .accordion-item:not(:hover) {
+    width: 160px; /* Shrinks proportionally to fit expanded card - identical to categories */
+    opacity: 0.85;
+  }
+
+  /* LEFT VISUAL SECTION */
+  .left-visual-section {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    flex-shrink: 0;
+    transition: width 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 10;
+  }
+
+  .accordion-item:hover .left-visual-section,
+  .accordion-item.is-active .left-visual-section {
+    width: 240px; /* Width of left section when active - identical to categories */
+  }
+
+  /* RIGHT CONTENT PANEL (Sliding box, compact padding) */
+  .right-content-panel {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 280px; /* Wider panel for better text layout - identical to categories */
+    background-color: #f1f5f9;
+    border-left: 1px solid #e2e8f0;
+    transform: translateX(100%);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+    z-index: 15;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .accordion-item:hover .right-content-panel,
+  .accordion-item.is-active .right-content-panel {
+    transform: translateX(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* TEXT ENTRANCE SLIDE ANIMATION */
+  .panel-body {
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 0.5s ease 0.15s, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.15s;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .accordion-item:hover .panel-body,
+  .accordion-item.is-active .panel-body {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* TITLE PILL BUTTON (DYNAMIC ACTIVE GRADIENTS) */
+  .service-title-pill {
+    position: absolute;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 8px 18px;
+    border-radius: 9999px;
+    background-color: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 0 4px 12px rgba(41, 64, 115, 0.08);
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--color-heading);
+    white-space: nowrap;
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 20;
+  }
+
+  .accordion-item:hover .service-title-pill,
+  .accordion-item.is-active .service-title-pill {
+    bottom: 20px;
+    background: var(--active-gradient);
+    color: #fff;
+    border-color: transparent;
+    box-shadow: 0 8px 16px rgba(43, 93, 158, 0.25);
+  }
+
+  /* RESPONSIVE RESPONSIVENESS ACCORDION */
+  @media (max-width: 1100px) {
+    .guarantees-accordion {
+      flex-direction: column;
+      height: auto;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .accordion-item {
+      width: 100%;
+      max-width: 500px;
+      height: 180px;
+    }
+
+    .accordion-item:hover,
+    .accordion-item.is-active {
+      width: 100%;
+      height: 250px;
+    }
+
+    .guarantees-accordion:hover .accordion-item:not(:hover) {
+      width: 100%;
+      height: 140px;
+    }
+
+    .left-visual-section {
+      width: 100%;
+    }
+
+    .accordion-item:hover .left-visual-section,
+    .accordion-item.is-active .left-visual-section {
+      width: 200px;
+    }
+
+    .right-content-panel {
+      width: calc(100% - 200px);
+    }
+  }
+
+  @media (max-width: 500px) {
+    .accordion-item {
+      height: 200px;
+    }
+
+    .accordion-item:hover,
+    .accordion-item.is-active {
+      height: 380px;
+    }
+
+    .accordion-item:hover .left-visual-section,
+    .accordion-item.is-active .left-visual-section {
+      width: 100%;
+      height: 180px;
+    }
+
+    .right-content-panel {
+      width: 100%;
+      height: 200px;
+      top: auto;
+      bottom: 0;
+      border-left: none;
+      border-top: 1px solid #e2e8f0;
+      transform: translateY(100%);
+    }
+
+    .accordion-item:hover .right-content-panel,
+    .accordion-item.is-active .right-content-panel {
+      transform: translateY(0);
+    }
+  }
+</style>
