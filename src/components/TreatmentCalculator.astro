@@ -133,12 +133,12 @@
                   id="calc-specialist-avatar"
                   src="/images/team/doctor2.png" 
                   class="w-full h-full object-cover" 
-                  alt="Dr. James Chen" 
+                  alt="Dr. Ranjeeta Shukla" 
                 />
               </div>
               <div>
-                <h5 class="text-xs font-bold text-white" id="calc-specialist-name">Dr. James Chen</h5>
-                <p class="text-[10px] text-white/40" id="calc-specialist-role">Orthodontic Specialist</p>
+                <h5 class="text-xs font-bold text-white" id="calc-specialist-name">Dr. Ranjeeta Shukla</h5>
+                <p class="text-[10px] text-white/40" id="calc-specialist-role">Co-founder</p>
               </div>
             </div>
           </div>
@@ -184,25 +184,15 @@
 
     // Doctor specialist dataset
     const specialists = {
-      chen: {
-        name: 'Dr. James Chen',
-        role: 'Orthodontic Specialist',
-        avatar: '/images/team/doctor2.png'
-      },
-      rodriguez: {
-        name: 'Dr. Elena Rodriguez',
-        role: 'Oral Surgeon',
-        avatar: '/images/team/doctor3.png'
-      },
-      thompson: {
-        name: 'Dr. Marcus Thompson',
-        role: 'Cosmetic Specialist',
-        avatar: '/images/team/doctor4.png'
-      },
-      mitchell: {
-        name: 'Dr. Sarah Mitchell',
+      shuklaS: {
+        name: 'Dr. Samanvaya Shukla',
         role: 'Principal Dentist & Founder',
         avatar: '/images/team/doctor1.png'
+      },
+      shuklaR: {
+        name: 'Dr. Ranjeeta Shukla',
+        role: 'Co-founder',
+        avatar: '/images/team/doctor2.png'
       }
     };
 
@@ -267,7 +257,7 @@
       let complexityColor = '#58b3fa'; // Accent blue
       let complexityBg = 'bg-accent-blue';
       let timeText = '1 week';
-      let doc = specialists.mitchell;
+      let doc = specialists.shuklaS;
       let minCost = 500;
       let maxCost = 800;
 
@@ -276,32 +266,32 @@
         complexity = 'High';
         complexityColor = '#f43f5e'; // Rose red
         complexityBg = 'bg-rose-500';
-        timeText = selectedMethod === 'Implants' ? '4 - 6 months' : '3 - 4 weeks';
-        doc = selectedMethod === 'Implants' ? specialists.rodriguez : specialists.mitchell;
+        timeText = '1 month';
+        doc = selectedMethod === 'Implants' ? specialists.shuklaR : specialists.shuklaS;
         minCost = selectedMethod === 'Implants' ? 9500 : 7500;
         maxCost = selectedMethod === 'Implants' ? 14000 : 9800;
       } else if (isReplace) {
         complexity = 'High';
         complexityColor = '#f43f5e';
         complexityBg = 'bg-rose-500';
-        timeText = '3 - 6 months';
-        doc = specialists.rodriguez;
+        timeText = '15 days';
+        doc = specialists.shuklaR;
         minCost = 2800;
         maxCost = 4200;
       } else if (isStraight) {
         complexity = 'Medium';
         complexityColor = '#fbbf24'; // Warm amber
         complexityBg = 'bg-amber-400';
-        timeText = selectedMethod === 'Aligners' ? '6 - 12 months' : '3 weeks';
-        doc = selectedMethod === 'Aligners' ? specialists.chen : specialists.mitchell;
+        timeText = '12 - 18 months';
+        doc = specialists.shuklaS;
         minCost = selectedMethod === 'Aligners' ? 3400 : 4500;
         maxCost = selectedMethod === 'Aligners' ? 5200 : 6000;
       } else if (isWhite) {
         complexity = 'Low';
         complexityColor = '#58b3fa';
         complexityBg = 'bg-accent-blue';
-        timeText = selectedMethod === 'Veneers' ? '2 weeks' : '1 - 2 visits';
-        doc = selectedMethod === 'Veneers' ? specialists.mitchell : specialists.thompson;
+        timeText = '2 visits';
+        doc = specialists.shuklaS;
         minCost = selectedMethod === 'Veneers' ? 2200 : 350;
         maxCost = selectedMethod === 'Veneers' ? 3800 : 650;
       }
@@ -313,8 +303,8 @@
           complexity = 'High';
           complexityColor = '#f43f5e';
           complexityBg = 'bg-rose-500';
-          timeText = '3 - 6 months';
-          doc = specialists.mitchell; // Team lead handles complex combine cases
+          timeText = '12 - 18 months';
+          doc = specialists.shuklaS; // Principal handles complex cases
           if (isStraight) minCost += 2000, maxCost += 3000;
           if (isReplace) minCost += 2500, maxCost += 3500;
           if (isWhite) minCost += 300, maxCost += 500;

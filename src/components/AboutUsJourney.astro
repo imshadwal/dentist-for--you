@@ -1,28 +1,28 @@
 ---
 const milestones = [
   {
-    year: "2008",
+    year: "2006",
     title: "The Beginning",
     description: "Founded with a singular vision: to revolutionize dental care through innovation and human-centered design.",
-    icon: "✨"
+    icon: "beginning"
   },
   {
     year: "2012",
     title: "Recognition",
     description: "Awarded Best Aesthetic Dentistry Practice by the International Dental Association.",
-    icon: "🏆"
+    icon: "recognition"
   },
   {
     year: "2017",
     title: "Expansion",
     description: "Opened our state-of-the-art facility featuring cutting-edge CEREC technology and comfort-first treatment rooms.",
-    icon: "🚀"
+    icon: "expansion"
   },
   {
     year: "2023",
     title: "Community",
     description: "Reached 5,000+ transformed smiles and established the Smile Forward scholarship program.",
-    icon: "❤️"
+    icon: "community"
   },
 ];
 ---
@@ -90,7 +90,30 @@ const milestones = [
               <div class="relative flex h-16 w-16 items-center justify-center">
                 <div class="timeline-glow" aria-hidden="true"></div>
                 <div class="timeline-dot">
-                  <span class="timeline-icon">{milestone.icon}</span>
+                  <span class="timeline-icon flex items-center justify-center">
+                    {milestone.icon === "beginning" && (
+                      <svg class="h-5 w-5 stroke-current" viewBox="0 0 24 24" fill="none" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10z"/>
+                      </svg>
+                    )}
+                    {milestone.icon === "recognition" && (
+                      <svg class="h-5 w-5 stroke-current" viewBox="0 0 24 24" fill="none" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6M18 9h1.5a2.5 2.5 0 0 0 0-5H18M4 22h16M10 14.66V17c0 .55-.45 1-1 1H4v2h16v-2h-5c-.55 0-1-.45-1-1v-2.34M12 2a4 4 0 0 0-4 4v6h8V6a4 4 0 0 0-4-4z"/>
+                      </svg>
+                    )}
+                    {milestone.icon === "expansion" && (
+                      <svg class="h-5 w-5 stroke-current" viewBox="0 0 24 24" fill="none" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                        <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+                        <line x1="12" y1="22.08" x2="12" y2="12"/>
+                      </svg>
+                    )}
+                    {milestone.icon === "community" && (
+                      <svg class="h-5 w-5 stroke-current" viewBox="0 0 24 24" fill="none" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                      </svg>
+                    )}
+                  </span>
                 </div>
               </div>
             </div>
@@ -214,12 +237,26 @@ const milestones = [
   }
 
   .timeline-icon {
-    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .timeline-icon svg {
+    color: var(--color-card-blue);
+    opacity: 0.6;
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .is-active .timeline-icon {
     transform: scale(1.22) rotate(8deg);
+  }
+
+  .is-active .timeline-icon svg {
+    color: var(--color-accent-blue);
+    opacity: 1;
+    filter: drop-shadow(0 2px 6px rgba(88, 179, 250, 0.55));
   }
 
   .timeline-text-container {

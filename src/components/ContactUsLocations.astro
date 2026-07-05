@@ -1,22 +1,17 @@
 ---
 const locations = [
   {
-    name: "Marylebone Clinic",
-    address: "76 Wimpole Street, Marylebone",
-    city: "London, UK",
-    phone: "+44 (0) 201 234 5678",
-    email: "marylebone@dentalforyou.com",
-    hours: ["Mon–Fri: 9:00 AM – 7:00 PM", "Sat: 10:00 AM – 3:00 PM", "Sun: Closed"],
+    name: "Varanasi Head Office",
+    address: "Central Jail Road, opp. Varuna Garden",
+    city: "Varanasi, UP, India",
+    phone: "+91 99350 27527",
+    email: "hello@dentalforyou.com",
+    hours: [
+      "Mon–Sat Morning: 10:30 AM – 2:00 PM",
+      "Mon–Sat Evening: 6:00 PM – 9:00 PM",
+      "Sun: Closed"
+    ],
     icon: "🏥",
-  },
-  {
-    name: "Central London Hub",
-    address: "125 Oxford Street, West End",
-    city: "London, UK",
-    phone: "+44 (0) 201 234 5679",
-    email: "oxford@dentalforyou.com",
-    hours: ["Mon–Fri: 9:00 AM – 8:00 PM", "Sat: 10:00 AM – 4:00 PM", "Sun: Closed"],
-    icon: "🏢",
   },
 ];
 ---
@@ -34,12 +29,12 @@ const locations = [
       id="locations-title"
       class="mt-3 text-[clamp(36px,4.4vw,56px)] font-extrabold leading-[1.05] text-heading"
     >
-      Our offices
+      Our office
     </h2>
   </div>
 
   <!-- Locations Grid -->
-  <div class="grid grid-cols-2 gap-[clamp(16px,2.5vw,28px)] max-[900px]:grid-cols-1">
+  <div class="max-w-2xl mx-auto">
     {
       locations.map((location) => (
         <article

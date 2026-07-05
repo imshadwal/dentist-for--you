@@ -5,38 +5,38 @@ const treatmentCategories = [
     id: "pain-relief",
     title: "Pain Relief",
     emoji: "💊",
-    tagline: "Immediate, gentle soothing care",
-    description: "Advanced, immediate solutions for dental pain, nerve discomfort, and root canal therapy.",
+    tagline: "Stop the Pain, Start the relief",
+    description: "Turning toothaches back into happy smiles.",
     color: "from-rose-500 to-red-500",
     glowColor: "shadow-rose-100/50 bg-rose-500/10",
     image: "/images/treatments/3d_pain_relief.png",
     treatments: [
       "Root Canal Treatment",
-      "Wisdom Teeth Removal",
-      "Jaw Pain Treatment",
+      "Disimpaction",
+      "Composite fillings",
     ],
   },
   {
     id: "teeth-replacement",
     title: "Teeth Replacement",
     emoji: "✨",
-    tagline: "Smile restoration, built to last",
-    description: "Restore full bite function and aesthetic natural appearance with modern implantology options.",
+    tagline: "Smile out loud again",
+    description: "The confidence of a complete smile.",
     color: "from-blue-500 to-indigo-500",
     glowColor: "shadow-blue-100/50 bg-blue-500/10",
     image: "/images/treatments/3d_replacement.png",
     treatments: [
-      "Dentures",
-      "Dental Implants",
-      "Bridges & Crowns"
+      "Bridges & Crown",
+      "Dental implants",
+      "Complete & RPD Dentures",
     ],
   },
   {
     id: "cosmetic-dentistry",
     title: "Cosmetic Dentistry",
     emoji: "💎",
-    tagline: "Radiant, symmetric smile designs",
-    description: "Design your perfect, symmetrical, and radiant smile with aesthetic dental artistry.",
+    tagline: "Your dream smile, art fully created.",
+    description: "Designing smiles as unique as you are.",
     color: "from-purple-500 to-pink-500",
     glowColor: "shadow-purple-100/50 bg-purple-500/10",
     image: "/images/treatments/3d_cosmetic.png",
@@ -44,6 +44,7 @@ const treatmentCategories = [
       "Smile Makeover",
       "Teeth Whitening",
       "Clear Aligners",
+      "Braces & Aligners",
       "Laminates & Veneers",
     ],
   },
@@ -51,8 +52,8 @@ const treatmentCategories = [
     id: "preventive-dentistry",
     title: "Preventive Dentistry",
     emoji: "🛡️",
-    tagline: "Protecting your long-term health",
-    description: "Protect and maintain healthy enamel, clean gums, and fresh breath with routine diagnostic care.",
+    tagline: "Protecting your smile today for a healthier tomorrow.",
+    description: "Smart care to keep your natural smile for life",
     color: "from-teal-500 to-emerald-500",
     glowColor: "shadow-teal-100/50 bg-teal-500/10",
     image: "/images/treatments/excellence_shield.png",
@@ -60,14 +61,15 @@ const treatmentCategories = [
       "Advanced Gum Treatment",
       "Bad Breath Treatment",
       "Teeth Cleaning",
+      "Mouth Ulcers",
     ],
   },
   {
     id: "kids-dentistry",
     title: "Kids Dentistry",
     emoji: "🦷",
-    tagline: "Comforting and friendly pediatric care",
-    description: "Specialized, comforting, and pain-free pediatric dental care for healthy growing smiles.",
+    tagline: "When little smile get gentle care",
+    description: "Making dental visit fun, one smile at a time.",
     color: "from-amber-500 to-orange-500",
     glowColor: "shadow-amber-100/50 bg-amber-500/10",
     image: "/images/treatments/3d_kids_dentistry.png",
@@ -75,6 +77,7 @@ const treatmentCategories = [
       "Pediatric Dental Checkup",
       "Kids Cavity Treatment",
       "Fluoride Treatment",
+      "Habit Counseling",
     ],
   },
 ];
@@ -130,11 +133,11 @@ const treatmentCategories = [
               <div class="absolute inset-0 flex items-center justify-center p-4 pb-16">
                 <div class="relative w-32 h-32 flex items-center justify-center">
                   <div class={`absolute inset-0 rounded-full ${category.glowColor} blur-md transition-transform duration-500 group-hover:scale-110`}></div>
-                  <div class="absolute inset-1.5 rounded-full bg-linear-to-b from-white to-slate-50 shadow-inner border border-white/60 flex items-center justify-center">
+                  <div class="absolute inset-1.5 rounded-full bg-linear-to-b from-white to-slate-50 shadow-inner border border-white/60 flex items-center justify-center overflow-hidden">
                     <img
                       src={category.image}
                       alt={`${category.title} Concept`}
-                      class="h-[80%] w-auto object-contain z-10 animate-float transition-transform duration-500 group-hover:scale-[1.03]"
+                      class="h-full w-full object-cover z-10 transition-transform duration-500 group-hover:scale-[1.05]"
                     />
                   </div>
                 </div>
