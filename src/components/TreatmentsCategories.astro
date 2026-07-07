@@ -94,106 +94,66 @@ const treatmentCategories = [
     </p>
     <h2
       id="categories-title"
-      class="mt-3 text-4xl font-extrabold leading-[1.08] text-heading tracking-tight"
+      class="mt-3 text-[clamp(36px,4vw,60px)] font-extrabold leading-[1.05] text-heading tracking-tight"
     >
       Every smile deserves specialized care
     </h2>
     <p class="mx-auto mt-4 max-w-lg text-sm text-heading/70 leading-relaxed">
       Explore our premium interactive horizontal menu, showcasing advanced clinical concepts and specialized care.
-    </p>
-  </div>
-
-  <!-- Premium Interactive Horizontal Services Carousel (Flex Accordion) -->
-  <div 
-    class="services-accordion"
-    data-accordion-container
-  >
+     <!-- Centered Scroll-Reveal Treatments List -->
+  <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-24">
     {
-      treatmentCategories.map((category) => (
-        <div 
-          class="accordion-item group"
-          data-accordion-item
-          data-id={category.id}
+      treatmentCategories.map((category, idx) => (
+        <div
+          class={`reveal-text-block text-center flex flex-col items-center ${
+            idx === 4 ? "md:col-span-2 max-w-3xl mx-auto" : ""
+          }`}
+          data-reveal-block
         >
-          <!-- Card Body Flex Layout -->
-          <div class="relative w-full h-full flex flex-row overflow-hidden">
-            
-            <!-- LEFT SECTION (Visual / Clinical orb) -->
-            <div class="left-visual-section">
-              <!-- top color bar -->
-              <div class={`absolute top-0 left-0 right-0 h-1.5 bg-linear-to-r ${category.color}`}></div>
+          <!-- Badge -->
+          <span class="text-[11px] font-bold tracking-[0.25em] text-accent-blue/85 uppercase">
+            Category 0{idx + 1}
+          </span>
+          
+          <!-- Emoji + Title -->
+          <div class="flex items-center justify-center gap-3 mt-4">
+            <span class="text-2xl md:text-3xl">{category.emoji}</span>
+            <h3 class="text-[clamp(24px,2.5vw,36px)] font-extrabold text-heading tracking-tight leading-tight transition-colors duration-500">
+              {category.title}
+            </h3>
+          </div>
 
-              <!-- background clinical gradient -->
-              <div class="absolute inset-0 bg-linear-to-b from-[#f8fafc] to-[#f1f5f9] overflow-hidden -z-10">
-                <!-- floating blur orbs -->
-                <div class={`absolute -bottom-8 -right-8 w-28 h-28 rounded-full ${category.glowColor} blur-xl opacity-40 transition-transform duration-700 group-hover:scale-125`}></div>
-              </div>
+          <!-- Tagline -->
+          <p class="mt-2 text-sm md:text-base font-bold text-slate-500 tracking-wide">
+            {category.tagline}
+          </p>
 
-              <!-- Floating 3D image orb -->
-              <div class="absolute inset-0 flex items-center justify-center p-4 pb-16">
-                <div class="relative w-32 h-32 flex items-center justify-center">
-                  <div class={`absolute inset-0 rounded-full ${category.glowColor} blur-md transition-transform duration-500 group-hover:scale-110`}></div>
-                  <div class="absolute inset-1.5 rounded-full bg-linear-to-b from-white to-slate-50 shadow-inner border border-white/60 flex items-center justify-center overflow-hidden">
-                    <img
-                      src={category.image}
-                      alt={`${category.title} Concept`}
-                      class="h-full w-full object-cover z-10 transition-transform duration-500 group-hover:scale-[1.05]"
-                    />
-                  </div>
-                </div>
-              </div>
+          <!-- Description -->
+          <p class="mt-4 text-sm md:text-[16px] text-heading/75 leading-relaxed max-w-2xl">
+            {category.description}
+          </p>
 
-              <!-- Pill Title (Bottom Center) -->
-              <span 
-                class="service-title-pill"
-                style={`--active-gradient: linear-gradient(135deg, ${category.id === 'pain-relief' ? '#f43f5e, #ef4444' : category.id === 'teeth-replacement' ? '#3b82f6, #6366f1' : category.id === 'cosmetic-dentistry' ? '#a855f7, #ec4899' : category.id === 'preventive-dentistry' ? '#14b8a6, #10b981' : '#f59e0b, #f97316'})`}
-              >
-                <span class="mr-1.5">{category.emoji}</span> {category.title}
+          <!-- Treatments List -->
+          <div class="mt-6 flex flex-wrap justify-center gap-2 max-w-2xl">
+            {category.treatments.map((treatment) => (
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-50 border border-slate-200/60 text-xs font-semibold text-heading/85 shadow-3xs transition-all hover:scale-[1.02] hover:bg-white duration-300">
+                <span class="inline-flex h-3.5 w-3.5 items-center justify-center rounded-full bg-linear-to-br from-accent-blue to-card-blue text-[8px] text-white">✓</span>
+                {treatment}
               </span>
-            </div>
+            ))}
+          </div>
 
-            <!-- RIGHT SECTION (Sliding content panel) -->
-            <div class="right-content-panel">
-              <!-- diagonal arrow icon -->
-              <div class="absolute top-5 right-5 w-7 h-7 rounded-full bg-white shadow-3xs border border-slate-100/80 flex items-center justify-center text-slate-400 group-hover:text-accent-blue transition-colors duration-300">
-                <svg class="h-3 w-3 transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
-                </svg>
-              </div>
-
-              <!-- sliding panel details -->
-              <div class="panel-body">
-                <div class="flex flex-col gap-1 text-left">
-                  <span class="text-[9px] font-bold text-accent-blue tracking-[0.2em] uppercase">SERVICE</span>
-                  <h3 class="text-[16px] font-black text-heading leading-tight tracking-tight mt-1">
-                    {category.tagline}
-                  </h3>
-                  <p class="text-[11px] text-heading/75 leading-relaxed mt-1.5">
-                    {category.description}
-                  </p>
-
-                  <h4 class="text-[9px] font-bold text-slate-400 uppercase tracking-widest mt-4 mb-2">Procedures</h4>
-                  <div class="flex flex-wrap gap-1">
-                    {category.treatments.map((treatment) => (
-                      <span class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-white border border-slate-200/50 text-[9px] font-bold text-heading/85 shadow-3xs">
-                        <span class="inline-flex h-3 w-3 items-center justify-center rounded-full bg-linear-to-br from-accent-blue to-card-blue text-[5px] text-white">✓</span>
-                        {treatment}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                <div class="mt-4">
-                  <a 
-                    href="#contact-us" 
-                    class={`inline-flex items-center justify-center text-center w-full py-2 px-3 rounded-lg bg-linear-to-r ${category.color} text-white text-[11px] font-bold shadow-md hover:scale-[1.02] active:scale-[0.98] transition-all no-underline`}
-                  >
-                    Book {category.title}
-                  </a>
-                </div>
-              </div>
-            </div>
-
+          <!-- Action button -->
+          <div class="mt-8">
+            <a
+              href="#contact-us"
+              class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-accent-blue hover:text-card-blue transition-colors duration-300 no-underline"
+            >
+              Book {category.title}
+              <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+              </svg>
+            </a>
           </div>
         </div>
       ))
@@ -201,7 +161,7 @@ const treatmentCategories = [
   </div>
 
   <!-- Explore CTA -->
-  <div class="mt-16 flex justify-center">
+  <div class="mt-24 flex justify-center">
     <a
       class="inline-flex min-h-14.5 items-center gap-3 rounded-full bg-linear-to-r from-accent-blue to-card-blue py-0 pr-7 pl-3 text-base font-extrabold text-white no-underline shadow-[0_18px_34px_rgba(43,93,158,0.26)] transition duration-200 hover:-translate-y-0.5 hover:shadow-[0_22px_42px_rgba(43,93,158,0.32)] max-[620px]:min-h-13 max-[620px]:pr-5.5 max-[620px]:text-sm"
       href="#contact-us"
@@ -224,257 +184,40 @@ const treatmentCategories = [
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
-    const items = document.querySelectorAll('[data-accordion-item]');
+    const blocks = document.querySelectorAll('[data-reveal-block]');
+    
+    const observerOptions = {
+      root: null,
+      rootMargin: '-20% 0px -20% 0px', // Trigger reveal when block is inside center 60% of viewport
+      threshold: 0.15
+    };
 
-    // Initially all closed, no items[0] active on load!
-
-    items.forEach(item => {
-      // Tap toggle for touchscreens
-      item.addEventListener('click', () => {
-        items.forEach(i => {
-          if (i !== item) {
-            i.classList.remove('is-active');
-          }
-        });
-        item.classList.add('is-active');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+        } else {
+          entry.target.classList.remove('is-visible');
+        }
       });
+    }, observerOptions);
 
-      // Hover triggers on desktop
-      item.addEventListener('mouseenter', () => {
-        items.forEach(i => i.classList.remove('is-active'));
-        item.classList.add('is-active');
-      });
-    });
-
-    // Reset back to all closed when mouse leaves container
-    const container = document.querySelector('[data-accordion-container]');
-    if (container) {
-      container.addEventListener('mouseleave', () => {
-        items.forEach(i => i.classList.remove('is-active'));
-      });
-    }
+    blocks.forEach(block => observer.observe(block));
   });
 </script>
 
 <style>
-  @keyframes float {
-    0% {
-      transform: translateY(0px);
-    }
-    50% {
-      transform: translateY(-4px);
-    }
-    100% {
-      transform: translateY(0px);
-    }
+  .reveal-text-block {
+    opacity: 0.15;
+    transform: translateY(35px) scale(0.97);
+    filter: blur(2px);
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), filter 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform, opacity, filter;
   }
 
-  .animate-float {
-    animation: float 6s ease-in-out infinite;
-  }
-
-  /* FLEX ACCORDION CONTAINER (Enforce space/gaps) */
-  .services-accordion {
-    display: flex;
-    flex-direction: row;
-    gap: 28px; /* Spacious gaps between cards */
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    height: 350px; /* Square-like ratio height */
-    overflow: visible;
-  }
-
-  /* BASE ACCORDION ITEM (Slightly taller square-like shape) */
-  .accordion-item {
-    position: relative;
-    height: 100%;
-    border-radius: 24px;
-    overflow: hidden;
-    cursor: pointer;
-    width: 240px; /* Base card width */
-    flex-shrink: 0;
-    transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-    box-shadow: 0 10px 35px rgba(41, 64, 115, 0.05);
-    border: 1px solid rgba(226, 232, 240, 0.8);
-  }
-
-  /* EXPANDED ACCORDION ITEM */
-  .accordion-item:hover,
-  .accordion-item.is-active {
-    width: 520px; /* Expanded card width */
-    box-shadow: 
-      0 24px 60px rgba(31, 63, 117, 0.14),
-      0 0 30px rgba(88, 179, 250, 0.06);
-    border-color: rgba(88, 179, 250, 0.25);
-  }
-
-  /* SHRINK NEIGHBORS ON ACCORDION CONTAINER HOVER */
-  .services-accordion:hover .accordion-item:not(:hover) {
-    width: 160px; /* Shrinks proportionally to fit expanded card */
-    opacity: 0.85;
-  }
-
-  /* LEFT VISUAL SECTION */
-  .left-visual-section {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    flex-shrink: 0;
-    transition: width 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-    z-index: 10;
-  }
-
-  .accordion-item:hover .left-visual-section,
-  .accordion-item.is-active .left-visual-section {
-    width: 240px;
-  }
-
-  /* RIGHT CONTENT PANEL (Sliding box, compact padding) */
-  .right-content-panel {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    width: 280px; /* Wider panel for better text layout */
-    background-color: #f1f5f9;
-    border-left: 1px solid #e2e8f0;
-    transform: translateX(100%);
-    opacity: 0;
-    pointer-events: none;
-    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
-    z-index: 15;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-
-  .accordion-item:hover .right-content-panel,
-  .accordion-item.is-active .right-content-panel {
-    transform: translateX(0);
+  .reveal-text-block.is-visible {
     opacity: 1;
-    pointer-events: auto;
-  }
-
-  /* TEXT ENTRANCE SLIDE ANIMATION */
-  .panel-body {
-    opacity: 0;
-    transform: translateY(12px);
-    transition: opacity 0.5s ease 0.15s, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.15s;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-
-  .accordion-item:hover .panel-body,
-  .accordion-item.is-active .panel-body {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  /* TITLE PILL BUTTON (DYNAMIC ACTIVE GRADIENTS) */
-  .service-title-pill {
-    position: absolute;
-    bottom: 24px;
-    left: 50%;
-    transform: translateX(-50%);
-    padding: 8px 18px;
-    border-radius: 9999px;
-    background-color: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    box-shadow: 0 4px 12px rgba(41, 64, 115, 0.08);
-    font-size: 11px;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: var(--color-heading);
-    white-space: nowrap;
-    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-    z-index: 20;
-  }
-
-  .accordion-item:hover .service-title-pill,
-  .accordion-item.is-active .service-title-pill {
-    bottom: 20px;
-    background: var(--active-gradient);
-    color: #fff;
-    border-color: transparent;
-    box-shadow: 0 8px 16px rgba(43, 93, 158, 0.25);
-  }
-
-  /* RESPONSIVE RESPONSIVENESS ACCORDION */
-  @media (max-width: 1100px) {
-    .services-accordion {
-      flex-direction: column;
-      height: auto;
-      align-items: center;
-      gap: 16px;
-    }
-
-    .accordion-item {
-      width: 100%;
-      max-width: 500px;
-      height: 180px;
-    }
-
-    .accordion-item:hover,
-    .accordion-item.is-active {
-      width: 100%;
-      height: 250px;
-    }
-
-    .services-accordion:hover .accordion-item:not(:hover) {
-      width: 100%;
-      height: 140px;
-    }
-
-    .left-visual-section {
-      width: 100%;
-    }
-
-    .accordion-item:hover .left-visual-section,
-    .accordion-item.is-active .left-visual-section {
-      width: 200px;
-    }
-
-    .right-content-panel {
-      width: calc(100% - 200px);
-    }
-  }
-
-  @media (max-width: 500px) {
-    .accordion-item {
-      height: 200px;
-    }
-
-    .accordion-item:hover,
-    .accordion-item.is-active {
-      height: 380px;
-    }
-
-    .accordion-item:hover .left-visual-section,
-    .accordion-item.is-active .left-visual-section {
-      width: 100%;
-      height: 180px;
-    }
-
-    .right-content-panel {
-      width: 100%;
-      height: 200px;
-      top: auto;
-      bottom: 0;
-      border-left: none;
-      border-top: 1px solid #e2e8f0;
-      transform: translateY(100%);
-    }
-
-    .accordion-item:hover .right-content-panel,
-    .accordion-item.is-active .right-content-panel {
-      transform: translateY(0);
-    }
+    transform: translateY(0) scale(1);
+    filter: blur(0);
   }
 </style>

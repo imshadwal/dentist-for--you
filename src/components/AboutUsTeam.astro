@@ -5,14 +5,7 @@ const team = [
     role: "Principal Dentist & Founder",
     specialty: "Orthodontics",
     bio: "Dedicated 20 year experience practitioner delivering exceptional stress free dental care for the whole family.",
-    image: "/images/team/doctor1.png",
-  },
-  {
-    name: "Dr. Ranjeeta Shukla",
-    role: "Co-founder",
-    specialty: "Implantology",
-    bio: "Partner in achieving a healthy beautiful smile with personalized dental care to keep you smiling with confidence.",
-    image: "/images/team/doctor2.png",
+    image: "/images/photoshoot/IMG_6836.jpg",
   },
 ];
 ---
@@ -28,7 +21,7 @@ const team = [
         <span id="team-title" class="text-xs font-bold tracking-[0.3em] text-slate-400 uppercase">
           Specialists
         </span>
-        <div class="flex -space-x-2 overflow-hidden">
+        <div class={`flex -space-x-2 overflow-hidden ${team.length <= 1 ? 'hidden' : ''}`}>
           <div class="inline-block h-5 w-5 rounded-full ring-2 ring-white bg-slate-200"></div>
           <div class="inline-block h-5 w-5 rounded-full ring-2 ring-white bg-slate-300"></div>
           <div class="inline-block h-5 w-5 rounded-full ring-2 ring-white bg-slate-400"></div>
@@ -41,15 +34,15 @@ const team = [
       </h2>
       
       <p class="mt-6 text-sm leading-relaxed text-[#294073]/70 max-w-sm">
-        Our team of dedicated professionals brings precision, empathy, and artistry to every treatment — combining years of experience with a shared passion for truly personalized care.
+        Our principal specialist brings precision, empathy, and artistry to every treatment — combining years of experience with a passion for truly personalized care.
       </p>
       
-      <a href="#all-specialists" class="inline-flex items-center text-sm font-bold text-[#2b5d9e] mt-6 hover:opacity-80 transition-opacity">
+      <a href="#all-specialists" class={`inline-flex items-center text-sm font-bold text-[#2b5d9e] mt-6 hover:opacity-80 transition-opacity ${team.length <= 1 ? 'hidden' : ''}`}>
         View all specialists <span class="ml-2">→</span>
       </a>
     </div>
 
-    <div class="flex items-center space-x-6 mt-16 lg:mt-32">
+    <div class={`flex items-center space-x-6 mt-16 lg:mt-32 ${team.length <= 1 ? 'hidden' : ''}`}>
       <span class="text-sm font-bold text-[#294073]">
         <span id="carousel-counter">01</span> <span class="text-slate-300 font-normal">/ {String(team.length).padStart(2, '0')}</span>
       </span>

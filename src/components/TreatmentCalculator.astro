@@ -131,14 +131,14 @@
               <div class="w-9 h-9 rounded-full bg-slate-300 overflow-hidden ring-2 ring-white/10">
                 <img 
                   id="calc-specialist-avatar"
-                  src="/images/team/doctor2.png" 
+                  src="/images/photoshoot/IMG_6836.jpg" 
                   class="w-full h-full object-cover" 
-                  alt="Dr. Ranjeeta Shukla" 
+                  alt="Dr. Samanvaya Shukla" 
                 />
               </div>
               <div>
-                <h5 class="text-xs font-bold text-white" id="calc-specialist-name">Dr. Ranjeeta Shukla</h5>
-                <p class="text-[10px] text-white/40" id="calc-specialist-role">Co-founder</p>
+                <h5 class="text-xs font-bold text-white" id="calc-specialist-name">Dr. Samanvaya Shukla</h5>
+                <p class="text-[10px] text-white/40" id="calc-specialist-role">Principal Dentist & Founder</p>
               </div>
             </div>
           </div>
@@ -187,12 +187,7 @@
       shuklaS: {
         name: 'Dr. Samanvaya Shukla',
         role: 'Principal Dentist & Founder',
-        avatar: '/images/team/doctor1.png'
-      },
-      shuklaR: {
-        name: 'Dr. Ranjeeta Shukla',
-        role: 'Co-founder',
-        avatar: '/images/team/doctor2.png'
+        avatar: '/images/photoshoot/IMG_6836.jpg'
       }
     };
 
@@ -267,7 +262,7 @@
         complexityColor = '#f43f5e'; // Rose red
         complexityBg = 'bg-rose-500';
         timeText = '1 month';
-        doc = selectedMethod === 'Implants' ? specialists.shuklaR : specialists.shuklaS;
+        doc = specialists.shuklaS;
         minCost = selectedMethod === 'Implants' ? 9500 : 7500;
         maxCost = selectedMethod === 'Implants' ? 14000 : 9800;
       } else if (isReplace) {
@@ -275,7 +270,7 @@
         complexityColor = '#f43f5e';
         complexityBg = 'bg-rose-500';
         timeText = '15 days';
-        doc = specialists.shuklaR;
+        doc = specialists.shuklaS;
         minCost = 2800;
         maxCost = 4200;
       } else if (isStraight) {

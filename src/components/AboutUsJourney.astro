@@ -28,136 +28,128 @@ const milestones = [
 ---
 
 <section
-  class="mx-auto w-[calc(100%-32px)] max-w-460 py-[clamp(40px,8vw,100px)] max-[620px]:w-[calc(100%-28px)]"
+  class="relative overflow-hidden rounded-3xl mx-auto w-[calc(100%-32px)] max-w-460 py-[clamp(40px,8vw,100px)] max-[620px]:w-[calc(100%-28px)] bg-slate-50/20 border border-slate-100/50 shadow-xs"
   id="our-journey"
   aria-labelledby="journey-title"
 >
-  <div class="text-center mb-[clamp(40px,6vw,80px)]">
-    <p class="m-0 text-[11px] font-bold tracking-[0.38em] text-card-blue/70 uppercase">
-      Our Evolution
-    </p>
-    <h2
-      id="journey-title"
-      class="mt-3 text-[clamp(36px,4.4vw,56px)] font-extrabold leading-[1.05] text-heading"
-    >
-      A timeline of passion
-    </h2>
-  </div>
+  <!-- Background video from photoshoot -->
+  <video
+    id="journey-bg-video"
+    class="absolute inset-0 z-0 h-full w-full object-cover pointer-events-none opacity-[0.28]"
+    src="/videos/IMG_6776.mp4"
+    autoplay
+    muted
+    playsinline
+  ></video>
 
-  <!-- Timeline -->
-  <div class="relative">
-    <!-- Vertical line on desktop, hidden on mobile -->
-    <div
-      class="absolute left-1/2 top-0 bottom-0 w-0.5 bg-linear-to-b from-accent-blue via-card-blue to-accent-blue/30 transform -translate-x-1/2 max-[800px]:hidden"
-      aria-hidden="true"
-    ></div>
+  <!-- Foreground contents wrapper -->
+  <div class="relative z-10 px-[clamp(16px,4vw,64px)]">
+    <div class="text-center mb-[clamp(40px,6vw,80px)]">
+      <p class="m-0 text-[11px] font-bold tracking-[0.38em] text-card-blue/70 uppercase">
+        Our Evolution
+      </p>
+      <h2
+        id="journey-title"
+        class="mt-3 text-[clamp(36px,4.4vw,56px)] font-extrabold leading-[1.05] text-heading"
+      >
+        A timeline of passion
+      </h2>
+    </div>
 
-    <!-- Timeline items -->
-    <div class="space-y-[clamp(40px,6vw,80px)] max-[800px]:space-y-8">
-      {
-        milestones.map((milestone, index) => (
-          <div
-            data-timeline-item
-            class="grid grid-cols-[1fr_auto_1fr] gap-[clamp(20px,3vw,40px)] items-center max-[800px]:grid-cols-1 max-[800px]:gap-4 transition-all duration-700 timeline-row"
-          >
-            <!-- Left content (alternate) -->
+    <!-- Timeline -->
+    <div class="relative">
+      <!-- Vertical line on desktop, hidden on mobile -->
+      <div
+        class="absolute left-1/2 top-0 bottom-0 w-0.5 bg-linear-to-b from-accent-blue via-card-blue to-accent-blue/30 transform -translate-x-1/2 max-[800px]:hidden"
+        aria-hidden="true"
+      ></div>
+
+      <!-- Timeline items -->
+      <div class="space-y-[clamp(40px,6vw,80px)] max-[800px]:space-y-8">
+        {
+          milestones.map((milestone, index) => (
             <div
-              class={`${
-                index % 2 === 0 ? "text-right" : "max-[800px]:order-2"
-              } max-[800px]:text-left`}
+              data-timeline-item
+              class="grid grid-cols-[1fr_auto_1fr] gap-[clamp(20px,3vw,40px)] items-center max-[800px]:grid-cols-1 max-[800px]:gap-4 transition-all duration-700 timeline-row"
             >
+              <!-- Left content (alternate) -->
               <div
-                class={`timeline-text-container ${
-                  index % 2 === 0
-                    ? "max-[800px]:hidden"
-                    : "max-[800px]:block hidden"
-                }`}
+                class={`${
+                  index % 2 === 0 ? "text-right" : "max-[800px]:hidden"
+                } max-[800px]:text-left max-[800px]:order-2`}
               >
-                <p class="text-[13px] font-bold tracking-[0.32em] text-card-blue/60 uppercase">
-                  {milestone.year}
-                </p>
-                <h3 class="mt-2 text-[clamp(22px,2vw,28px)] font-extrabold text-heading">
-                  {milestone.title}
-                </h3>
-                <p class="mt-2 text-[14px] leading-[1.4] text-heading/70 max-w-140 ml-auto max-[800px]:ml-0">
-                  {milestone.description}
-                </p>
+                {index % 2 === 0 && (
+                  <div class="timeline-text-container">
+                    <p class="text-[13px] font-bold tracking-[0.32em] text-card-blue/60 uppercase">
+                      {milestone.year}
+                    </p>
+                    <h3 class="mt-2 text-[clamp(22px,2vw,28px)] font-extrabold text-heading">
+                      {milestone.title}
+                    </h3>
+                    <p class="mt-2 text-[14px] leading-[1.4] text-heading/70 max-w-140 ml-auto max-[800px]:ml-0">
+                      {milestone.description}
+                    </p>
+                  </div>
+                )}
               </div>
-            </div>
 
-            <!-- Center dot -->
-            <div class="flex flex-col items-center max-[800px]:order-1">
-              <div class="relative flex h-16 w-16 items-center justify-center">
-                <div class="timeline-glow" aria-hidden="true"></div>
-                <div class="timeline-dot">
-                  <span class="timeline-icon flex items-center justify-center">
-                    {milestone.icon === "beginning" && (
-                      <svg class="h-5 w-5 stroke-current" viewBox="0 0 24 24" fill="none" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                        <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10z"/>
-                      </svg>
-                    )}
-                    {milestone.icon === "recognition" && (
-                      <svg class="h-5 w-5 stroke-current" viewBox="0 0 24 24" fill="none" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                        <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6M18 9h1.5a2.5 2.5 0 0 0 0-5H18M4 22h16M10 14.66V17c0 .55-.45 1-1 1H4v2h16v-2h-5c-.55 0-1-.45-1-1v-2.34M12 2a4 4 0 0 0-4 4v6h8V6a4 4 0 0 0-4-4z"/>
-                      </svg>
-                    )}
-                    {milestone.icon === "expansion" && (
-                      <svg class="h-5 w-5 stroke-current" viewBox="0 0 24 24" fill="none" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
-                        <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
-                        <line x1="12" y1="22.08" x2="12" y2="12"/>
-                      </svg>
-                    )}
-                    {milestone.icon === "community" && (
-                      <svg class="h-5 w-5 stroke-current" viewBox="0 0 24 24" fill="none" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
-                      </svg>
-                    )}
-                  </span>
+              <!-- Center dot -->
+              <div class="flex flex-col items-center max-[800px]:order-1">
+                <div class="relative flex h-16 w-16 items-center justify-center">
+                  <div class="timeline-glow" aria-hidden="true"></div>
+                  <div class="timeline-dot">
+                    <span class="timeline-icon flex items-center justify-center">
+                      {milestone.icon === "beginning" && (
+                        <svg class="h-5 w-5 stroke-current" viewBox="0 0 24 24" fill="none" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                          <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10z"/>
+                        </svg>
+                      )}
+                      {milestone.icon === "recognition" && (
+                        <svg class="h-5 w-5 stroke-current" viewBox="0 0 24 24" fill="none" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                          <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6M18 9h1.5a2.5 2.5 0 0 0 0-5H18M4 22h16M10 14.66V17c0 .55-.45 1-1 1H4v2h16v-2h-5c-.55 0-1-.45-1-1v-2.34M12 2a4 4 0 0 0-4 4v6h8V6a4 4 0 0 0-4-4z"/>
+                        </svg>
+                      )}
+                      {milestone.icon === "expansion" && (
+                        <svg class="h-5 w-5 stroke-current" viewBox="0 0 24 24" fill="none" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                          <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                          <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+                          <line x1="12" y1="22.08" x2="12" y2="12"/>
+                        </svg>
+                      )}
+                      {milestone.icon === "community" && (
+                        <svg class="h-5 w-5 stroke-current" viewBox="0 0 24 24" fill="none" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                        </svg>
+                      )}
+                    </span>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <!-- Right content -->
-            <div
-              class={`${
-                index % 2 === 1 ? "text-left" : "max-[800px]:order-2 hidden max-[800px]:block"
-              } max-[800px]:text-left`}
-            >
+              <!-- Right content -->
               <div
-                class={`timeline-text-container ${
-                  index % 2 === 1
-                    ? "max-[800px]:hidden"
-                    : "max-[800px]:block hidden"
-                }`}
+                class={`${
+                  index % 2 === 1 ? "text-left" : "max-[800px]:hidden"
+                } max-[800px]:text-left max-[800px]:order-2`}
               >
-                <p class="text-[13px] font-bold tracking-[0.32em] text-card-blue/60 uppercase">
-                  {milestone.year}
-                </p>
-                <h3 class="mt-2 text-[clamp(22px,2vw,28px)] font-extrabold text-heading">
-                  {milestone.title}
-                </h3>
-                <p class="mt-2 text-[14px] leading-[1.4] text-heading/70 max-w-140">
-                  {milestone.description}
-                </p>
+                {index % 2 === 1 && (
+                  <div class="timeline-text-container">
+                    <p class="text-[13px] font-bold tracking-[0.32em] text-card-blue/60 uppercase">
+                      {milestone.year}
+                    </p>
+                    <h3 class="mt-2 text-[clamp(22px,2vw,28px)] font-extrabold text-heading">
+                      {milestone.title}
+                    </h3>
+                    <p class="mt-2 text-[14px] leading-[1.4] text-heading/70 max-w-140">
+                      {milestone.description}
+                    </p>
+                  </div>
+                )}
               </div>
             </div>
-
-            <!-- Mobile timeline info -->
-            <div class="timeline-text-container max-[800px]:col-span-3 max-[800px]:order-3 hidden max-[800px]:block">
-              <p class="text-[13px] font-bold tracking-[0.32em] text-card-blue/60 uppercase">
-                {milestone.year}
-              </p>
-              <h3 class="mt-2 text-[22px] font-extrabold text-heading">
-                {milestone.title}
-              </h3>
-              <p class="mt-2 text-[14px] leading-[1.4] text-heading/70">
-                {milestone.description}
-              </p>
-            </div>
-          </div>
-        ))
-      }
+          ))
+        }
+      </div>
     </div>
   </div>
 </section>
@@ -182,9 +174,32 @@ const milestones = [
   );
 
   timelineItems.forEach((item) => observer.observe(item));
+
+  // Loop background video playlist
+  const videoElement = document.getElementById("journey-bg-video") as HTMLVideoElement;
+  if (videoElement) {
+    const playlist = [
+      "/videos/IMG_6776.mp4",
+      "/videos/IMG_6791.mp4",
+      "/videos/IMG_6810.mp4"
+    ];
+    let currentTrack = 0;
+
+    videoElement.addEventListener("ended", () => {
+      currentTrack = (currentTrack + 1) % playlist.length;
+      videoElement.src = playlist[currentTrack];
+      videoElement.play().catch((err) => console.log("Video play interrupted:", err));
+    });
+  }
 </script>
 
 <style>
+  #journey-bg-video {
+    transform: translate3d(0, 0, 0);
+    will-change: transform;
+    backface-visibility: hidden;
+  }
+
   .timeline-row {
     opacity: 0.4;
     filter: grayscale(30%);
@@ -261,11 +276,19 @@ const milestones = [
 
   .timeline-text-container {
     transform: translateY(10px);
-    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.4s ease, border-color 0.4s ease;
+    background: rgba(255, 255, 255, 0.94);
+    padding: clamp(16px, 2.5vw, 24px);
+    border-radius: 20px;
+    border: 1px solid rgba(226, 232, 240, 0.8);
+    box-shadow: 0 10px 30px -10px rgba(31, 41, 55, 0.05);
   }
 
   .is-active .timeline-text-container {
     transform: translateY(0);
+    background: #ffffff;
+    border-color: rgba(88, 179, 250, 0.35);
+    box-shadow: 0 15px 35px -10px rgba(43, 93, 158, 0.1);
   }
 
   @keyframes timeline-pulse {

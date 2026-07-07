@@ -45,57 +45,73 @@ const process = [
     </h2>
   </div>
 
-  <!-- Process Timeline -->
-  <div class="relative" data-process-container>
-    <!-- Connecting line on desktop -->
+  <!-- ─── DESKTOP: horizontal 5-col ─── -->
+  <div class="relative hidden min-[900px]:block" data-process-container>
+    <!-- Connecting line -->
     <div
-      class="absolute top-12 left-0 right-0 h-0.5 bg-linear-to-r from-accent-blue via-card-blue to-accent-blue/30 max-[900px]:hidden"
+      class="absolute top-12 left-0 right-0 h-0.5 bg-linear-to-r from-accent-blue via-card-blue to-accent-blue/30"
       aria-hidden="true"
     ></div>
 
-    <!-- Timeline items -->
-    <div class="grid grid-cols-5 gap-4 max-[900px]:grid-cols-1 max-[900px]:gap-8">
+    <div class="grid grid-cols-5 gap-4">
       {
         process.map((item, index) => (
-          <div 
-            data-process-item 
-            data-step-index={index} 
-            class="relative flex flex-col items-center max-[900px]:items-start transition-all duration-500 process-row"
+          <div
+            data-process-item
+            data-step-index={index}
+            class="relative flex flex-col items-center process-row"
           >
             <!-- Step circle -->
-            <div class="relative z-1 mb-6 max-[900px]:mb-4">
+            <div class="relative z-1 mb-6">
               <div class="process-dot">
                 <div class="text-center">
-                  <p class="text-[10px] font-bold tracking-[0.2em] text-card-blue/60 uppercase">
-                    Step
-                  </p>
-                  <p class="text-[clamp(20px,2vw,28px)] font-extrabold text-heading leading-tight">
-                    {item.step}
-                  </p>
+                  <p class="text-[10px] font-bold tracking-[0.2em] text-card-blue/60 uppercase">Step</p>
+                  <p class="text-[clamp(20px,2vw,28px)] font-extrabold text-heading leading-tight">{item.step}</p>
                 </div>
               </div>
-
-              <!-- Pulsing background -->
               <div class="process-glow" aria-hidden="true"></div>
             </div>
 
             <!-- Content -->
-            <div class="grow process-text-container">
-              <h3 class="text-[clamp(16px,1.5vw,20px)] font-extrabold text-heading text-center max-[900px]:text-left">
-                {item.title}
-              </h3>
-              <p class="mt-2 text-[13px] leading-[1.4] text-heading/70 text-center max-[900px]:text-left">
-                {item.description}
-              </p>
+            <div class="grow text-center">
+              <h3 class="text-[clamp(15px,1.4vw,19px)] font-extrabold text-heading">{item.title}</h3>
+              <p class="mt-2 text-[13px] leading-[1.4] text-heading/70">{item.description}</p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+
+  <!-- ─── MOBILE: centered vertical timeline ─── -->
+  <div class="min-[900px]:hidden relative" data-process-container-mobile>
+    <!-- Full-height connector line, centered under the circles -->
+    <div
+      class="absolute left-1/2 -translate-x-1/2 top-10 bottom-10 w-0.5 bg-linear-to-b from-accent-blue via-card-blue to-accent-blue/20"
+      aria-hidden="true"
+    ></div>
+
+    <div class="flex flex-col gap-10">
+      {
+        process.map((item, index) => (
+          <div
+            data-process-item-mobile
+            class="mobile-step relative flex flex-col items-center text-center"
+          >
+            <!-- Circle centered -->
+            <div class="relative z-10 mb-4">
+              <div class="mobile-process-dot">
+                <div class="text-center">
+                  <p class="text-[9px] font-bold tracking-[0.18em] text-card-blue/60 uppercase leading-none mb-0.5">Step</p>
+                  <p class="text-[22px] font-extrabold text-heading leading-none">{item.step}</p>
+                </div>
+              </div>
+              <div class="mobile-process-glow" aria-hidden="true"></div>
             </div>
 
-            <!-- Vertical line for mobile -->
-            {index < process.length - 1 && (
-              <div
-                class="hidden max-[900px]:block absolute left-7 top-20 h-8 w-0.5 bg-linear-to-b from-card-blue to-accent-blue/30"
-                aria-hidden="true"
-              ></div>
-            )}
+            <!-- Text -->
+            <h3 class="text-[18px] font-extrabold text-heading m-0">{item.title}</h3>
+            <p class="mt-1.5 text-[13.5px] leading-[1.45] text-heading/65 max-w-[260px] mx-auto">{item.description}</p>
           </div>
         ))
       }
@@ -105,7 +121,7 @@ const process = [
   <!-- CTA -->
   <div class="mt-[clamp(40px,8vw,60px)] flex justify-center">
     <a
-      class="inline-flex min-h-14.5 items-center gap-3 rounded-full bg-linear-to-r from-accent-blue to-card-blue py-0 pr-7 pl-3 text-base font-extrabold text-white no-underline shadow-[0_18px_34px_rgba(43,93,158,0.26)] transition duration-200 hover:-translate-y-0.5 hover:shadow-[0_22px_42px_rgba(43,93,158,0.32)] max-[620px]:min-h-13 max-[620px]:pr-5.5 max-[620px]:text-sm"
+      class="inline-flex min-h-14.5 items-center gap-3 rounded-full bg-linear-to-r from-accent-blue to-card-blue py-0 pr-7 pl-3 text-base font-extrabold text-white no-underline shadow-[0_18px_34px_rgba(43,93,158,0.26)] transition-[transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:shadow-[0_22px_42px_rgba(43,93,158,0.32)] max-[620px]:min-h-13 max-[620px]:pr-5.5 max-[620px]:text-sm"
       href="#contact-us"
     >
       <span
@@ -114,7 +130,7 @@ const process = [
       >
         <svg class="h-4.5 w-4.5" viewBox="0 0 24 24" role="img">
           <path
-            d="M7 2.75a.75.75 0 0 1 .75.75V5h8.5V3.5a.75.75 0 0 1 1.5 0V5H19a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3V8a3 3 0 0 1 3-3h1.25V3.5A .75.75 0 0 1 7 2.75ZM3.5 10v8A1.5 1.5 0 0 0 5 19.5h14a1.5 1.5 0 0 0 1.5-1.5v-8h-17Zm3 3.25a.75.75 0 0 1 .75-.75h2.5a.75.75 0 0 1 0 1.5h-2.5a.75.75 0 0 1-.75-.75Zm0 3a.75.75 0 0 1 .75-.75h7.5a.75.75 0 0 1 0 1.5h-7.5a.75.75 0 0 1-.75-.75Z"
+            d="M7 2.75a.75.75 0 0 1 .75.75V5h8.5V3.5a.75.75 0 0 1 1.5 0V5H19a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3V8a3 3 0 0 1 3-3h1.25V3.5A.75.75 0 0 1 7 2.75ZM3.5 10v8A1.5 1.5 0 0 0 5 19.5h14a1.5 1.5 0 0 0 1.5-1.5v-8h-17Zm3 3.25a.75.75 0 0 1 .75-.75h2.5a.75.75 0 0 1 0 1.5h-2.5a.75.75 0 0 1-.75-.75Zm0 3a.75.75 0 0 1 .75-.75h7.5a.75.75 0 0 1 0 1.5h-7.5a.75.75 0 0 1-.75-.75Z"
             fill="currentColor"
           ></path>
         </svg>
@@ -125,77 +141,53 @@ const process = [
 </section>
 
 <script>
-  const container = document.querySelector("[data-process-container]");
-  const items = document.querySelectorAll("[data-process-item]");
+  // ── Desktop observer ──
+  const desktopContainer = document.querySelector("[data-process-container]");
+  const desktopItems = document.querySelectorAll("[data-process-item]");
 
-  if (container && items.length > 0) {
-    const isDesktop = () => window.innerWidth > 900;
-
-    // Desktop: Staggered sequential highlight when row enters view
-    const containerObserver = new IntersectionObserver(
+  if (desktopContainer && desktopItems.length > 0) {
+    const obs = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting && isDesktop()) {
-            items.forEach((item, index) => {
-              setTimeout(() => {
-                if (isDesktop()) {
-                  item.classList.add("is-active");
-                }
-              }, index * 200);
+          if (entry.isIntersecting) {
+            desktopItems.forEach((item, i) => {
+              setTimeout(() => item.classList.add("is-active"), i * 180);
             });
-          } else if (!entry.isIntersecting && isDesktop()) {
-            items.forEach((item) => {
-              item.classList.remove("is-active");
-            });
+          } else {
+            desktopItems.forEach((item) => item.classList.remove("is-active"));
           }
         });
       },
-      {
-        threshold: 0.25,
-      }
+      { threshold: 0.25 }
     );
+    obs.observe(desktopContainer);
+  }
 
-    containerObserver.observe(container);
-
-    // Mobile: IntersectionObserver per step as they scroll vertically
-    const itemObserver = new IntersectionObserver(
+  // ── Mobile observer: each step fades in as it enters viewport ──
+  const mobileItems = document.querySelectorAll("[data-process-item-mobile]");
+  if (mobileItems.length > 0) {
+    const mObs = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (!isDesktop()) {
-            if (entry.isIntersecting) {
-              entry.target.classList.add("is-active");
-            } else {
-              entry.target.classList.remove("is-active");
-            }
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
           }
+          // Keep visible once seen (no flicker when scrolling back)
         });
       },
-      {
-        rootMargin: "-20% 0px -20% 0px",
-        threshold: 0.1,
-      }
+      { rootMargin: "-10% 0px -10% 0px", threshold: 0.15 }
     );
-
-    items.forEach((item) => itemObserver.observe(item));
-
-    // Handle resizing: reset active states if switching modes
-    window.addEventListener("resize", () => {
-      if (isDesktop()) {
-        items.forEach((item) => itemObserver.unobserve(item));
-      } else {
-        items.forEach((item) => {
-          itemObserver.observe(item);
-        });
-      }
-    });
+    mobileItems.forEach((el) => mObs.observe(el));
   }
 </script>
 
 <style>
+  /* ── DESKTOP styles ── */
   .process-row {
-    opacity: 0.35;
-    transform: translateY(15px);
-    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    opacity: 0.3;
+    transform: translateY(12px);
+    transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .process-row.is-active {
@@ -207,18 +199,18 @@ const process = [
     position: absolute;
     inset: 0;
     border-radius: 9999px;
-    background: rgba(88, 179, 250, 0.15);
-    transform: scale(0.9);
-    opacity: 0.1;
-    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    background: rgba(88, 179, 250, 0.12);
+    transform: scale(0.85);
+    opacity: 0;
+    transition: opacity 0.5s ease, transform 0.5s ease;
   }
 
   .is-active .process-glow {
     transform: scale(1.25);
     opacity: 1;
-    background: linear-gradient(135deg, rgba(88, 179, 250, 0.45) 0%, rgba(43, 93, 158, 0.45) 100%);
-    box-shadow: 0 0 25px rgba(88, 179, 250, 0.45);
-    animation: process-pulse 2s infinite alternate ease-in-out;
+    background: linear-gradient(135deg, rgba(88, 179, 250, 0.4) 0%, rgba(43, 93, 158, 0.4) 100%);
+    box-shadow: 0 0 22px rgba(88, 179, 250, 0.4);
+    animation: process-pulse 2.2s infinite alternate ease-in-out;
   }
 
   .process-dot {
@@ -232,36 +224,66 @@ const process = [
     background-color: #fff;
     border: 2px solid var(--color-card-blue);
     box-shadow: 0 8px 16px rgba(43, 93, 158, 0.15);
-    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: border-color 0.5s ease, box-shadow 0.5s ease, transform 0.5s ease;
     z-index: 10;
-  }
-
-  @media (max-width: 900px) {
-    .process-dot {
-      height: 64px;
-      width: 64px;
-    }
   }
 
   .is-active .process-dot {
     border-color: var(--color-accent-blue);
     background: linear-gradient(135deg, #fff 0%, #f0f7ff 100%);
-    transform: scale(1.12);
-    box-shadow: 0 12px 24px rgba(88, 179, 250, 0.35);
+    transform: scale(1.1);
+    box-shadow: 0 12px 24px rgba(88, 179, 250, 0.3);
   }
 
-  .process-text-container {
-    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  /* ── MOBILE styles ── */
+  .mobile-step {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .mobile-step.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .mobile-process-dot {
+    position: relative;
+    display: flex;
+    height: 80px;
+    width: 80px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+    background: linear-gradient(135deg, #fff 0%, #f0f7ff 100%);
+    border: 2.5px solid var(--color-card-blue);
+    box-shadow: 0 6px 20px rgba(43, 93, 158, 0.18);
+    z-index: 10;
+    transition: border-color 0.4s ease, box-shadow 0.4s ease;
+  }
+
+  .mobile-step.is-visible .mobile-process-dot {
+    border-color: var(--color-accent-blue);
+    box-shadow: 0 8px 28px rgba(88, 179, 250, 0.32);
+  }
+
+  .mobile-process-glow {
+    position: absolute;
+    inset: -4px;
+    border-radius: 9999px;
+    background: radial-gradient(circle, rgba(88, 179, 250, 0.18) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+
+  .mobile-step.is-visible .mobile-process-glow {
+    opacity: 1;
+    animation: process-pulse 2.5s infinite alternate ease-in-out;
   }
 
   @keyframes process-pulse {
-    0% {
-      transform: scale(1.15);
-      box-shadow: 0 0 20px rgba(88, 179, 250, 0.35);
-    }
-    100% {
-      transform: scale(1.3);
-      box-shadow: 0 0 35px rgba(43, 93, 158, 0.65);
-    }
+    0% { box-shadow: 0 0 16px rgba(88, 179, 250, 0.3); transform: scale(1.15); }
+    100% { box-shadow: 0 0 32px rgba(43, 93, 158, 0.55); transform: scale(1.28); }
   }
 </style>

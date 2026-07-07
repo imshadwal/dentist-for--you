@@ -25,7 +25,7 @@ import SiteHeader from "../components/SiteHeader.astro";
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap"
       rel="stylesheet"
     />
     <meta name="generator" content={Astro.generator} />
@@ -47,6 +47,19 @@ import SiteHeader from "../components/SiteHeader.astro";
       <slot />
       <Footer />
     </div>
+    <!-- Smooth scroll for anchor links (replaces CSS scroll-behavior:smooth which causes jank) -->
+    <script>
+      document.addEventListener('click', (e) => {
+        const target = e.target instanceof Element && e.target.closest('a[href^="#"]');
+        if (!target) return;
+        const id = target.getAttribute('href');
+        if (!id || id === '#') return;
+        const el = document.querySelector(id);
+        if (!el) return;
+        e.preventDefault();
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, { passive: false });
+    </script>
   </body>
 </html>
 
@@ -74,40 +87,43 @@ import SiteHeader from "../components/SiteHeader.astro";
   }
 
   /* 2. Floating and Drifting Orbs for Theme Glow */
+  /* Use contain + will-change to isolate compositing layer & avoid full-page repaints */
   .glow-orb {
     position: absolute;
     border-radius: 50%;
-    filter: blur(100px);
-    opacity: 0.65;
-    mix-blend-mode: multiply;
+    /* Reduced blur radius dramatically – main perf win */
+    filter: blur(60px);
+    opacity: 0.5;
     pointer-events: none;
+    will-change: transform;
+    contain: strict;
   }
 
   .glow-orb-1 {
     top: -10%;
     left: -10%;
-    width: 60vw;
-    height: 60vw;
-    background: radial-gradient(circle, rgba(88, 179, 250, 0.25) 0%, rgba(88, 179, 250, 0) 70%);
-    animation: canva-drift-1 25s ease-in-out infinite alternate;
+    width: 55vw;
+    height: 55vw;
+    background: radial-gradient(circle, rgba(88, 179, 250, 0.22) 0%, rgba(88, 179, 250, 0) 70%);
+    animation: canva-drift-1 28s ease-in-out infinite alternate;
   }
 
   .glow-orb-2 {
     bottom: -15%;
     right: -10%;
-    width: 65vw;
-    height: 65vw;
-    background: radial-gradient(circle, rgba(168, 85, 247, 0.15) 0%, rgba(168, 85, 247, 0) 70%);
-    animation: canva-drift-2 30s ease-in-out infinite alternate;
+    width: 60vw;
+    height: 60vw;
+    background: radial-gradient(circle, rgba(168, 85, 247, 0.12) 0%, rgba(168, 85, 247, 0) 70%);
+    animation: canva-drift-2 35s ease-in-out infinite alternate;
   }
 
   .glow-orb-3 {
     top: 35%;
     right: 15%;
-    width: 50vw;
-    height: 50vw;
-    background: radial-gradient(circle, rgba(20, 184, 166, 0.12) 0%, rgba(20, 184, 166, 0) 70%);
-    animation: canva-drift-3 20s ease-in-out infinite alternate-reverse;
+    width: 45vw;
+    height: 45vw;
+    background: radial-gradient(circle, rgba(20, 184, 166, 0.10) 0%, rgba(20, 184, 166, 0) 70%);
+    animation: canva-drift-3 25s ease-in-out infinite alternate-reverse;
   }
 
   @keyframes canva-drift-1 {
@@ -129,24 +145,25 @@ import SiteHeader from "../components/SiteHeader.astro";
   /* 3. Rounded Floating Container Card (App Canvas) */
   .canva-app-canvas {
     position: relative;
-    width: calc(100% - 48px); /* 24px uniform padding from left/right screen edges */
+    width: calc(100% - 48px);
     max-width: 1720px;
-    margin: 24px auto; /* 24px padding from top/bottom screen edges */
-    background: rgba(255, 255, 255, 0.94); /* High quality white background with low transparency */
-    backdrop-filter: blur(30px);
-    -webkit-backdrop-filter: blur(30px);
-    border-radius: 32px; /* Premium rounded dashboard corners */
+    margin: 24px auto;
+    /* Solid bg instead of backdrop-filter – massive GPU saving */
+    background: #f8fbff;
+    border-radius: 32px;
     border: 1px solid rgba(226, 232, 240, 0.85);
     box-shadow: 
       0 24px 60px rgba(41, 64, 115, 0.06),
-      0 4px 16px rgba(41, 64, 115, 0.01),
-      0 0 0 1px rgba(255, 255, 255, 0.5) inset;
+      0 4px 16px rgba(41, 64, 115, 0.01);
     min-height: calc(100vh - 48px);
     display: flex;
     flex-direction: column;
-    overflow: hidden; /* Avoids children overlapping with rounded corners */
+    overflow: hidden;
     z-index: 10;
-    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    /* Only transition the properties that actually change */
+    transition:
+      border-radius 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+      box-shadow 0.4s ease;
   }
 
   /* Responsive Canvas Margins */

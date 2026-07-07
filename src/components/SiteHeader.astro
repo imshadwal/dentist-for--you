@@ -184,12 +184,13 @@ const navigationItems = [
   /* PREMIUM FLOATING PILL STYLES WITH GLASSMORPHISM AND FLUID TRANSITIONS */
   #site-header {
     position: fixed;
-    top: 36px; /* Align beautifully with inner space of Canva canvas */
+    top: 36px;
     left: 50%;
     transform: translateX(-50%);
-    width: calc(100% - 96px); /* Perfect horizontal breathing room within canvas */
+    width: calc(100% - 96px);
     max-width: 1200px;
     z-index: 1000;
+    will-change: width, transform;
     transition: 
       top 0.4s cubic-bezier(0.16, 1, 0.3, 1),
       width 0.5s cubic-bezier(0.16, 1, 0.3, 1),
@@ -199,15 +200,14 @@ const navigationItems = [
       border-color 0.4s ease,
       box-shadow 0.4s ease,
       border-radius 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-    background-color: rgba(255, 255, 255, 0.6);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    /* Solid bg instead of backdrop-filter on default state – much faster */
+    background-color: rgba(248, 251, 255, 0.97);
     border: 1px solid rgba(226, 232, 240, 0.6);
     border-radius: 24px;
     box-shadow: 0 4px 12px rgba(41, 64, 115, 0.02);
   }
 
-  /* Scrolled floating-pill state (iOS Liquid Glass design) */
+  /* Scrolled floating-pill state */
   #site-header.scrolled {
     top: 36px;
     width: fit-content;
@@ -217,9 +217,10 @@ const navigationItems = [
     padding-right: 28px;
     padding-top: 10px;
     padding-bottom: 10px;
-    background-color: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
+    background-color: rgba(255, 255, 255, 0.92);
+    /* Only apply blur when scrolled – reduces constant GPU work at top of page */
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
     border-color: rgba(214, 230, 251, 0.5);
     border-radius: 9999px;
     box-shadow: 

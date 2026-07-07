@@ -37,7 +37,7 @@ html {
 	margin: 0;
 	background: var(--color-background);
 	font-family: var(--font-sans);
-	scroll-behavior: smooth;
+	/* Removed scroll-behavior: smooth – let JS handle smooth scrolling for anchors only */
 }
 
 body {
@@ -53,6 +53,11 @@ body {
 img,
 svg {
 	display: block;
+}
+
+/* Improve image decode performance */
+img {
+	content-visibility: auto;
 }
 
 h1,
