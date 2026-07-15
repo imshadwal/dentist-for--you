@@ -71,117 +71,20 @@ import SiteHeader from "../components/SiteHeader.astro";
     padding: 0;
     min-height: 100vh;
     width: 100%;
-    background: #edf4fc; /* Fallback baseline background */
+    background: #fafcff; /* Clean, modern baseline background */
     overflow-x: hidden;
   }
 
-  /* 1. Viewport Glowing Background Gradient Canvas */
-  .canva-glow-background {
-    position: fixed;
-    inset: 0;
-    z-index: -10;
-    overflow: hidden;
-    /* Elegant gradient reflecting luxury clinical spa aesthetic */
-    background: linear-gradient(135deg, #f3f8fe 0%, #f6f3ff 50%, #effefa 100%);
-    pointer-events: none;
-  }
-
-  /* 2. Floating and Drifting Orbs for Theme Glow */
-  /* Use contain + will-change to isolate compositing layer & avoid full-page repaints */
-  .glow-orb {
-    position: absolute;
-    border-radius: 50%;
-    /* Reduced blur radius dramatically – main perf win */
-    filter: blur(60px);
-    opacity: 0.5;
-    pointer-events: none;
-    will-change: transform;
-    contain: strict;
-  }
-
-  .glow-orb-1 {
-    top: -10%;
-    left: -10%;
-    width: 55vw;
-    height: 55vw;
-    background: radial-gradient(circle, rgba(88, 179, 250, 0.22) 0%, rgba(88, 179, 250, 0) 70%);
-    animation: canva-drift-1 28s ease-in-out infinite alternate;
-  }
-
-  .glow-orb-2 {
-    bottom: -15%;
-    right: -10%;
-    width: 60vw;
-    height: 60vw;
-    background: radial-gradient(circle, rgba(168, 85, 247, 0.12) 0%, rgba(168, 85, 247, 0) 70%);
-    animation: canva-drift-2 35s ease-in-out infinite alternate;
-  }
-
-  .glow-orb-3 {
-    top: 35%;
-    right: 15%;
-    width: 45vw;
-    height: 45vw;
-    background: radial-gradient(circle, rgba(20, 184, 166, 0.10) 0%, rgba(20, 184, 166, 0) 70%);
-    animation: canva-drift-3 25s ease-in-out infinite alternate-reverse;
-  }
-
-  @keyframes canva-drift-1 {
-    0% { transform: translate(0, 0) scale(1); }
-    50% { transform: translate(3%, 5%) scale(1.08); }
-    100% { transform: translate(0, 0) scale(1); }
-  }
-  @keyframes canva-drift-2 {
-    0% { transform: translate(0, 0) scale(1.08); }
-    50% { transform: translate(-4%, -3%) scale(0.96); }
-    100% { transform: translate(0, 0) scale(1.08); }
-  }
-  @keyframes canva-drift-3 {
-    0% { transform: translate(0, 0) scale(1); }
-    50% { transform: translate(4%, -4%) scale(1.12); }
-    100% { transform: translate(0, 0) scale(1); }
-  }
-
-  /* 3. Rounded Floating Container Card (App Canvas) */
+  /* 3. Full-Width Container Card (App Canvas) */
   .canva-app-canvas {
     position: relative;
-    width: calc(100% - 48px);
-    max-width: 1720px;
-    margin: 24px auto;
-    /* Solid bg instead of backdrop-filter – massive GPU saving */
-    background: #f8fbff;
-    border-radius: 32px;
-    border: 1px solid rgba(226, 232, 240, 0.85);
-    box-shadow: 
-      0 24px 60px rgba(41, 64, 115, 0.06),
-      0 4px 16px rgba(41, 64, 115, 0.01);
-    min-height: calc(100vh - 48px);
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    background: transparent;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
-    overflow: hidden;
     z-index: 10;
-    /* Only transition the properties that actually change */
-    transition:
-      border-radius 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-      box-shadow 0.4s ease;
-  }
-
-  /* Responsive Canvas Margins */
-  @media (max-width: 1024px) {
-    .canva-app-canvas {
-      width: calc(100% - 32px); /* 16px padding on tablet */
-      margin: 16px auto;
-      min-height: calc(100vh - 32px);
-      border-radius: 24px;
-    }
-  }
-
-  @media (max-width: 640px) {
-    .canva-app-canvas {
-      width: calc(100% - 20px); /* 10px padding on mobile */
-      margin: 10px auto;
-      min-height: calc(100vh - 20px);
-      border-radius: 20px;
-    }
   }
 </style>

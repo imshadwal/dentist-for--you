@@ -1,0 +1,104 @@
+<!-- Testimonial Video Section — Scroll Reveal with Side Margins -->
+<section
+  id="testimonial-video"
+  class="w-full py-6 md:py-10 px-4 md:px-10 lg:px-16"
+  aria-label="Patient testimonial video"
+>
+  <!-- Video Card wrapper — starts hidden, animates in on scroll -->
+  <div
+    id="video-card"
+    class="video-reveal relative w-full overflow-hidden rounded-3xl shadow-[0_32px_80px_rgba(41,64,115,0.22)]"
+    style="height: clamp(320px, 75svh, 860px);"
+  >
+    <!-- Video -->
+    <video
+      id="hero-video"
+      class="absolute inset-0 h-full w-full object-cover"
+      src="/videos/testimonial.mov"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="auto"
+    ></video>
+
+    <!-- Gradient overlay -->
+    <div class="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-black/15 pointer-events-none rounded-3xl"></div>
+
+    <!-- Mute toggle -->
+    <button
+      id="video-mute-toggle"
+      class="absolute bottom-6 right-6 flex h-11 w-11 items-center justify-center rounded-full bg-white/20 border border-white/40 backdrop-blur-md text-white transition-all duration-300 hover:bg-white/35 hover:scale-105 active:scale-95 z-10"
+      aria-label="Toggle sound"
+    >
+      <svg id="icon-muted" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+        <line x1="23" y1="9" x2="17" y2="15"/>
+        <line x1="17" y1="9" x2="23" y2="15"/>
+      </svg>
+      <svg id="icon-unmuted" class="h-5 w-5 hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+        <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+        <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
+      </svg>
+    </button>
+
+    <!-- Scroll cue -->
+    <div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 text-white/60 pointer-events-none">
+      <span class="text-[10px] font-semibold uppercase tracking-widest">Scroll</span>
+      <svg class="h-4 w-4 animate-bounce" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 5v14M5 12l7 7 7-7"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Initial hidden state */
+  .video-reveal {
+    opacity: 0;
+    transform: scale(0.88) translateY(40px);
+    transition:
+      opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* Revealed state */
+  .video-reveal.is-visible {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+</style>
+
+<script>
+  const card = document.getElementById('video-card');
+  const video = document.getElementById('hero-video') as HTMLVideoElement | null;
+  const btn = document.getElementById('video-mute-toggle');
+  const iconMuted = document.getElementById('icon-muted');
+  const iconUnmuted = document.getElementById('icon-unmuted');
+
+  // Scroll reveal via IntersectionObserver
+  if (card) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            card.classList.add('is-visible');
+            observer.unobserve(card); // only animate once
+          }
+        });
+      },
+      { threshold: 0.12 }
+    );
+    observer.observe(card);
+  }
+
+  // Mute toggle
+  if (btn && video) {
+    btn.addEventListener('click', () => {
+      video.muted = !video.muted;
+      iconMuted?.classList.toggle('hidden', !video.muted);
+      iconUnmuted?.classList.toggle('hidden', video.muted);
+    });
+  }
+</script>

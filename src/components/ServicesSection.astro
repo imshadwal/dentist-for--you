@@ -40,7 +40,7 @@ const services = [
 ---
 
 <section
-  class="mx-auto w-[calc(100%-32px)] max-w-460 py-[clamp(28px,5vw,84px)] max-[620px]:w-[calc(100%-28px)]"
+  class="mx-auto w-full max-w-[1280px] px-6 md:px-12 py-20 md:py-28"
   id="treatments"
   aria-labelledby="services-title"
 >
@@ -52,12 +52,12 @@ const services = [
     </p>
     <h2
       id="services-title"
-      class="mt-3 text-[clamp(32px,4.4vw,56px)] font-extrabold leading-[1.02] text-heading"
+      class="mt-3 text-[clamp(32px,4vw,56px)] font-extrabold leading-[1.18] text-heading capitalize"
     >
-      Expert care for every smile
+      Expert Care For Every Smile
     </h2>
     <p
-      class="mx-auto mt-4 max-w-180 text-[clamp(14px,1.05vw,18px)] leading-[1.45] text-heading/70"
+      class="mx-auto mt-4 max-w-180 text-[clamp(17px,1.2vw,20px)] leading-relaxed text-heading/70"
     >
       We offer a full spectrum of treatments - each tailored to elevate your
       health, confidence, and natural beauty.
@@ -82,15 +82,15 @@ const services = [
               alt={service.alt}
               loading="lazy"
             />
-            <p class="service-title absolute inset-x-0 bottom-3 mx-auto w-fit max-w-[90%] rounded-full bg-white/20 px-3 py-1 text-center text-[13px] font-semibold text-white backdrop-blur-sm">
+            <p class="service-title absolute inset-x-0 bottom-3 mx-auto w-fit max-w-[90%] rounded-full bg-white/85 px-3 py-1 text-center text-[13px] font-semibold text-[#294073] backdrop-blur-sm">
               {service.title}
             </p>
           </div>
 
           <div class="service-info flex h-full min-w-0 flex-[0_0_0%] overflow-hidden opacity-0">
-            <div class="service-panel flex h-full w-full flex-col justify-between rounded-xl bg-black/15 p-3 text-white shadow-[0_12px_24px_rgba(12,37,78,0.25)] backdrop-blur-sm">
+            <div class="service-panel flex h-full w-full flex-col justify-between rounded-xl bg-white/85 p-3 text-[#294073] shadow-[0_12px_24px_rgba(12,37,78,0.15)] backdrop-blur-sm">
               <div class="flex justify-end">
-                <span class="inline-flex h-7 w-7 items-center justify-center rounded-full border border-white/30 bg-white/20 text-white">
+                <span class="inline-flex h-7 w-7 items-center justify-center rounded-full border border-[#294073]/20 bg-[#294073]/10 text-[#294073]">
                   <svg
                     class="h-4 w-4"
                     viewBox="0 0 24 24"
@@ -109,13 +109,13 @@ const services = [
                 </span>
               </div>
               <div>
-                <p class="text-[10px] font-semibold tracking-[0.32em] text-white/70 uppercase">
+                <p class="text-[10px] font-semibold tracking-[0.32em] text-[#294073]/60 uppercase">
                   Service
                 </p>
-                <p class="mt-2 text-[14px] font-semibold leading-tight text-white">
+                <p class="mt-2 text-[14px] font-semibold leading-tight text-[#294073]">
                   {service.headline}
                 </p>
-                <p class="mt-2 text-[11px] leading-snug text-white/80">
+                <p class="mt-2 text-[11px] leading-snug text-[#294073]/75">
                   {service.summary}
                 </p>
               </div>

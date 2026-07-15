@@ -10,58 +10,61 @@ const navigationItems = [
 
 <header
   id="site-header"
-  class="mx-auto flex items-center justify-between py-6 px-4"
+  class="fixed top-0 left-0 w-full bg-white/40 backdrop-blur-2xl border-b border-white/40 py-4 z-50 transition-all duration-300 shadow-[0_2px_24px_rgba(41,64,115,0.07)]"
 >
-  <!-- 1. Left Side: Logo Wrapper -->
-  <div class="header-left flex justify-start w-32 max-[760px]:w-24 transition-all duration-500">
-    <a
-      class="header-logo-link inline-flex h-16 w-32 max-[760px]:w-24 items-center justify-start transition-all duration-500"
-      href="/"
-      aria-label="Dentist For You home"
+  <div class="max-w-[1280px] mx-auto w-full px-6 md:px-12 flex items-center justify-between">
+    <!-- 1. Left Side: Logo Wrapper -->
+    <div class="header-left flex justify-start w-32 max-[760px]:w-24 transition-all duration-300">
+      <a
+        id="header-logo-link"
+        class="inline-flex h-16 w-32 max-[760px]:w-24 items-center justify-start transition-transform duration-300"
+        href="/"
+        aria-label="Dentist For You home"
+      >
+        <img
+          class="h-full w-auto object-contain object-left"
+          src="/images/logo-cropped.png"
+          alt="Dentist For You"
+        />
+      </a>
+    </div>
+
+    <!-- 2. Center: Navigation Links (Desktop Only) -->
+    <nav
+      class="header-nav hidden md:flex items-center justify-center gap-10 text-[20px] font-extrabold leading-none"
+      aria-label="Primary navigation"
     >
-      <img
-        class="h-full w-auto object-contain object-left"
-        src="/images/logo-cropped.png"
-        alt="Dentist For You"
-      />
-    </a>
-  </div>
+      {
+        navigationItems.map((item) => (
+          <a
+            class="nav-link text-[#294073] no-underline relative py-1 px-0 transition-colors duration-300"
+            href={item.href}
+          >
+            {item.label}
+          </a>
+        ))
+      }
+    </nav>
 
-  <!-- 2. Center: Navigation Links (Desktop Only) -->
-  <nav
-    class="header-nav hidden md:flex items-center justify-center gap-10 text-[15px] font-extrabold leading-none transition-all duration-500"
-    aria-label="Primary navigation"
-  >
-    {
-      navigationItems.map((item) => (
-        <a
-          class="nav-link text-heading no-underline transition-all duration-300 relative py-1 px-0"
-          href={item.href}
-        >
-          {item.label}
-        </a>
-      ))
-    }
-  </nav>
+    <!-- 3. Right Side: Desktop Spacer (Balances the logo on desktop) -->
+    <div class="header-right hidden md:flex justify-end w-32"></div>
 
-  <!-- 3. Right Side: Desktop Spacer (Balances the logo on desktop) -->
-  <div class="header-right hidden md:flex justify-end w-32 transition-all duration-500"></div>
-
-  <!-- 4. Mobile Mode: Premium Hamburger Menu Toggle (Mobile Only) -->
-  <div class="header-mobile-toggle flex md:hidden items-center gap-3 transition-all duration-500">
-    <!-- Sleek vertical glass line divider (fades in on scroll) -->
-    <div class="header-divider"></div>
-    <button
-      id="mobile-menu-toggle"
-      class="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-50/60 border border-slate-200/50 text-heading shadow-3xs cursor-pointer active:scale-95 transition-all backdrop-blur-md"
-      aria-label="Toggle Navigation Menu"
-    >
-      <div class="hamburger-icon relative w-4.5 h-3 flex flex-col justify-between pointer-events-none">
-        <span class="w-full h-0.5 bg-heading rounded-full transition-transform"></span>
-        <span class="w-full h-0.5 bg-heading rounded-full transition-opacity"></span>
-        <span class="w-full h-0.5 bg-heading rounded-full transition-transform"></span>
-      </div>
-    </button>
+    <!-- 4. Mobile Mode: Premium Hamburger Menu Toggle (Mobile Only) -->
+    <div class="header-mobile-toggle flex md:hidden items-center gap-3">
+      <!-- Sleek vertical line divider (fades in on scroll) -->
+      <div id="header-divider" class="w-[1px] h-5 bg-slate-200 opacity-0 transition-opacity duration-300"></div>
+      <button
+        id="mobile-menu-toggle"
+        class="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-50/60 border border-slate-200/50 text-[#294073] shadow-3xs cursor-pointer active:scale-95 transition-all backdrop-blur-md"
+        aria-label="Toggle Navigation Menu"
+      >
+        <div class="hamburger-icon relative w-4.5 h-3 flex flex-col justify-between pointer-events-none">
+          <span class="w-full h-0.5 bg-[#294073] rounded-full transition-transform"></span>
+          <span class="w-full h-0.5 bg-[#294073] rounded-full transition-opacity"></span>
+          <span class="w-full h-0.5 bg-[#294073] rounded-full transition-transform"></span>
+        </div>
+      </button>
+    </div>
   </div>
 </header>
 
@@ -83,7 +86,7 @@ const navigationItems = [
     />
     <button
       id="mobile-menu-close"
-      class="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-100/80 border border-slate-200/60 text-heading shadow-3xs cursor-pointer active:scale-95 transition-all"
+      class="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-100/80 border border-slate-200/60 text-[#294073] shadow-3xs cursor-pointer active:scale-95 transition-all"
       aria-label="Close Navigation Menu"
     >
       <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
@@ -98,7 +101,7 @@ const navigationItems = [
       {
         navigationItems.map((item, idx) => (
           <a
-            class="mobile-nav-link text-3xl font-black text-heading tracking-tight no-underline hover:text-card-blue transition-all duration-500 opacity-0 translate-y-4"
+            class="mobile-nav-link text-3xl font-black text-[#294073] tracking-tight no-underline hover:text-[#2b5d9e] transition-all duration-500 opacity-0 translate-y-4"
             href={item.href}
             data-index={idx}
           >
@@ -120,21 +123,29 @@ const navigationItems = [
   <!-- Bottom credentials footer -->
   <div class="flex flex-col items-center gap-1.5 w-full text-center border-t border-slate-100 pt-6">
     <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Central Jail Road, Varanasi</p>
-    <p class="text-[10px] font-bold text-card-blue tracking-wide">+91 99350 27527</p>
+    <p class="text-[10px] font-bold text-[#2b5d9e] tracking-wide">+91 99350 27527</p>
   </div>
 </div>
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
     const header = document.getElementById('site-header');
+    const logoLink = document.getElementById('header-logo-link');
+    const divider = document.getElementById('header-divider');
     
-    // Scroll contraction handler
+    // Scroll contraction handler using Tailwind utility classes
     if (header) {
       const handleScroll = () => {
         if (window.scrollY > 40) {
-          header.classList.add('scrolled');
+          header.classList.add('shadow-lg', 'py-2', 'bg-white/70');
+          header.classList.remove('py-4', 'bg-white/40');
+          if (logoLink) logoLink.classList.add('scale-92');
+          if (divider) divider.classList.remove('opacity-0');
         } else {
-          header.classList.remove('scrolled');
+          header.classList.remove('shadow-lg', 'py-2', 'bg-white/70');
+          header.classList.add('py-4', 'bg-white/40');
+          if (logoLink) logoLink.classList.remove('scale-92');
+          if (divider) divider.classList.add('opacity-0');
         }
       };
       
@@ -151,9 +162,8 @@ const navigationItems = [
     if (toggle && overlay) {
       toggle.addEventListener('click', () => {
         overlay.classList.add('mobile-menu-active');
-        document.body.style.overflow = 'hidden'; // Stop background scroll
+        document.body.style.overflow = 'hidden';
         
-        // Dynamic sequenced transitions slide-in delays
         mobileLinks.forEach((link, idx) => {
           (link as HTMLElement).style.transitionDelay = `${idx * 0.08}s`;
         });
@@ -181,103 +191,7 @@ const navigationItems = [
 </script>
 
 <style>
-  /* PREMIUM FLOATING PILL STYLES WITH GLASSMORPHISM AND FLUID TRANSITIONS */
-  #site-header {
-    position: fixed;
-    top: 36px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: calc(100% - 96px);
-    max-width: 1200px;
-    z-index: 1000;
-    will-change: width, transform;
-    transition: 
-      top 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-      width 0.5s cubic-bezier(0.16, 1, 0.3, 1),
-      max-width 0.5s cubic-bezier(0.16, 1, 0.3, 1),
-      padding 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-      background-color 0.4s ease,
-      border-color 0.4s ease,
-      box-shadow 0.4s ease,
-      border-radius 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-    /* Solid bg instead of backdrop-filter on default state – much faster */
-    background-color: rgba(248, 251, 255, 0.97);
-    border: 1px solid rgba(226, 232, 240, 0.6);
-    border-radius: 24px;
-    box-shadow: 0 4px 12px rgba(41, 64, 115, 0.02);
-  }
-
-  /* Scrolled floating-pill state */
-  #site-header.scrolled {
-    top: 36px;
-    width: fit-content;
-    min-width: 560px;
-    max-width: 90vw;
-    padding-left: 28px;
-    padding-right: 28px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    background-color: rgba(255, 255, 255, 0.92);
-    /* Only apply blur when scrolled – reduces constant GPU work at top of page */
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border-color: rgba(214, 230, 251, 0.5);
-    border-radius: 9999px;
-    box-shadow: 
-      0 12px 30px rgba(31, 63, 117, 0.06),
-      0 0 0 1px rgba(255, 255, 255, 0.4) inset;
-  }
-
-  /* Logo Transition inside floating pill */
-  .header-logo-link {
-    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), width 0.4s ease, height 0.4s ease;
-  }
-
-  #site-header.scrolled .header-logo-link {
-    transform: scale(0.85);
-    width: 90px;
-    height: 36px;
-  }
-
-  /* Left and Right column balancing & smooth scroll collapse transitions */
-  .header-left {
-    transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-
-  .header-right {
-    transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
-  }
-
-  #site-header.scrolled .header-left {
-    width: auto;
-  }
-
-  #site-header.scrolled .header-right {
-    width: 0px;
-    opacity: 0;
-    pointer-events: none;
-    overflow: hidden;
-  }
-
-  /* Sleek glass line divider visible only on scrolled mobile pill */
-  .header-divider {
-    width: 1px;
-    height: 20px;
-    background-color: rgba(214, 230, 251, 0.7);
-    opacity: 0;
-    transition: opacity 0.4s ease;
-  }
-
-  #site-header.scrolled .header-divider {
-    opacity: 1;
-  }
-
-  /* Premium Hover underline effect for navigation links */
-  .nav-link {
-    font-weight: 800;
-    color: var(--color-heading);
-  }
-
+  /* Navigation Link hover styles */
   .nav-link::after {
     content: '';
     position: absolute;
@@ -285,14 +199,14 @@ const navigationItems = [
     left: 0;
     width: 100%;
     height: 2px;
-    background: linear-gradient(to right, var(--color-accent-blue), var(--color-card-blue));
+    background: linear-gradient(to right, #58b3fa, #2b5d9e);
     transform: scaleX(0);
     transform-origin: right;
     transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .nav-link:hover {
-    color: var(--color-card-blue);
+    color: #2b5d9e;
     transform: translateY(-1px);
   }
 
@@ -316,43 +230,5 @@ const navigationItems = [
     opacity: 1;
     transform: translateY(0);
     transition: opacity 0.5s ease 0.35s, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.35s;
-  }
-
-  /* Responsive Adjustments for Tablet Viewports */
-  @media (max-width: 1024px) {
-    #site-header {
-      top: 24px;
-      width: calc(100% - 64px);
-      border-radius: 20px;
-    }
-    #site-header.scrolled {
-      top: 24px;
-      width: fit-content;
-      border-radius: 9999px;
-    }
-  }
-
-  /* Responsive Adjustments for Mobile Viewports */
-  @media (max-width: 760px) {
-    #site-header {
-      top: 16px;
-      width: calc(100% - 36px) !important;
-      border-radius: 16px;
-    }
-    
-    #site-header.scrolled {
-      top: 16px !important;
-      width: fit-content !important;
-      min-width: 172px !important;
-      max-width: 90vw !important;
-      border-radius: 9999px !important;
-      padding: 6px 14px !important;
-    }
-
-    #site-header.scrolled .header-logo-link {
-      transform: scale(0.8) !important;
-      width: 76px !important;
-      height: 30px !important;
-    }
   }
 </style>
