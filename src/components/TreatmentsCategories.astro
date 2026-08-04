@@ -4,11 +4,11 @@ const treatmentCategories = [
   {
     id: "pain-relief",
     title: "Pain Relief",
-    emoji: "💊",
+    iconType: "pain",
     tagline: "Stop the Pain, Start the relief",
     description: "Turning toothaches back into happy smiles.",
-    color: "from-rose-500 to-red-500",
-    glowColor: "shadow-rose-100/50 bg-rose-500/10",
+    color: "from-blue-600 to-indigo-600",
+    glowColor: "shadow-blue-100/50 bg-blue-500/10",
     image: "/images/treatments/3d_pain_relief.png",
     treatments: [
       "Root Canal Treatment",
@@ -19,10 +19,10 @@ const treatmentCategories = [
   {
     id: "teeth-replacement",
     title: "Teeth Replacement",
-    emoji: "✨",
+    iconType: "replacement",
     tagline: "Smile out loud again",
     description: "The confidence of a complete smile.",
-    color: "from-blue-500 to-indigo-500",
+    color: "from-blue-600 to-indigo-600",
     glowColor: "shadow-blue-100/50 bg-blue-500/10",
     image: "/images/treatments/3d_replacement.png",
     treatments: [
@@ -34,11 +34,11 @@ const treatmentCategories = [
   {
     id: "cosmetic-dentistry",
     title: "Cosmetic Dentistry",
-    emoji: "💎",
+    iconType: "cosmetic",
     tagline: "Your dream smile, art fully created.",
     description: "Designing smiles as unique as you are.",
-    color: "from-purple-500 to-pink-500",
-    glowColor: "shadow-purple-100/50 bg-purple-500/10",
+    color: "from-blue-600 to-indigo-600",
+    glowColor: "shadow-blue-100/50 bg-blue-500/10",
     image: "/images/treatments/3d_cosmetic.png",
     treatments: [
       "Smile Makeover",
@@ -51,11 +51,11 @@ const treatmentCategories = [
   {
     id: "preventive-dentistry",
     title: "Preventive Dentistry",
-    emoji: "🛡️",
+    iconType: "preventive",
     tagline: "Protecting your smile today for a healthier tomorrow.",
     description: "Smart care to keep your natural smile for life",
-    color: "from-teal-500 to-emerald-500",
-    glowColor: "shadow-teal-100/50 bg-teal-500/10",
+    color: "from-blue-600 to-indigo-600",
+    glowColor: "shadow-blue-100/50 bg-blue-500/10",
     image: "/images/treatments/excellence_shield.png",
     treatments: [
       "Advanced Gum Treatment",
@@ -67,11 +67,11 @@ const treatmentCategories = [
   {
     id: "kids-dentistry",
     title: "Kids Dentistry",
-    emoji: "🦷",
+    iconType: "kids",
     tagline: "When little smile get gentle care",
     description: "Making dental visit fun, one smile at a time.",
-    color: "from-amber-500 to-orange-500",
-    glowColor: "shadow-amber-100/50 bg-amber-500/10",
+    color: "from-blue-600 to-indigo-600",
+    glowColor: "shadow-blue-100/50 bg-blue-500/10",
     image: "/images/treatments/3d_kids_dentistry.png",
     treatments: [
       "Pediatric Dental Checkup",
@@ -84,7 +84,7 @@ const treatmentCategories = [
 ---
 
 <section
-  class="mx-auto w-full max-w-[1280px] px-6 md:px-12 py-20 md:py-28 overflow-visible"
+  class="mx-auto w-full max-w-[1760px] px-2 sm:px-4 md:px-6 py-16 md:py-24 overflow-visible"
   id="treatment-categories"
   aria-labelledby="categories-title"
 >
@@ -100,7 +100,10 @@ const treatmentCategories = [
     </h2>
     <p class="mx-auto mt-4 max-w-lg text-base text-heading/70 leading-relaxed">
       Explore our premium interactive horizontal menu, showcasing advanced clinical concepts and specialized care.
-     <!-- Centered Scroll-Reveal Treatments List -->
+    </p>
+  </div>
+
+  <!-- Centered Scroll-Reveal Treatments List -->
   <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-24">
     {
       treatmentCategories.map((category, idx) => (
@@ -115,9 +118,37 @@ const treatmentCategories = [
             Category 0{idx + 1}
           </span>
           
-          <!-- Emoji + Title -->
-          <div class="flex items-center justify-center gap-3 mt-4">
-            <span class="text-2xl md:text-3xl">{category.emoji}</span>
+          <!-- Blue Theme Icon + Title -->
+          <div class="flex items-center justify-center gap-3.5 mt-4">
+            <span class="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-linear-to-br from-[#2b5d9e] to-[#58b3fa] text-white shadow-md shadow-[#2b5d9e]/20">
+              {category.iconType === "pain" && (
+                <svg class="h-5.5 w-5.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                </svg>
+              )}
+              {category.iconType === "replacement" && (
+                <svg class="h-5.5 w-5.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/>
+                </svg>
+              )}
+              {category.iconType === "cosmetic" && (
+                <svg class="h-5.5 w-5.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M6 3h12l4 6-10 12L2 9z"/>
+                  <path d="M11 3v18M2 9h20"/>
+                </svg>
+              )}
+              {category.iconType === "preventive" && (
+                <svg class="h-5.5 w-5.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                  <path d="m9 12 2 2 4-4"/>
+                </svg>
+              )}
+              {category.iconType === "kids" && (
+                <svg class="h-5.5 w-5.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                </svg>
+              )}
+            </span>
             <h3 class="text-[clamp(24px,2.5vw,36px)] font-extrabold text-heading tracking-tight leading-tight transition-colors duration-500">
               {category.title}
             </h3>
@@ -137,87 +168,40 @@ const treatmentCategories = [
           <div class="mt-6 flex flex-wrap justify-center gap-2 max-w-2xl">
             {category.treatments.map((treatment) => (
               <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-50 border border-slate-200/60 text-xs font-semibold text-heading/85 shadow-3xs transition-all hover:scale-[1.02] hover:bg-white duration-300">
-                <span class="inline-flex h-3.5 w-3.5 items-center justify-center rounded-full bg-linear-to-br from-accent-blue to-card-blue text-[8px] text-white">✓</span>
+                <span class="inline-flex h-3.5 w-3.5 items-center justify-center rounded-full bg-linear-to-br from-[#2b5d9e] to-[#58b3fa] text-[8px] text-white">✓</span>
                 {treatment}
               </span>
             ))}
           </div>
 
-          <!-- Action button -->
-          <div class="mt-8">
-            <a
-              href="#contact-us"
-              class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-accent-blue hover:text-card-blue transition-colors duration-300 no-underline"
-            >
-              Book {category.title}
-              <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-              </svg>
-            </a>
-          </div>
+          <!-- Action Button -->
+          <a
+            href="#contact-us"
+            class="mt-8 inline-flex items-center gap-2 text-xs font-extrabold tracking-widest text-[#2b5d9e] uppercase transition-all duration-300 hover:gap-3 hover:text-accent-blue"
+          >
+            <span>Book {category.title}</span>
+            <span class="text-sm">→</span>
+          </a>
         </div>
       ))
     }
   </div>
-
-  <!-- Explore CTA -->
-  <div class="mt-24 flex justify-center">
-    <a
-      class="inline-flex min-h-14.5 items-center gap-3 rounded-full bg-linear-to-r from-accent-blue to-card-blue py-0 pr-7 pl-3 text-base font-extrabold text-white no-underline shadow-[0_18px_34px_rgba(43,93,158,0.26)] transition duration-200 hover:-translate-y-0.5 hover:shadow-[0_22px_42px_rgba(43,93,158,0.32)] max-[620px]:min-h-13 max-[620px]:pr-5.5 max-[620px]:text-sm"
-      href="#contact-us"
-    >
-      <span
-        class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/30 bg-white/20"
-        aria-hidden="true"
-      >
-        <svg class="h-4.5 w-4.5" viewBox="0 0 24 24" role="img">
-          <path
-            d="M7 2.75a.75.75 0 0 1 .75.75V5h8.5V3.5a.75.75 0 0 1 1.5 0V5H19a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3V8a3 3 0 0 1 3-3h1.25V3.5A.75.75 0 0 1 7 2.75ZM3.5 10v8A1.5 1.5 0 0 0 5 19.5h14a1.5 1.5 0 0 0 1.5-1.5v-8h-17Zm3 3.25a.75.75 0 0 1 .75-.75h2.5a.75.75 0 0 1 0 1.5h-2.5a.75.75 0 0 1-.75-.75Zm0 3a.75.75 0 0 1 .75-.75h7.5a.75.75 0 0 1 0 1.5h-7.5a.75.75 0 0 1-.75-.75Z"
-            fill="currentColor"
-          ></path>
-        </svg>
-      </span>
-      Explore our treatments
-    </a>
-  </div>
 </section>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const blocks = document.querySelectorAll('[data-reveal-block]');
-    
-    const observerOptions = {
-      root: null,
-      rootMargin: '-20% 0px -20% 0px', // Trigger reveal when block is inside center 60% of viewport
-      threshold: 0.15
-    };
+  const revealBlocks = document.querySelectorAll('[data-reveal-block]');
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
+  const revealObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-        } else {
-          entry.target.classList.remove('is-visible');
+          entry.target.classList.add('is-revealed');
+          revealObserver.unobserve(entry.target);
         }
       });
-    }, observerOptions);
+    },
+    { threshold: 0.2 }
+  );
 
-    blocks.forEach(block => observer.observe(block));
-  });
+  revealBlocks.forEach((block) => revealObserver.observe(block));
 </script>
-
-<style>
-  .reveal-text-block {
-    opacity: 0.15;
-    transform: translateY(35px) scale(0.97);
-    filter: blur(2px);
-    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), filter 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-    will-change: transform, opacity, filter;
-  }
-
-  .reveal-text-block.is-visible {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-    filter: blur(0);
-  }
-</style>

@@ -1,10 +1,10 @@
 <section
-  class="relative mx-auto w-full max-w-[1280px] px-6 md:px-12 py-4 md:py-6 overflow-hidden"
+  class="relative mx-auto w-full max-w-[1760px] px-2 sm:px-4 md:px-6 py-1.5 md:py-2.5 overflow-hidden"
   id="home"
   aria-labelledby="hero-title"
 >
-  <!-- Hero Card with Integrated Video Background -->
-  <div class="relative w-full min-h-[calc(100svh-120px)] rounded-3xl overflow-hidden shadow-[0_32px_80px_rgba(41,64,115,0.22)] flex flex-col justify-between p-6 sm:p-10 md:p-12 lg:p-14">
+  <!-- 1. Wide Hero Video Card Frame with Ultra-Slim Side Gap -->
+  <div class="relative w-full min-h-[calc(100svh-100px)] rounded-2xl md:rounded-3xl overflow-hidden shadow-[0_32px_80px_rgba(41,64,115,0.22)] flex flex-col justify-between p-6 sm:p-10 md:p-14 lg:p-16">
 
     <!-- Background Video -->
     <video
@@ -18,50 +18,36 @@
       preload="auto"
     ></video>
 
-    <!-- Glass Dark Overlay Gradient for text readability -->
-    <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/55 to-black/65 z-1 pointer-events-none"></div>
-    <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-black/40 z-1 pointer-events-none"></div>
+    <!-- Balanced Dark Overlay Gradient (Lighter opacity for bright video) -->
+    <div class="absolute inset-0 bg-gradient-to-r from-black/65 via-black/35 to-black/45 z-1 pointer-events-none"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/30 z-1 pointer-events-none"></div>
 
     <!-- Content Grid Overlaid on Video -->
-    <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start w-full my-auto">
+    <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center w-full my-auto max-w-[1400px] mx-auto">
       
-      <!-- Left Column: Main Title, Sub-paragraph & Tooth + Luxury Care -->
-      <div class="lg:col-span-7 flex flex-col justify-center">
+      <!-- Left Column: Pure White Bold Main Title & Sub-paragraph -->
+      <div class="lg:col-span-8 flex flex-col justify-center">
         <h1
           id="hero-title"
-          class="m-0 text-[clamp(34px,4.5vw,72px)] font-extrabold leading-[1.12] tracking-tight text-white capitalize drop-shadow-[0_4px_16px_rgba(0,0,0,0.6)]"
+          class="m-0 text-[clamp(38px,4.8vw,80px)] font-black leading-[1.12] tracking-tight capitalize drop-shadow-[0_4px_24px_rgba(0,0,0,0.9)]"
+          style="color: #ffffff !important;"
         >
           Not All Smiles Need Fixing, Some Need Vision
         </h1>
 
         <p
-          class="mt-6 max-w-160 text-[clamp(16px,1.2vw,20px)] leading-relaxed font-medium text-white/90 drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]"
+          class="mt-6 max-w-180 text-[clamp(17px,1.25vw,22px)] leading-relaxed font-semibold drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)]"
+          style="color: #ffffff !important; opacity: 0.95;"
         >
           We are a premium orthodontic and aesthetic clinic crafting confident
           smiles for those who settle for nothing ordinary.
         </p>
-
-        <!-- Shifted Tooth Image & "Luxury Care Made Personal" Side-by-Side -->
-        <div class="mt-8 flex items-center gap-5 sm:gap-6 bg-white/12 backdrop-blur-md border border-white/20 rounded-2xl p-4 sm:p-5 max-w-fit shadow-xl">
-          <img
-            class="h-16 w-auto sm:h-20 object-contain drop-shadow-[0_10px_20px_rgba(88,179,250,0.6)]"
-            src="/images/hero.png"
-            alt="3D Tooth Visual"
-            fetchpriority="high"
-            decoding="async"
-          />
-          <h2
-            class="m-0 text-[clamp(20px,2.2vw,32px)] font-extrabold leading-[1.18] tracking-normal text-white capitalize drop-shadow-[0_2px_10px_rgba(0,0,0,0.6)]"
-          >
-            Luxury Care<br />Made Personal
-          </h2>
-        </div>
       </div>
 
       <!-- Right Column: Overlay Schedule A Visit Button -->
-      <div class="lg:col-span-5 flex flex-col items-start lg:items-end justify-center h-full pt-4 lg:pt-0">
+      <div class="lg:col-span-4 flex flex-col items-start lg:items-end justify-center h-full pt-4 lg:pt-0">
         <a
-          class="inline-flex min-h-14.5 items-center gap-3 rounded-full bg-linear-to-r from-accent-blue to-card-blue py-0 pr-7 pl-3 text-base font-extrabold text-white no-underline shadow-[0_18px_34px_rgba(0,0,0,0.4)] transition duration-200 hover:-translate-y-0.5 hover:shadow-[0_22px_42px_rgba(43,93,158,0.5)] active:scale-95"
+          class="inline-flex min-h-14.5 items-center gap-3 rounded-full bg-linear-to-r from-accent-blue to-card-blue py-0 pr-7 pl-3 text-base font-extrabold text-white no-underline shadow-[0_18px_34px_rgba(0,0,0,0.5)] transition duration-200 hover:-translate-y-0.5 hover:shadow-[0_22px_42px_rgba(43,93,158,0.6)] active:scale-95"
           href="#contact-us"
         >
           <span
@@ -80,7 +66,7 @@
 
     </div>
 
-    <!-- Mute / Unmute Toggle Button -->
+    <!-- Sound Toggle Button -->
     <button
       id="video-mute-toggle"
       class="absolute bottom-6 right-6 flex h-11 w-11 items-center justify-center rounded-full bg-white/20 border border-white/40 backdrop-blur-md text-white transition-all duration-300 hover:bg-white/35 hover:scale-105 active:scale-95 z-20 cursor-pointer"
@@ -97,10 +83,31 @@
         <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
       </svg>
     </button>
+  </div>
 
-    <!-- Watermark text: "Dentist For You" at bottom -->
+  <!-- 2. Section Below Video: "Luxury Care Made Personal" Big Heading + Tooth Visual -->
+  <div class="relative pt-20 pb-8 text-center flex flex-col items-center justify-center overflow-hidden max-w-[1360px] mx-auto px-6">
+    
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-10 max-w-6xl mx-auto px-4">
+      <!-- 3D Tooth Image — Significantly Larger Than Text -->
+      <img
+        class="h-44 sm:h-60 md:h-72 lg:h-80 w-auto object-contain drop-shadow-[0_30px_55px_rgba(88,179,250,0.45)]"
+        src="/images/hero.png"
+        alt="3D Tooth Visual"
+        fetchpriority="high"
+        decoding="async"
+      />
+      <!-- Extra Large Luxury Care Heading -->
+      <h2
+        class="m-0 text-[clamp(46px,6vw,96px)] font-black leading-[1.08] tracking-tight text-heading capitalize text-center sm:text-left"
+      >
+        Luxury Care<br class="hidden sm:block" />Made Personal
+      </h2>
+    </div>
+
+    <!-- 3. "Dentist For You" Watermark Text Below Video & Luxury Care -->
     <p
-      class="absolute right-0 bottom-3 left-0 z-1 m-0 max-w-none text-center text-[clamp(40px,6.5vw,110px)] leading-[0.8] font-extrabold tracking-normal whitespace-nowrap text-white/20 pointer-events-none select-none max-[620px]:whitespace-normal"
+      class="mt-12 text-center text-[clamp(48px,8vw,140px)] leading-[0.8] font-extrabold tracking-normal whitespace-nowrap text-[rgba(41,64,115,0.08)] select-none max-[620px]:whitespace-normal pointer-events-none"
     >
       Dentist For You
     </p>

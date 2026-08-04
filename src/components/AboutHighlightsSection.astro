@@ -24,12 +24,12 @@ const metrics = [
 ---
 
 <section
-  class="mx-auto w-full max-w-[1280px] px-6 md:px-12 py-20 md:py-28"
+  class="mx-auto w-full max-w-[1760px] px-2 sm:px-4 md:px-6 py-12 md:py-20"
   id="about"
   aria-labelledby="about-highlights-title"
 >
   <div
-    class="relative min-h-[clamp(560px,58vw,980px)] overflow-hidden rounded-lg bg-card-blue max-[980px]:min-h-auto"
+    class="relative min-h-[clamp(560px,58vw,980px)] overflow-hidden rounded-2xl md:rounded-3xl bg-card-blue max-[980px]:min-h-auto shadow-[0_32px_80px_rgba(41,64,115,0.22)]"
     data-counter-section
   >
     <img
@@ -39,7 +39,7 @@ const metrics = [
       loading="lazy"
     />
     <div
-      class="absolute inset-0 z-1 [background:linear-gradient(90deg,rgba(43,93,158,0.676)_0%,rgba(43,93,158,0.514)_45%),rgba(157,189,232,0.46)]"
+      class="absolute inset-0 z-1 [background:linear-gradient(90deg,rgba(24,53,99,0.85)_0%,rgba(31,63,117,0.72)_45%),rgba(31,63,117,0.5)]"
     >
     </div>
 
@@ -49,12 +49,14 @@ const metrics = [
       <div class="max-w-190">
         <h2
           id="about-highlights-title"
-          class="m-0 max-w-205 text-[clamp(38px,4.5vw,76px)] leading-[1.18] font-extrabold tracking-normal text-white capitalize max-[620px]:text-[clamp(30px,10vw,52px)] max-[620px]:leading-[1.2]"
+          class="m-0 max-w-205 text-[clamp(38px,4.5vw,76px)] leading-[1.18] font-black tracking-tight capitalize drop-shadow-[0_4px_24px_rgba(0,0,0,0.8)] max-[620px]:text-[clamp(30px,10vw,52px)] max-[620px]:leading-[1.2]"
+          style="color: #ffffff !important;"
         >
           Unveil Excellence. Discover The Dentist For You Difference.
         </h2>
         <p
-          class="mt-[clamp(20px,3vw,36px)] max-w-175 text-[clamp(18px,1.3vw,22px)] leading-relaxed font-medium text-white"
+          class="mt-[clamp(20px,3vw,36px)] max-w-175 text-[clamp(18px,1.3vw,22px)] leading-relaxed font-semibold drop-shadow-[0_2px_12px_rgba(0,0,0,0.8)]"
+          style="color: #ffffff !important; opacity: 0.95;"
         >
           At Dentist For You, we believe that your smile deserves more than just
           care. It deserves celebration. Our board-certified experts offer a
@@ -69,14 +71,14 @@ const metrics = [
       >
         {
           metrics.map((metric) => (
-            <article class="min-h-32 rounded-lg border border-white/15 bg-white/15 p-[clamp(14px,1.8vw,26px)] backdrop-blur-sm overflow-hidden max-[620px]:min-h-28">
-              <strong class="flex min-h-[1em] items-baseline text-[clamp(28px,3.2vw,52px)] leading-[0.9] font-extrabold tracking-tight text-white">
+            <article class="min-h-32 rounded-xl border border-white/20 bg-white/15 p-[clamp(14px,1.8vw,26px)] backdrop-blur-md overflow-hidden max-[620px]:min-h-28 shadow-lg">
+              <strong class="flex min-h-[1em] items-baseline text-[clamp(28px,3.2vw,52px)] leading-[0.9] font-extrabold tracking-tight text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)]">
                 <span data-counter data-target={metric.value}>
                   0
                 </span>
                 <span>{metric.suffix}</span>
               </strong>
-              <p class="mt-3.5 text-[clamp(17px,1.2vw,21px)] leading-[1.15] font-bold text-white">
+              <p class="mt-3.5 text-[clamp(17px,1.2vw,21px)] leading-[1.15] font-bold text-white drop-shadow-[0_1px_4px_rgba(0,0,0,0.5)]">
                 {metric.label}
               </p>
             </article>
