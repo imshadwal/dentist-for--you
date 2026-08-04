@@ -82,15 +82,15 @@ const services = [
               alt={service.alt}
               loading="lazy"
             />
-            <p class="service-title absolute inset-x-0 bottom-3 mx-auto w-fit max-w-[90%] rounded-full bg-white/85 px-3 py-1 text-center text-[13px] font-semibold text-[#294073] backdrop-blur-sm">
+            <p class="service-title absolute inset-x-0 bottom-3 mx-auto w-fit max-w-[90%] rounded-full bg-slate-900/90 px-4 py-1.5 text-center text-[13px] font-extrabold text-white border border-white/25 shadow-lg backdrop-blur-md">
               {service.title}
             </p>
           </div>
 
           <div class="service-info flex h-full min-w-0 flex-[0_0_0%] overflow-hidden opacity-0">
-            <div class="service-panel flex h-full w-full flex-col justify-between rounded-xl bg-white/85 p-3 text-[#294073] shadow-[0_12px_24px_rgba(12,37,78,0.15)] backdrop-blur-sm">
+            <div class="service-panel flex h-full w-full flex-col justify-between rounded-xl bg-slate-900/95 p-3.5 text-white shadow-[0_16px_36px_rgba(0,0,0,0.4)] border border-white/20 backdrop-blur-md">
               <div class="flex justify-end">
-                <span class="inline-flex h-7 w-7 items-center justify-center rounded-full border border-[#294073]/20 bg-[#294073]/10 text-[#294073]">
+                <span class="inline-flex h-7 w-7 items-center justify-center rounded-full border border-white/30 bg-white/20 text-white">
                   <svg
                     class="h-4 w-4"
                     viewBox="0 0 24 24"
@@ -109,13 +109,13 @@ const services = [
                 </span>
               </div>
               <div>
-                <p class="text-[10px] font-semibold tracking-[0.32em] text-[#294073]/60 uppercase">
+                <p class="text-[10px] font-bold tracking-[0.32em] text-white/70 uppercase">
                   Service
                 </p>
-                <p class="mt-2 text-[14px] font-semibold leading-tight text-[#294073]">
+                <p class="mt-2 text-[14px] font-extrabold leading-tight text-white">
                   {service.headline}
                 </p>
-                <p class="mt-2 text-[11px] leading-snug text-[#294073]/75">
+                <p class="mt-2 text-[11px] leading-snug text-white/90">
                   {service.summary}
                 </p>
               </div>

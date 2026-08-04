@@ -14,16 +14,16 @@ const navigationItems = [
 >
   <div class="max-w-[1760px] mx-auto w-full px-2 sm:px-4 md:px-6 flex items-center justify-between">
     <!-- 1. Left Side: Logo Wrapper -->
-    <div class="header-left flex justify-start w-32 max-[760px]:w-24 transition-all duration-300">
+    <div class="header-left flex items-center justify-start w-56 max-[760px]:w-40 transition-all duration-300">
       <a
         id="header-logo-link"
-        class="inline-flex h-16 w-32 max-[760px]:w-24 items-center justify-start transition-transform duration-300"
+        class="inline-flex h-24 w-56 max-[760px]:w-40 items-center justify-start transition-transform duration-300"
         href="/"
         aria-label="Dentist For You home"
       >
         <img
-          class="h-full w-auto object-contain object-left"
-          src="/images/logo-cropped.png"
+          class="h-full w-auto object-contain object-left filter brightness-100 contrast-100 scale-125 origin-left"
+          src="/images/lgo_png.png"
           alt="Dentist For You"
         />
       </a>
@@ -31,7 +31,7 @@ const navigationItems = [
 
     <!-- 2. Center: Navigation Links (Desktop Only) -->
     <nav
-      class="header-nav hidden md:flex items-center justify-center gap-10 text-[20px] font-extrabold leading-none"
+      class="header-nav hidden md:flex items-center justify-center gap-10 text-[20px] font-extrabold leading-none mx-auto"
       aria-label="Primary navigation"
     >
       {
@@ -47,7 +47,7 @@ const navigationItems = [
     </nav>
 
     <!-- 3. Right Side: Desktop Spacer (Balances the logo on desktop) -->
-    <div class="header-right hidden md:flex justify-end w-32"></div>
+    <div class="header-right hidden md:flex justify-end w-56"></div>
 
     <!-- 4. Mobile Mode: Premium Hamburger Menu Toggle (Mobile Only) -->
     <div class="header-mobile-toggle flex md:hidden items-center gap-3">
@@ -80,9 +80,9 @@ const navigationItems = [
   <!-- Top Row -->
   <div class="flex items-center justify-between w-full">
     <img
-      src="/images/logo-cropped.png"
+      src="/images/lgo_png.png"
       alt="Dentist For You"
-      class="h-10 w-auto object-contain"
+      class="h-14 w-auto object-contain"
     />
     <button
       id="mobile-menu-close"
