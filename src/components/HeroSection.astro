@@ -1,67 +1,124 @@
 <section
-  class="relative mx-auto grid min-h-[calc(100svh-104px)] w-full max-w-[1280px] px-6 md:px-12 grid-cols-[minmax(260px,0.9fr)_minmax(280px,1fr)_minmax(260px,0.9fr)] items-center overflow-hidden pb-28 pt-[clamp(8px,1.5vw,20px)] gap-x-8 md:gap-x-12 max-[1080px]:min-h-auto max-[1080px]:grid-cols-1 max-[1080px]:gap-4.5 max-[1080px]:pt-4 max-[620px]:pb-16"
+  class="relative mx-auto w-full max-w-[1280px] px-6 md:px-12 py-4 md:py-6 overflow-hidden"
   id="home"
   aria-labelledby="hero-title"
 >
-  <div
-    class="relative z-2 self-start pt-[clamp(8px,3vh,32px)] max-[1080px]:self-auto max-[1080px]:pt-0"
-  >
-    <h1
-      id="hero-title"
-      class="m-0 max-w-172.5 text-[clamp(44px,5.2vw,86px)] font-extrabold leading-[1.15] tracking-normal text-heading capitalize max-[1080px]:max-w-190 max-[1080px]:text-[clamp(36px,10vw,72px)] max-[620px]:text-[clamp(32px,12vw,56px)] max-[620px]:leading-[1.2]"
+  <!-- Hero Card with Integrated Video Background -->
+  <div class="relative w-full min-h-[calc(100svh-120px)] rounded-3xl overflow-hidden shadow-[0_32px_80px_rgba(41,64,115,0.22)] flex flex-col justify-between p-6 sm:p-10 md:p-12 lg:p-14">
+
+    <!-- Background Video -->
+    <video
+      id="hero-video"
+      class="absolute inset-0 h-full w-full object-cover z-0"
+      src="/videos/testimonial.mov"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="auto"
+    ></video>
+
+    <!-- Glass Dark Overlay Gradient for text readability -->
+    <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/55 to-black/65 z-1 pointer-events-none"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-black/40 z-1 pointer-events-none"></div>
+
+    <!-- Content Grid Overlaid on Video -->
+    <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start w-full my-auto">
+      
+      <!-- Left Column: Main Title, Sub-paragraph & Tooth + Luxury Care -->
+      <div class="lg:col-span-7 flex flex-col justify-center">
+        <h1
+          id="hero-title"
+          class="m-0 text-[clamp(34px,4.5vw,72px)] font-extrabold leading-[1.12] tracking-tight text-white capitalize drop-shadow-[0_4px_16px_rgba(0,0,0,0.6)]"
+        >
+          Not All Smiles Need Fixing, Some Need Vision
+        </h1>
+
+        <p
+          class="mt-6 max-w-160 text-[clamp(16px,1.2vw,20px)] leading-relaxed font-medium text-white/90 drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]"
+        >
+          We are a premium orthodontic and aesthetic clinic crafting confident
+          smiles for those who settle for nothing ordinary.
+        </p>
+
+        <!-- Shifted Tooth Image & "Luxury Care Made Personal" Side-by-Side -->
+        <div class="mt-8 flex items-center gap-5 sm:gap-6 bg-white/12 backdrop-blur-md border border-white/20 rounded-2xl p-4 sm:p-5 max-w-fit shadow-xl">
+          <img
+            class="h-16 w-auto sm:h-20 object-contain drop-shadow-[0_10px_20px_rgba(88,179,250,0.6)]"
+            src="/images/hero.png"
+            alt="3D Tooth Visual"
+            fetchpriority="high"
+            decoding="async"
+          />
+          <h2
+            class="m-0 text-[clamp(20px,2.2vw,32px)] font-extrabold leading-[1.18] tracking-normal text-white capitalize drop-shadow-[0_2px_10px_rgba(0,0,0,0.6)]"
+          >
+            Luxury Care<br />Made Personal
+          </h2>
+        </div>
+      </div>
+
+      <!-- Right Column: Overlay Schedule A Visit Button -->
+      <div class="lg:col-span-5 flex flex-col items-start lg:items-end justify-center h-full pt-4 lg:pt-0">
+        <a
+          class="inline-flex min-h-14.5 items-center gap-3 rounded-full bg-linear-to-r from-accent-blue to-card-blue py-0 pr-7 pl-3 text-base font-extrabold text-white no-underline shadow-[0_18px_34px_rgba(0,0,0,0.4)] transition duration-200 hover:-translate-y-0.5 hover:shadow-[0_22px_42px_rgba(43,93,158,0.5)] active:scale-95"
+          href="#contact-us"
+        >
+          <span
+            class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/30 bg-white/20"
+            aria-hidden="true"
+          >
+            <svg class="h-4.5 w-4.5" viewBox="0 0 24 24" role="img">
+              <path
+                d="M7 2.75a.75.75 0 0 1 .75.75V5h8.5V3.5a.75.75 0 0 1 1.5 0V5H19a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3V8a3 3 0 0 1 3-3h1.25V3.5A.75.75 0 0 1 7 2.75ZM3.5 10v8A1.5 1.5 0 0 0 5 19.5h14a1.5 1.5 0 0 0 1.5-1.5v-8h-17Zm3 3.25a.75.75 0 0 1 .75-.75h2.5a.75.75 0 0 1 0 1.5h-2.5a.75.75 0 0 1-.75-.75Zm0 3a.75.75 0 0 1 .75-.75h7.5a.75.75 0 0 1 0 1.5h-7.5a.75.75 0 0 1-.75-.75Z"
+                fill="currentColor"></path>
+            </svg>
+          </span>
+          Schedule a visit
+        </a>
+      </div>
+
+    </div>
+
+    <!-- Mute / Unmute Toggle Button -->
+    <button
+      id="video-mute-toggle"
+      class="absolute bottom-6 right-6 flex h-11 w-11 items-center justify-center rounded-full bg-white/20 border border-white/40 backdrop-blur-md text-white transition-all duration-300 hover:bg-white/35 hover:scale-105 active:scale-95 z-20 cursor-pointer"
+      aria-label="Toggle sound"
     >
-      Not All Smiles Need Fixing, Some Need Vision
-    </h1>
+      <svg id="icon-muted" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+        <line x1="23" y1="9" x2="17" y2="15"/>
+        <line x1="17" y1="9" x2="23" y2="15"/>
+      </svg>
+      <svg id="icon-unmuted" class="h-5 w-5 hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+        <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+        <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
+      </svg>
+    </button>
+
+    <!-- Watermark text: "Dentist For You" at bottom -->
     <p
-      class="mt-8 max-w-107.5 text-[clamp(18px,1.3vw,22px)] leading-relaxed font-medium text-[#17233d] max-[1080px]:mt-6.5 max-[620px]:max-w-82.5 max-[620px]:text-base"
+      class="absolute right-0 bottom-3 left-0 z-1 m-0 max-w-none text-center text-[clamp(40px,6.5vw,110px)] leading-[0.8] font-extrabold tracking-normal whitespace-nowrap text-white/20 pointer-events-none select-none max-[620px]:whitespace-normal"
     >
-      We are a premium orthodontic and aesthetic clinic crafting confident
-      smiles for those who settle for nothing ordinary.
+      Dentist For You
     </p>
-  </div>
 
-  <div
-    class="pointer-events-none relative z-1 mx-0 flex self-center justify-center max-[1080px]:order-2 max-[1080px]:-my-4.5 max-[1080px]:mx-0 max-[1080px]:-mb-7 max-[1080px]:justify-center"
-    aria-hidden="true"
-  >
-    <img
-      class="h-auto w-[min(45vw,640px)] min-w-72 drop-shadow-[0_30px_52px_rgba(88,179,250,0.28)] max-[1080px]:w-[min(72vw,480px)] max-[1080px]:min-w-60"
-      src="/images/hero.png"
-      alt=""
-      fetchpriority="high"
-      decoding="async"
-    />
   </div>
-
-  <div
-    class="relative z-2 self-center pt-[clamp(20px,8vh,96px)] max-[1080px]:order-3 max-[1080px]:grid max-[1080px]:justify-items-start max-[1080px]:self-auto max-[1080px]:pt-0"
-  >
-    <h2
-      class="m-0 max-w-152.5 text-[clamp(38px,4.4vw,76px)] font-extrabold leading-[1.15] tracking-normal text-heading capitalize max-[1080px]:max-w-190 max-[1080px]:text-[clamp(34px,10vw,68px)] max-[620px]:text-[clamp(30px,12vw,52px)] max-[620px]:leading-[1.2]"
-    >
-      Luxury Care Made Personal
-    </h2>
-    <a
-      class="mt-10 inline-flex min-h-14.5 items-center gap-3 rounded-full bg-linear-to-r from-accent-blue to-card-blue py-0 pr-7 pl-3 text-base font-extrabold text-white no-underline shadow-[0_18px_34px_rgba(43,93,158,0.26)] transition duration-200 hover:-translate-y-0.5 hover:shadow-[0_22px_42px_rgba(43,93,158,0.32)] max-[1080px]:mt-7 max-[620px]:mt-6 max-[620px]:min-h-13 max-[620px]:pr-5.5 max-[620px]:text-sm"
-      href="#contact-us"
-    >
-      <span
-        class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/30 bg-white/20"
-        aria-hidden="true"
-      >
-        <svg class="h-4.5 w-4.5" viewBox="0 0 24 24" role="img">
-          <path
-            d="M7 2.75a.75.75 0 0 1 .75.75V5h8.5V3.5a.75.75 0 0 1 1.5 0V5H19a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3V8a3 3 0 0 1 3-3h1.25V3.5A.75.75 0 0 1 7 2.75ZM3.5 10v8A1.5 1.5 0 0 0 5 19.5h14a1.5 1.5 0 0 0 1.5-1.5v-8h-17Zm3 3.25a.75.75 0 0 1 .75-.75h2.5a.75.75 0 0 1 0 1.5h-2.5a.75.75 0 0 1-.75-.75Zm0 3a.75.75 0 0 1 .75-.75h7.5a.75.75 0 0 1 0 1.5h-7.5a.75.75 0 0 1-.75-.75Z"
-            fill="currentColor"></path>
-        </svg>
-      </span>
-      Schedule a visit
-    </a>
-  </div>
-
-  <p
-    class="absolute right-0 bottom-0 left-0 z-0 m-0 max-w-none text-center text-[clamp(48px,7vw,132px)] leading-[0.8] font-extrabold tracking-normal whitespace-nowrap text-[rgba(41,64,115,0.08)] max-[620px]:whitespace-normal"
-  >
-    Dentist For You
-  </p>
 </section>
+
+<script>
+  const video = document.getElementById('hero-video') as HTMLVideoElement | null;
+  const btn = document.getElementById('video-mute-toggle');
+  const iconMuted = document.getElementById('icon-muted');
+  const iconUnmuted = document.getElementById('icon-unmuted');
+
+  if (btn && video) {
+    btn.addEventListener('click', () => {
+      video.muted = !video.muted;
+      iconMuted?.classList.toggle('hidden', !video.muted);
+      iconUnmuted?.classList.toggle('hidden', video.muted);
+    });
+  }
+</script>
