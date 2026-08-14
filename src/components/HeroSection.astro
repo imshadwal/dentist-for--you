@@ -1,15 +1,27 @@
 <section
   class="relative mx-auto w-full max-w-[1760px] px-2 sm:px-4 md:px-6 pt-3 pb-1.5 md:pt-4 md:pb-2.5 overflow-hidden"
   id="home"
-  aria-label="Dentist For You"
+  aria-label="Dentist for you"
 >
-  <h1 class="sr-only">Dentist For You</h1>
-  <!-- Wide Hero Video Card -->
-  <div class="relative w-full min-h-[calc(100svh-100px)] rounded-2xl md:rounded-3xl overflow-hidden shadow-[0_32px_80px_rgba(41,64,115,0.22)]">
+  <h1 class="sr-only">Dentist for you</h1>
+  <div class="relative w-full min-h-[calc(100svh-100px)] rounded-2xl md:rounded-3xl overflow-hidden shadow-[0_32px_80px_rgba(41,64,115,0.22)] bg-slate-200">
+    <img
+      src="/images/photoshoot/IMG_6784.jpg"
+      alt=""
+      class="absolute inset-0 h-full w-full object-cover"
+      aria-hidden="true"
+    />
+    <p
+      id="hero-video-status"
+      class="absolute inset-0 z-1 flex items-center justify-center text-white text-lg font-semibold bg-heading/35"
+    >
+      Loading video…
+    </p>
     <video
       id="hero-video"
-      class="absolute inset-0 h-full w-full object-cover"
+      class="absolute inset-0 z-2 h-full w-full object-cover opacity-0 transition-opacity duration-500"
       src="/videos/testimonial.mp4"
+      poster="/images/photoshoot/IMG_6784.jpg"
       autoplay
       muted
       loop
@@ -18,11 +30,8 @@
     ></video>
   </div>
 
-  <!-- 2. Section Below Video: "Not All Smiles Need Fixing, Some Need Vision" Big Heading + Tooth Visual -->
-  <div class="relative pt-20 pb-8 text-center flex flex-col items-center justify-center overflow-hidden max-w-[1360px] mx-auto px-6">
-    
+  <div class="relative pt-20 pb-10 text-center flex flex-col items-center justify-center overflow-hidden max-w-[1360px] mx-auto px-6">
     <div class="flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-10 max-w-6xl mx-auto px-4">
-      <!-- 3D Tooth Image -->
       <img
         class="h-44 sm:h-60 md:h-72 lg:h-80 w-auto object-contain drop-shadow-[0_30px_55px_rgba(88,179,250,0.45)]"
         src="/images/hero.png"
@@ -30,20 +39,42 @@
         fetchpriority="high"
         decoding="async"
       />
-      <!-- Extra Large Headline -->
       <h2
-        class="m-0 text-[clamp(32px,4.2vw,68px)] font-black leading-[1.18] tracking-tight text-heading capitalize text-center sm:text-left text-balance"
+        class="m-0 text-[clamp(32px,4.2vw,56px)] font-extrabold leading-[1.18] tracking-tight text-heading capitalize text-center sm:text-left text-balance"
       >
         Not All Smiles Need Fixing,<br class="hidden md:block" />Some Need Vision
       </h2>
     </div>
 
-    <!-- 3. "Dentist For You" Watermark Text Below Video & Heading -->
     <p
-      class="mt-12 text-center text-[clamp(48px,8vw,140px)] leading-[0.8] font-extrabold tracking-normal whitespace-nowrap text-[rgba(41,64,115,0.08)] select-none max-[620px]:whitespace-normal pointer-events-none"
+      class="mt-12 text-center text-[clamp(36px,7vw,96px)] max-[620px]:text-[clamp(28px,10vw,48px)] leading-[0.8] font-extrabold tracking-normal whitespace-nowrap text-[rgba(41,64,115,0.08)] select-none max-[620px]:whitespace-normal pointer-events-none"
     >
-      Dentist For You
+      Dentist for you
     </p>
-
   </div>
 </section>
+
+<script>
+  const video = document.getElementById("hero-video") as HTMLVideoElement | null;
+  const status = document.getElementById("hero-video-status");
+
+  const showVideo = () => {
+    if (!video) return;
+    video.classList.remove("opacity-0");
+    video.classList.add("opacity-100");
+    status?.classList.add("hidden");
+  };
+
+  if (video) {
+    if (video.readyState >= 2) {
+      showVideo();
+    } else {
+      video.addEventListener("playing", showVideo, { once: true });
+      video.addEventListener("canplay", showVideo, { once: true });
+      video.addEventListener("error", () => {
+        if (status) status.textContent = "";
+        status?.classList.add("hidden");
+      });
+    }
+  }
+</script>

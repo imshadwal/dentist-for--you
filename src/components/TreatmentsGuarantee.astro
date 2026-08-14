@@ -13,9 +13,9 @@ const features = [
   },
   {
     id: "expert-specs",
-    title: "Expert Specialists",
-    tagline: "Board-certified clinical mastery",
-    description: "Every treatment is directed by a dedicated board-certified specialist with extensive fellowship training and standard-setting clinical experience.",
+    title: "Principal dentist",
+    tagline: "Care led by Dr. Shukla",
+    description: "Every treatment is directed by Dr. Samanvaya Shukla, principal dentist, with two decades of family dentistry and orthodontics.",
     iconType: "expert",
     color: "from-blue-600 to-indigo-600",
     glowColor: "shadow-indigo-100/50 bg-indigo-500/10",
@@ -65,12 +65,12 @@ const features = [
 ---
 
 <section
-  class="mx-auto w-full max-w-[1760px] px-2 sm:px-4 md:px-6 py-16 md:py-24 overflow-visible"
+  class="mx-auto w-full max-w-[1760px] px-2 sm:px-4 md:px-6 py-20 md:py-28 overflow-visible"
   id="treatment-guarantees"
   aria-labelledby="guarantees-title"
 >
   <div class="text-center mb-24 max-[620px]:mb-16">
-    <p class="m-0 text-[11px] font-bold tracking-[0.38em] text-card-blue/70 uppercase">
+    <p class="eyebrow">
       Clinical Guarantees
     </p>
     <h2
@@ -79,7 +79,7 @@ const features = [
     >
       Our Promises To You
     </h2>
-    <p class="mx-auto mt-4 max-w-lg text-base text-heading/70 leading-relaxed">
+    <p class="mx-auto mt-4 max-w-lg text-lg text-body leading-relaxed">
       Explore our core clinical commitments, designed to ensure safety, comfort, and standard-setting outcomes.
     </p>
   </div>
@@ -92,7 +92,7 @@ const features = [
           data-reveal-block
         >
           <!-- Badge -->
-          <span class="text-[11px] font-bold tracking-[0.25em] text-accent-blue/85 uppercase">
+          <span class="text-base font-semibold tracking-[0.16em] text-card-blue uppercase">
             Promise 0{idx + 1}
           </span>
           
@@ -140,12 +140,12 @@ const features = [
           </div>
 
           <!-- Tagline -->
-          <p class="mt-2 text-sm md:text-base font-bold text-slate-500 tracking-wide">
+          <p class="mt-2 text-base font-bold text-slate-500 tracking-wide">
             {feature.tagline}
           </p>
 
           <!-- Description -->
-          <p class="mt-4 text-sm md:text-[16px] text-heading/75 leading-relaxed max-w-2xl">
+          <p class="mt-4 text-base text-body leading-relaxed max-w-2xl">
             {feature.description}
           </p>
 
@@ -153,7 +153,7 @@ const features = [
           <div class="mt-6">
             <a
               href="/contact-us"
-              class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-accent-blue hover:text-card-blue transition-colors duration-300 no-underline"
+              class="inline-flex items-center gap-2 text-base font-bold uppercase tracking-wider text-accent-blue hover:text-card-blue transition-colors duration-300 no-underline"
             >
               Inspect Guarantee
               <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">

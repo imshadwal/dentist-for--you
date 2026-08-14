@@ -5,7 +5,7 @@ const locations = [
     address: "Central Jail Road, opp. Varuna Garden",
     city: "Varanasi, UP, India",
     phone: "+91 99350 27027",
-    email: "hello@dentalforyou.com",
+    email: "dentist4ushukla@gmail.com",
     hours: [
       "Mon–Sat Morning: 10:30 AM – 2:00 PM",
       "Mon–Sat Evening: 6:00 PM – 9:00 PM",
@@ -17,12 +17,12 @@ const locations = [
 ---
 
 <section
-  class="mx-auto w-full max-w-[1760px] px-2 sm:px-4 md:px-6 py-16 md:py-24"
+  class="mx-auto w-full max-w-[1760px] px-2 sm:px-4 md:px-6 py-20 md:py-28"
   id="office-locations"
   aria-labelledby="locations-title"
 >
-  <div class="text-center mb-[clamp(40px,6vw,80px)]">
-    <p class="m-0 text-[11px] font-bold tracking-[0.38em] text-card-blue/70 uppercase">
+  <div class="text-center mb-[clamp(48px,7vw,88px)]">
+    <p class="eyebrow">
       Visit Us
     </p>
     <h2
@@ -34,11 +34,11 @@ const locations = [
   </div>
 
   <!-- Locations Grid -->
-  <div class="max-w-4xl mx-auto">
+  <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
     {
       locations.map((location) => (
         <article
-          class="group relative overflow-hidden rounded-2xl border border-[#d6e6fb] shadow-[0_12px_24px_rgba(31,63,117,0.12)] transition-all duration-300 hover:shadow-[0_24px_48px_rgba(31,63,117,0.18)] hover:border-card-blue/50"
+          class="group relative overflow-hidden rounded-2xl border border-[#d6e6fb] shadow-[0_12px_24px_rgba(31,63,117,0.12)]"
         >
           <!-- Background -->
           <div
@@ -64,8 +64,8 @@ const locations = [
                   <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm3.5-9c.83 0 1.5-.67 1.5-1.5S16.33 8 15.5 8 14 8.67 14 9.5s.67 1.5 1.5 1.5z"/>
                 </svg>
                 <div>
-                  <p class="text-sm font-semibold text-heading">{location.address}</p>
-                  <p class="text-sm text-heading/70">{location.city}</p>
+                  <p class="text-base font-semibold text-heading">{location.address}</p>
+                  <p class="text-base text-body">{location.city}</p>
                 </div>
               </div>
 
@@ -75,7 +75,7 @@ const locations = [
                   <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
                 </svg>
                 <div>
-                  <p class="text-sm font-semibold text-heading group-hover/link:text-card-blue transition-colors">
+                  <p class="text-base font-semibold text-heading group-hover/link:text-card-blue transition-colors">
                     {location.phone}
                   </p>
                 </div>
@@ -87,7 +87,7 @@ const locations = [
                   <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
                 </svg>
                 <div>
-                  <p class="text-sm font-semibold text-heading group-hover/link:text-card-blue transition-colors">
+                  <p class="text-base font-semibold text-heading group-hover/link:text-card-blue transition-colors">
                     {location.email}
                   </p>
                 </div>
@@ -100,7 +100,7 @@ const locations = [
                 </svg>
                 <div>
                   {location.hours.map((hour) => (
-                    <p class="text-sm text-heading/70">{hour}</p>
+                    <p class="text-base text-body">{hour}</p>
                   ))}
                 </div>
               </div>
@@ -111,7 +111,7 @@ const locations = [
               href="https://maps.app.goo.gl/42Bx53rT6SRn2Ko5A"
               target="_blank"
               rel="noopener noreferrer"
-              class="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-card-blue hover:text-accent-blue transition-colors group"
+              class="mt-6 inline-flex items-center gap-2 text-base font-semibold text-card-blue hover:text-accent-blue transition-colors group"
             >
               Get directions
               <svg class="h-4 w-4 transform transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -122,5 +122,14 @@ const locations = [
         </article>
       ))
     }
+    <div class="overflow-hidden rounded-2xl border border-[#d6e6fb] shadow-[0_12px_24px_rgba(31,63,117,0.12)] min-h-[320px]">
+      <iframe
+        title="Dentist for you on Google Maps"
+        class="h-full w-full min-h-[320px] lg:min-h-full border-0"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        src="https://maps.google.com/maps?q=Central+Jail+Road+opp.+Varuna+Garden+Varanasi&z=16&output=embed"
+      ></iframe>
+    </div>
   </div>
 </section>

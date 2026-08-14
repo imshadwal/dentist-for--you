@@ -6,12 +6,14 @@ interface Props {
 }
 
 const {
-  title = "Dentist For You",
-  description = "A premium dental care landing page for confident, personalized smiles.",
+  title = "Dentist for you",
+  description = "Gentle, personal dental care in Varanasi with Dr. Samanvaya Shukla.",
 } = Astro.props;
 
 import Footer from "../components/Footer.astro";
 import SiteHeader from "../components/SiteHeader.astro";
+import WhatsAppChip from "../components/WhatsAppChip.astro";
+import PageLoader from "../components/PageLoader.astro";
 import Analytics from "@vercel/analytics/astro";
 ---
 
@@ -28,7 +30,7 @@ import Analytics from "@vercel/analytics/astro";
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
     <meta name="generator" content={Astro.generator} />
@@ -36,6 +38,7 @@ import Analytics from "@vercel/analytics/astro";
     <Analytics />
   </head>
   <body>
+    <PageLoader />
     <!-- Beautiful, glowing gradient background canvas that matches the dentist-for-you page theme -->
     <div class="canva-glow-background">
       <div class="glow-orb glow-orb-1"></div>
@@ -51,6 +54,7 @@ import Analytics from "@vercel/analytics/astro";
       <slot />
       <Footer />
     </div>
+    <WhatsAppChip />
     <!-- Smooth scroll for anchor links (replaces CSS scroll-behavior:smooth which causes jank) -->
     <script>
       document.addEventListener('click', (e) => {

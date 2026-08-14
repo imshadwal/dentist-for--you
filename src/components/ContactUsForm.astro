@@ -3,13 +3,13 @@
 ---
 
 <section
-  class="mx-auto w-full max-w-[1760px] px-2 sm:px-4 md:px-6 py-16 md:py-24"
+  class="mx-auto w-full max-w-[1760px] px-2 sm:px-4 md:px-6 py-20 md:py-28"
   id="contact-form-section"
   aria-labelledby="form-title"
 >
-  <div class="text-center mb-[clamp(40px,6vw,80px)]">
+  <div class="text-center mb-[clamp(48px,7vw,88px)]">
     <p
-      class="m-0 text-[11px] font-bold tracking-[0.38em] text-card-blue/70 uppercase"
+      class="eyebrow"
     >
       Reach Out
     </p>
@@ -27,7 +27,7 @@
       <div class="grid grid-cols-2 gap-6 max-[620px]:grid-cols-1">
         <!-- Name -->
         <div class="flex flex-col">
-          <label for="name" class="text-sm font-semibold text-heading mb-2">
+          <label for="name" class="text-base font-semibold text-heading mb-2">
             Full Name *
           </label>
           <input
@@ -36,13 +36,13 @@
             type="text"
             required
             placeholder="Your full name"
-            class="px-4 py-3 rounded-lg border border-[#d6e6fb] bg-white text-heading placeholder:text-heading/50 transition-all duration-200 focus:outline-none focus:border-card-blue focus:ring-2 focus:ring-accent-blue/30"
+            class="px-4 py-3 rounded-lg border border-[#d6e6fb] bg-white text-base text-heading placeholder:text-muted transition-all duration-200 focus:outline-none focus:border-card-blue focus:ring-2 focus:ring-accent-blue/30"
           />
         </div>
 
         <!-- Email -->
         <div class="flex flex-col">
-          <label for="email" class="text-sm font-semibold text-heading mb-2">
+          <label for="email" class="text-base font-semibold text-heading mb-2">
             Email Address *
           </label>
           <input
@@ -51,7 +51,7 @@
             type="email"
             required
             placeholder="your@email.com"
-            class="px-4 py-3 rounded-lg border border-[#d6e6fb] bg-white text-heading placeholder:text-heading/50 transition-all duration-200 focus:outline-none focus:border-card-blue focus:ring-2 focus:ring-accent-blue/30"
+            class="px-4 py-3 rounded-lg border border-[#d6e6fb] bg-white text-base text-heading placeholder:text-muted transition-all duration-200 focus:outline-none focus:border-card-blue focus:ring-2 focus:ring-accent-blue/30"
           />
         </div>
       </div>
@@ -59,7 +59,7 @@
       <div class="grid grid-cols-2 gap-6 max-[620px]:grid-cols-1">
         <!-- Phone -->
         <div class="flex flex-col">
-          <label for="phone" class="text-sm font-semibold text-heading mb-2">
+          <label for="phone" class="text-base font-semibold text-heading mb-2">
             Phone Number
           </label>
           <input
@@ -67,20 +67,20 @@
             name="phone"
             type="tel"
             placeholder="+91 99350 27027"
-            class="px-4 py-3 rounded-lg border border-[#d6e6fb] bg-white text-heading placeholder:text-heading/50 transition-all duration-200 focus:outline-none focus:border-card-blue focus:ring-2 focus:ring-accent-blue/30"
+            class="px-4 py-3 rounded-lg border border-[#d6e6fb] bg-white text-base text-heading placeholder:text-muted transition-all duration-200 focus:outline-none focus:border-card-blue focus:ring-2 focus:ring-accent-blue/30"
           />
         </div>
 
         <!-- Service Interest -->
         <div class="flex flex-col">
-          <label for="service" class="text-sm font-semibold text-heading mb-2">
+          <label for="service" class="text-base font-semibold text-heading mb-2">
             Service Interest *
           </label>
           <select
             id="service"
             name="service"
             required
-            class="px-4 py-3 rounded-lg border border-[#d6e6fb] bg-white text-heading transition-all duration-200 focus:outline-none focus:border-card-blue focus:ring-2 focus:ring-accent-blue/30"
+            class="px-4 py-3 rounded-lg border border-[#d6e6fb] bg-white text-base text-heading transition-all duration-200 focus:outline-none focus:border-card-blue focus:ring-2 focus:ring-accent-blue/30"
           >
             <option value="">Select a service</option>
             <option value="pain-relief">Pain Relief</option>
@@ -95,7 +95,7 @@
 
       <!-- Message -->
       <div class="flex flex-col">
-        <label for="message" class="text-sm font-semibold text-heading mb-2">
+        <label for="message" class="text-base font-semibold text-heading mb-2">
           Message *
         </label>
         <textarea
@@ -104,7 +104,7 @@
           required
           rows="6"
           placeholder="Tell us about your dental needs and how we can help..."
-          class="px-4 py-3 rounded-lg border border-[#d6e6fb] bg-white text-heading placeholder:text-heading/50 transition-all duration-200 focus:outline-none focus:border-card-blue focus:ring-2 focus:ring-accent-blue/30 resize-none font-sans"
+          class="px-4 py-3 rounded-lg border border-[#d6e6fb] bg-white text-base text-heading placeholder:text-muted transition-all duration-200 focus:outline-none focus:border-card-blue focus:ring-2 focus:ring-accent-blue/30 resize-none font-sans"
         ></textarea>
       </div>
 
@@ -117,9 +117,9 @@
           required
           class="mt-1 rounded border-[#d6e6fb] cursor-pointer accent-card-blue"
         />
-        <label for="consent" class="text-sm text-heading/70">
+        <label for="consent" class="text-base text-body">
           I agree to be contacted about my inquiry and consent to receiving
-          communications from Dentist For You.
+          communications from Dentist for you.
         </label>
       </div>
 
@@ -127,7 +127,7 @@
       <div class="flex gap-4 pt-4">
         <button
           type="submit"
-          class="flex-1 inline-flex min-h-14.5 items-center justify-center gap-3 rounded-full bg-linear-to-r from-accent-blue to-card-blue py-0 pr-7 pl-3 text-base font-extrabold text-white no-underline shadow-[0_18px_34px_rgba(43,93,158,0.26)] transition duration-200 hover:-translate-y-0.5 hover:shadow-[0_22px_42px_rgba(43,93,158,0.32)] max-[620px]:min-h-13 max-[620px]:text-sm"
+          class="flex-1 inline-flex min-h-14.5 items-center justify-center gap-3 rounded-full bg-linear-to-r from-accent-blue to-card-blue py-0 pr-7 pl-3 text-base font-extrabold text-white no-underline shadow-[0_18px_34px_rgba(43,93,158,0.26)] transition duration-200 hover:-translate-y-0.5 hover:shadow-[0_22px_42px_rgba(43,93,158,0.32)] max-[620px]:min-h-13 max-[620px]:text-base"
         >
           <span
             class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/30 bg-white/20"
@@ -151,7 +151,7 @@
       </div>
     </form>
 
-    <p class="mt-6 text-center text-[12px] text-heading/60">
+    <p class="mt-6 text-center text-base text-muted">
       We'll get back to you within 24 hours. Your information is safe with us.
     </p>
   </div>

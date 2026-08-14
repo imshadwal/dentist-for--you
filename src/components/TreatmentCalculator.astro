@@ -2,21 +2,21 @@
 // src/components/TreatmentCalculator.astro
 ---
 
-<section class="mx-auto w-full max-w-[1760px] py-16 md:py-24 px-2 sm:px-4 md:px-6 bg-white" id="treatment-calculator">
+<section class="mx-auto w-full max-w-[1760px] py-20 md:py-28 px-2 sm:px-4 md:px-6 bg-white" id="treatment-calculator">
   <div class="text-center mb-16">
-    <p class="m-0 text-[11px] font-bold tracking-[0.38em] text-card-blue/70 uppercase">Treatment Calculator</p>
+    <p class="eyebrow">Treatment Calculator</p>
     <h2 class="mt-3 text-[clamp(32px,4vw,52px)] font-extrabold leading-[1.2] tracking-tight text-heading capitalize">Plan Your Smile Journey</h2>
-    <p class="mt-2 text-base leading-relaxed text-heading/70">Estimate costs and treatment time based on your smile goals. Interactive. Free. Personalized.</p>
+    <p class="mt-5 text-lg leading-relaxed text-body">Estimate costs and treatment time based on your smile goals. Interactive. Free. Personalized.</p>
   </div>
 
-  <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch" data-calculator>
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch" data-calculator>
     
     <!-- Left Panel: Form Selections -->
-    <div class="lg:col-span-3 flex flex-col gap-6">
+    <div class="lg:col-span-4 flex flex-col gap-8">
       
       <!-- 01. Select Goals -->
-      <div class="bg-[#f8fafc] border border-slate-100 rounded-2xl p-6 shadow-xs flex-1">
-        <h3 class="text-xs font-bold uppercase tracking-wider text-heading mb-4">
+      <div class="bg-[#f8fafc] border border-slate-100 rounded-2xl p-8 shadow-xs flex-1">
+        <h3 class="text-base font-bold uppercase tracking-wider text-heading mb-4">
           <span class="text-slate-300 mr-1 font-mono">01.</span> Select goals
         </h3>
         <div class="space-y-3.5">
@@ -26,7 +26,7 @@
             { id: 'white', label: 'Whiter smile', checked: false },
             { id: 'makeover', label: 'Complete makeover', checked: false }
           ].map((goal) => (
-            <label class="flex items-center text-xs text-slate-600 font-semibold cursor-pointer select-none">
+            <label class="flex items-center text-base text-slate-600 font-semibold cursor-pointer select-none">
               <input 
                 type="checkbox" 
                 data-goal={goal.id}
@@ -40,8 +40,8 @@
       </div>
 
       <!-- 02. Preferred Method -->
-      <div class="bg-[#f8fafc] border border-slate-100 rounded-2xl p-6 shadow-xs">
-        <h3 class="text-xs font-bold uppercase tracking-wider text-heading mb-3.5">
+      <div class="bg-[#f8fafc] border border-slate-100 rounded-2xl p-8 shadow-xs">
+        <h3 class="text-base font-bold uppercase tracking-wider text-heading mb-3.5">
           <span class="text-slate-300 mr-1 font-mono">02.</span> Preferred method
         </h3>
         <div class="flex gap-1.5 flex-wrap">
@@ -49,7 +49,7 @@
             <button 
               type="button"
               data-method-btn={method}
-              class={`px-4 py-1.5 rounded-full text-[11px] font-bold border transition-all duration-200 cursor-pointer ${
+              class={`px-4 py-1.5 rounded-full text-base font-bold border transition-all duration-200 cursor-pointer ${
                 method === 'Implants' 
                   ? 'bg-card-blue text-white border-transparent shadow-xs active-method' 
                   : 'bg-white text-slate-500 border-slate-200 hover:border-slate-300'
@@ -60,30 +60,15 @@
           ))}
         </div>
       </div>
-
-      <!-- 03. Loyalty Program -->
-      <div class="bg-[#f8fafc] border border-slate-100 rounded-2xl p-6 shadow-xs">
-        <h3 class="text-xs font-bold uppercase tracking-wider text-heading mb-3.5">
-          <span class="text-slate-300 mr-1 font-mono">03.</span> Loyalty program
-        </h3>
-        <div class="space-y-2.5">
-          <label class="flex items-center text-xs font-semibold text-slate-600 cursor-pointer">
-            <input type="radio" name="loyalty" data-loyalty="member" class="text-card-blue border-slate-300 mr-2.5 w-4 h-4 cursor-pointer" /> Celestia member
-          </label>
-          <label class="flex items-center text-xs font-semibold text-slate-600 cursor-pointer">
-            <input type="radio" name="loyalty" data-loyalty="none" checked class="text-card-blue border-slate-300 mr-2.5 w-4 h-4 cursor-pointer" /> Not enrolled
-          </label>
-        </div>
-      </div>
     </div>
 
     <!-- Center Panel: 3D Visualizer -->
-    <div class="lg:col-span-5 bg-gradient-to-b from-[#f8fafc] to-[#edf4fc] border border-slate-100 rounded-2xl p-6 shadow-xs flex flex-col justify-between items-center relative overflow-hidden min-h-[420px]">
+    <div class="lg:col-span-4 bg-gradient-to-b from-[#f8fafc] to-[#edf4fc] border border-slate-100 rounded-2xl p-8 shadow-xs flex flex-col justify-between items-center relative overflow-hidden min-h-[420px]">
       <div class="w-full flex justify-between items-center z-10">
-        <h3 class="text-xs font-bold uppercase tracking-wider text-heading">
-          <span class="text-slate-300 mr-1 font-mono">04.</span> Visualizer
+        <h3 class="text-base font-bold uppercase tracking-wider text-heading">
+          <span class="text-slate-300 mr-1 font-mono">03.</span> Visualizer
         </h3>
-        <label class="text-[11px] font-bold text-slate-400 flex items-center cursor-pointer select-none">
+        <label class="text-base font-bold text-slate-500 flex items-center cursor-pointer select-none">
           <input type="checkbox" id="calc-highlight-toggle" checked class="mr-1.5 rounded border-slate-300 text-card-blue cursor-pointer" /> Highlight all
         </label>
       </div>
@@ -100,35 +85,35 @@
           class="w-full h-full object-contain z-10 transition-all duration-500 mix-blend-multiply scale-95 hover:scale-100 cursor-pointer filter drop-shadow-[0_10px_20px_rgba(88,179,250,0.15)]" 
         />
         
-        <span class="absolute bottom-0 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-[9px] tracking-wider font-bold text-slate-400 shadow-xs border border-slate-100 uppercase select-none z-20">
+        <span class="absolute bottom-0 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-base tracking-wider font-bold text-slate-500 shadow-xs border border-slate-100 uppercase select-none z-20">
           3D Interactive Model
         </span>
       </div>
     </div>
 
     <!-- Right Panel: Output Result Card -->
-    <div class="lg:col-span-4 bg-[#294073] text-white rounded-2xl p-6 shadow-md flex flex-col justify-between transition-all duration-300">
+    <div class="lg:col-span-4 bg-[#294073] text-white rounded-2xl p-8 shadow-md flex flex-col justify-between transition-all duration-300">
       <div>
-        <span class="text-[10px] uppercase font-bold tracking-widest text-white/40 font-mono">Output Result</span>
+        <span class="text-base uppercase font-bold tracking-widest text-white/85 font-mono">Output Result</span>
         
         <div class="grid grid-cols-2 gap-4 mt-6">
           <div>
-            <p class="text-[11px] text-white/50 font-medium">Treatment complexity</p>
+            <p class="text-base text-white/85 font-medium">Treatment complexity</p>
             <h4 class="text-base font-bold mt-1 text-accent-blue flex items-center gap-1.5" id="calc-complexity">
               <span class="w-2 h-2 rounded-full bg-accent-blue animate-pulse"></span> Medium
             </h4>
           </div>
           <div>
-            <p class="text-[11px] text-white/50 font-medium">Treatment time (est.)</p>
+            <p class="text-base text-white/85 font-medium">Treatment time (est.)</p>
             <h4 class="text-base font-bold mt-1" id="calc-time">3 weeks</h4>
           </div>
         </div>
       </div>
 
       <div class="mt-8 lg:mt-0">
-        <p class="text-[11px] text-white/50 font-medium">Estimated cost range</p>
-        <h2 class="text-3xl font-black text-white tracking-tight mt-1" id="calc-cost">$2,400 - $3,100*</h2>
-        <p class="text-[9px] text-white/30 mt-2.5 leading-normal">*Estimated costs scale depending on required physical custom guides or temporary crowns.</p>
+        <p class="text-base text-white/85 font-medium">Estimated cost range</p>
+        <h2 class="text-3xl font-extrabold text-white tracking-tight mt-1" id="calc-cost">₹2,00,000 – ₹2,57,000*</h2>
+        <p class="text-base text-white/80 mt-2.5 leading-normal">*Estimates in INR. Final fees depend on clinical assessment, custom guides, or temporary crowns.</p>
       </div>
     </div>
 
@@ -148,8 +133,6 @@
     const makeoverCheck = calculator.querySelector('[data-goal="makeover"]') as HTMLInputElement;
 
     const methodButtons = calculator.querySelectorAll('[data-method-btn]');
-    const loyaltyMember = calculator.querySelector('[data-loyalty="member"]') as HTMLInputElement;
-    const loyaltyNone = calculator.querySelector('[data-loyalty="none"]') as HTMLInputElement;
 
     const complexityEl = calculator.querySelector('#calc-complexity') as HTMLElement;
     const timeEl = calculator.querySelector('#calc-time') as HTMLElement;
@@ -201,9 +184,9 @@
       methodButtons.forEach(btn => {
         const btnMethod = btn.getAttribute('data-method-btn');
         if (btnMethod === methodName) {
-          btn.className = 'px-4 py-1.5 rounded-full text-[11px] font-bold border transition-all duration-200 cursor-pointer bg-card-blue text-white border-transparent shadow-xs active-method';
+          btn.className = 'px-4 py-1.5 rounded-full text-base font-bold border transition-all duration-200 cursor-pointer bg-card-blue text-white border-transparent shadow-xs active-method';
         } else {
-          btn.className = 'px-4 py-1.5 rounded-full text-[11px] font-bold border transition-all duration-200 cursor-pointer bg-white text-slate-500 border-slate-200 hover:border-slate-300';
+          btn.className = 'px-4 py-1.5 rounded-full text-base font-bold border transition-all duration-200 cursor-pointer bg-white text-slate-500 border-slate-200 hover:border-slate-300';
         }
       });
       calculateOutput();
@@ -221,7 +204,7 @@
         complexityEl.innerHTML = '<span class="w-2 h-2 rounded-full bg-slate-400 animate-pulse"></span> None Selected';
         complexityEl.style.color = '#94a3b8';
         timeEl.textContent = '--';
-        costEl.textContent = '$0';
+        costEl.textContent = '₹0';
         if (specialistName && specialistRole && specialistAvatar) {
           specialistName.textContent = 'Select a goal';
           specialistRole.textContent = 'To see specialist';
@@ -235,8 +218,8 @@
       let complexityBg = 'bg-accent-blue';
       let timeText = '1 week';
       let doc = specialists.shuklaS;
-      let minCost = 500;
-      let maxCost = 800;
+      let minCost = 40000;
+      let maxCost = 65000;
 
       // 1. Calculate values based on selected goals & methods
       if (isMakeover) {
@@ -245,32 +228,32 @@
         complexityBg = 'bg-rose-500';
         timeText = '1 month';
         doc = specialists.shuklaS;
-        minCost = selectedMethod === 'Implants' ? 9500 : 7500;
-        maxCost = selectedMethod === 'Implants' ? 14000 : 9800;
+        minCost = selectedMethod === 'Implants' ? 790000 : 620000;
+        maxCost = selectedMethod === 'Implants' ? 1160000 : 810000;
       } else if (isReplace) {
         complexity = 'High';
         complexityColor = '#f43f5e';
         complexityBg = 'bg-rose-500';
         timeText = '15 days';
         doc = specialists.shuklaS;
-        minCost = 2800;
-        maxCost = 4200;
+        minCost = 230000;
+        maxCost = 350000;
       } else if (isStraight) {
         complexity = 'Medium';
         complexityColor = '#fbbf24'; // Warm amber
         complexityBg = 'bg-amber-400';
         timeText = '12 - 18 months';
         doc = specialists.shuklaS;
-        minCost = selectedMethod === 'Aligners' ? 3400 : 4500;
-        maxCost = selectedMethod === 'Aligners' ? 5200 : 6000;
+        minCost = selectedMethod === 'Aligners' ? 280000 : 370000;
+        maxCost = selectedMethod === 'Aligners' ? 430000 : 500000;
       } else if (isWhite) {
         complexity = 'Low';
         complexityColor = '#58b3fa';
         complexityBg = 'bg-accent-blue';
         timeText = '2 visits';
         doc = specialists.shuklaS;
-        minCost = selectedMethod === 'Veneers' ? 2200 : 350;
-        maxCost = selectedMethod === 'Veneers' ? 3800 : 650;
+        minCost = selectedMethod === 'Veneers' ? 180000 : 29000;
+        maxCost = selectedMethod === 'Veneers' ? 315000 : 54000;
       }
 
       // Add combinations of multiple checked goals
@@ -282,23 +265,17 @@
           complexityBg = 'bg-rose-500';
           timeText = '12 - 18 months';
           doc = specialists.shuklaS; // Principal handles complex cases
-          if (isStraight) minCost += 2000, maxCost += 3000;
-          if (isReplace) minCost += 2500, maxCost += 3500;
-          if (isWhite) minCost += 300, maxCost += 500;
+          if (isStraight) minCost += 165000, maxCost += 250000;
+          if (isReplace) minCost += 207000, maxCost += 290000;
+          if (isWhite) minCost += 25000, maxCost += 41000;
         }
-      }
-
-      // 2. Loyalty discount factor
-      if (loyaltyMember.checked) {
-        minCost = Math.round(minCost * 0.9);
-        maxCost = Math.round(maxCost * 0.9);
       }
 
       // Format cost output
       const formatCurrency = (val: number) => {
-        return new Intl.NumberFormat('en-US', {
+        return new Intl.NumberFormat('en-IN', {
           style: 'currency',
-          currency: 'USD',
+          currency: 'INR',
           maximumFractionDigits: 0
         }).format(val);
       };
@@ -354,11 +331,7 @@
       });
     });
 
-    // Loyalty changes
-    loyaltyMember.addEventListener('change', calculateOutput);
-    loyaltyNone.addEventListener('change', calculateOutput);
-
-    // Interactive jaw image highlight/rotation toggle
+    // Highlight toggle
     highlightToggle.addEventListener('change', () => {
       if (highlightToggle.checked) {
         jawImage.style.filter = 'drop-shadow(0 12px 24px rgba(88,179,250,0.3)) saturate(1.2) brightness(1.05)';

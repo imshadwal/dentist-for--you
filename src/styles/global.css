@@ -3,6 +3,8 @@
 :root {
 	--font-sans: "Manrope", system-ui, sans-serif;
 	--color-heading: #294073;
+	--color-body: #3d5278;
+	--color-muted: #4a5d82;
 	--color-background: #fff;
 	--color-card-blue: #2b5d9e;
 	--color-accent-blue: #58b3fa;
@@ -22,6 +24,8 @@
 @theme {
 	--font-sans: "Manrope", system-ui, sans-serif;
 	--color-heading: #294073;
+	--color-body: #3d5278;
+	--color-muted: #4a5d82;
 	--color-background: #fff;
 	--color-card-blue: #2b5d9e;
 	--color-accent-blue: #58b3fa;
@@ -37,7 +41,6 @@ html {
 	margin: 0;
 	background: var(--color-background);
 	font-family: var(--font-sans);
-	/* Removed scroll-behavior: smooth – let JS handle smooth scrolling for anchors only */
 }
 
 body {
@@ -46,8 +49,10 @@ body {
 	min-height: 100vh;
 	margin: 0;
 	background: var(--color-background);
-	color: #1f2937;
+	color: var(--color-body);
 	font-family: var(--font-sans);
+	font-size: 17px;
+	line-height: 1.7;
 }
 
 img,
@@ -55,7 +60,6 @@ svg {
 	display: block;
 }
 
-/* Improve image decode performance */
 img {
 	content-visibility: auto;
 }
@@ -68,6 +72,16 @@ h5,
 h6 {
 	color: var(--color-heading);
 	font-family: var(--font-sans);
+	font-weight: 700;
+}
+
+.eyebrow {
+	margin: 0;
+	font-size: 1rem;
+	font-weight: 600;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	color: var(--color-card-blue);
 }
 
 main {

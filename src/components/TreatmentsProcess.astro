@@ -29,12 +29,12 @@ const process = [
 ---
 
 <section
-  class="mx-auto w-full max-w-[1760px] px-2 sm:px-4 md:px-6 py-16 md:py-24"
+  class="mx-auto w-full max-w-[1760px] px-2 sm:px-4 md:px-6 py-20 md:py-28"
   id="treatment-process"
   aria-labelledby="process-title"
 >
-  <div class="text-center mb-[clamp(40px,6vw,80px)]">
-    <p class="m-0 text-[11px] font-bold tracking-[0.38em] text-card-blue/70 uppercase">
+  <div class="text-center mb-[clamp(48px,7vw,88px)]">
+    <p class="eyebrow">
       Your Journey
     </p>
     <h2
@@ -65,7 +65,7 @@ const process = [
             <div class="relative z-1 mb-6">
               <div class="process-dot">
                 <div class="text-center">
-                  <p class="text-[10px] font-bold tracking-[0.2em] text-card-blue/60 uppercase">Step</p>
+                  <p class="text-base font-bold tracking-[0.16em] text-card-blue uppercase">Step</p>
                   <p class="text-[clamp(20px,2vw,28px)] font-extrabold text-heading leading-tight">{item.step}</p>
                 </div>
               </div>
@@ -74,8 +74,8 @@ const process = [
 
             <!-- Content -->
             <div class="grow text-center">
-              <h3 class="text-[clamp(15px,1.4vw,19px)] font-extrabold text-heading">{item.title}</h3>
-              <p class="mt-2 text-[13px] leading-[1.4] text-heading/70">{item.description}</p>
+              <h3 class="text-[clamp(18px,1.5vw,22px)] font-extrabold text-heading">{item.title}</h3>
+              <p class="mt-2 text-base leading-relaxed text-body">{item.description}</p>
             </div>
           </div>
         ))
@@ -102,7 +102,7 @@ const process = [
             <div class="relative z-10 mb-4">
               <div class="mobile-process-dot">
                 <div class="text-center">
-                  <p class="text-[9px] font-bold tracking-[0.18em] text-card-blue/60 uppercase leading-none mb-0.5">Step</p>
+                  <p class="text-base font-bold tracking-[0.16em] text-card-blue uppercase leading-none mb-0.5">Step</p>
                   <p class="text-[22px] font-extrabold text-heading leading-none">{item.step}</p>
                 </div>
               </div>
@@ -111,7 +111,7 @@ const process = [
 
             <!-- Text -->
             <h3 class="text-[18px] font-extrabold text-heading m-0">{item.title}</h3>
-            <p class="mt-1.5 text-[13.5px] leading-[1.45] text-heading/65 max-w-[260px] mx-auto">{item.description}</p>
+            <p class="mt-1.5 text-base leading-relaxed text-body max-w-[260px] mx-auto">{item.description}</p>
           </div>
         ))
       }
@@ -121,7 +121,7 @@ const process = [
   <!-- CTA -->
   <div class="mt-[clamp(40px,8vw,60px)] flex justify-center">
     <a
-      class="inline-flex min-h-14.5 items-center gap-3 rounded-full bg-linear-to-r from-accent-blue to-card-blue py-0 pr-7 pl-3 text-base font-extrabold text-white no-underline shadow-[0_18px_34px_rgba(43,93,158,0.26)] transition-[transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:shadow-[0_22px_42px_rgba(43,93,158,0.32)] max-[620px]:min-h-13 max-[620px]:pr-5.5 max-[620px]:text-sm"
+      class="inline-flex min-h-14.5 items-center gap-3 rounded-full bg-linear-to-r from-accent-blue to-card-blue py-0 pr-7 pl-3 text-base font-extrabold text-white no-underline shadow-[0_18px_34px_rgba(43,93,158,0.26)] transition-[transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:shadow-[0_22px_42px_rgba(43,93,158,0.32)] max-[620px]:min-h-13 max-[620px]:pr-5.5 max-[620px]:text-base"
       href="/contact-us"
     >
       <span

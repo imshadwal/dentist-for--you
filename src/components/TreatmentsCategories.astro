@@ -84,12 +84,12 @@ const treatmentCategories = [
 ---
 
 <section
-  class="mx-auto w-full max-w-[1760px] px-2 sm:px-4 md:px-6 py-16 md:py-24 overflow-visible"
+  class="mx-auto w-full max-w-[1760px] px-2 sm:px-4 md:px-6 py-20 md:py-28 overflow-visible"
   id="treatment-categories"
   aria-labelledby="categories-title"
 >
   <div class="text-center mb-16">
-    <p class="m-0 text-[11px] font-bold tracking-[0.38em] text-card-blue/70 uppercase">
+    <p class="eyebrow">
       Treatment Menu
     </p>
     <h2
@@ -98,7 +98,7 @@ const treatmentCategories = [
     >
       Every Smile Deserves Specialized Care
     </h2>
-    <p class="mx-auto mt-4 max-w-lg text-base text-heading/70 leading-relaxed">
+    <p class="mx-auto mt-4 max-w-lg text-lg text-body leading-relaxed">
       Explore our premium interactive horizontal menu, showcasing advanced clinical concepts and specialized care.
     </p>
   </div>
@@ -114,7 +114,7 @@ const treatmentCategories = [
           data-reveal-block
         >
           <!-- Badge -->
-          <span class="text-[11px] font-bold tracking-[0.25em] text-accent-blue/85 uppercase">
+          <span class="text-base font-semibold tracking-[0.16em] text-card-blue uppercase">
             Category 0{idx + 1}
           </span>
           
@@ -155,20 +155,20 @@ const treatmentCategories = [
           </div>
 
           <!-- Tagline -->
-          <p class="mt-2 text-sm md:text-base font-bold text-slate-500 tracking-wide">
+          <p class="mt-2 text-base font-bold text-slate-500 tracking-wide">
             {category.tagline}
           </p>
 
           <!-- Description -->
-          <p class="mt-4 text-sm md:text-[16px] text-heading/75 leading-relaxed max-w-2xl">
+          <p class="mt-4 text-base text-body leading-relaxed max-w-2xl">
             {category.description}
           </p>
 
           <!-- Treatments List -->
           <div class="mt-6 flex flex-wrap justify-center gap-2 max-w-2xl">
             {category.treatments.map((treatment) => (
-              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-50 border border-slate-200/60 text-xs font-semibold text-heading/85 shadow-3xs transition-all hover:scale-[1.02] hover:bg-white duration-300">
-                <span class="inline-flex h-3.5 w-3.5 items-center justify-center rounded-full bg-linear-to-br from-[#2b5d9e] to-[#58b3fa] text-[8px] text-white">✓</span>
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-50 border border-slate-200/60 text-base font-semibold text-heading shadow-3xs transition-all hover:scale-[1.02] hover:bg-white duration-300">
+                <span class="inline-flex h-3.5 w-3.5 items-center justify-center rounded-full bg-linear-to-br from-[#2b5d9e] to-[#58b3fa] text-xs text-white">✓</span>
                 {treatment}
               </span>
             ))}
@@ -177,10 +177,10 @@ const treatmentCategories = [
           <!-- Action Button -->
           <a
             href="/contact-us"
-            class="mt-8 inline-flex items-center gap-2 text-xs font-extrabold tracking-widest text-[#2b5d9e] uppercase transition-all duration-300 hover:gap-3 hover:text-accent-blue"
+            class="mt-8 inline-flex items-center gap-2 text-base font-extrabold tracking-widest text-[#2b5d9e] uppercase transition-all duration-300 hover:gap-3 hover:text-accent-blue"
           >
             <span>Book {category.title}</span>
-            <span class="text-sm">→</span>
+            <span class="text-base">→</span>
           </a>
         </div>
       ))

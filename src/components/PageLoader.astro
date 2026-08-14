@@ -1,0 +1,53 @@
+---
+---
+
+<div
+  id="page-loader"
+  class="fixed inset-0 z-[4000] flex flex-col items-center justify-center bg-white"
+  role="status"
+  aria-live="polite"
+  aria-label="Loading"
+>
+  <img
+    src="/images/lgo_png.png"
+    alt=""
+    class="h-20 w-auto object-contain mb-6"
+  />
+  <div class="page-loader-ring" aria-hidden="true"></div>
+  <p class="mt-5 text-base font-semibold text-heading">Loading…</p>
+</div>
+
+<style>
+  .page-loader-ring {
+    width: 40px;
+    height: 40px;
+    border-radius: 9999px;
+    border: 3px solid #d6e6fb;
+    border-top-color: #2b5d9e;
+    animation: page-loader-spin 0.75s linear infinite;
+  }
+
+  @keyframes page-loader-spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  #page-loader.is-hidden {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+  }
+</style>
+
+<script>
+  const hideLoader = () => {
+    const loader = document.getElementById("page-loader");
+    if (!loader || loader.classList.contains("is-hidden")) return;
+    loader.classList.add("is-hidden");
+    window.setTimeout(() => loader.remove(), 450);
+  };
+
+  window.addEventListener("load", hideLoader);
+  window.setTimeout(hideLoader, 4000);
+</script>

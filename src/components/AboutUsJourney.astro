@@ -1,51 +1,46 @@
 ---
 const milestones = [
   {
-    year: "2006",
-    title: "The Beginning",
-    description: "Founded with a singular vision: to revolutionize dental care through innovation and human-centered design.",
+    year: "20+",
+    title: "Years of care",
+    description: "Dr. Samanvaya Shukla has treated families in Varanasi for over two decades, with a calm, personal approach.",
     icon: "beginning"
   },
   {
-    year: "2012",
-    title: "Recognition",
-    description: "Awarded Best Aesthetic Dentistry Practice by the International Dental Association.",
+    year: "PGD",
+    title: "Orthodontics",
+    description: "Advanced training in jaw alignment, aligners, and braces — led by the principal dentist, not a rotating roster.",
     icon: "recognition"
   },
   {
-    year: "2017",
-    title: "Expansion",
-    description: "Opened our state-of-the-art facility featuring cutting-edge CEREC technology and comfort-first treatment rooms.",
-    icon: "expansion"
-  },
-  {
-    year: "2023",
-    title: "Community",
-    description: "Reached 5,000+ transformed smiles and established the Smile Forward scholarship program.",
+    year: "Here",
+    title: "Your clinic",
+    description: "A dedicated practice on Central Jail Road, opp. Varuna Garden — one doctor who knows your smile.",
     icon: "community"
   },
 ];
 ---
 
 <section
-  class="relative overflow-hidden rounded-3xl mx-auto w-full max-w-[1760px] py-16 md:py-24 px-2 sm:px-4 md:px-6 bg-slate-50/20 border border-slate-100/50 shadow-xs"
+  class="relative overflow-hidden rounded-3xl mx-auto w-full max-w-[1760px] py-20 md:py-28 px-2 sm:px-4 md:px-6 bg-slate-50/20 border border-slate-100/50 shadow-xs"
   id="our-journey"
   aria-labelledby="journey-title"
 >
   <!-- Background video from photoshoot -->
   <video
     id="journey-bg-video"
-    class="absolute inset-0 z-0 h-full w-full object-cover pointer-events-none opacity-[0.28]"
+    class="absolute inset-0 z-0 h-full w-full object-cover pointer-events-none opacity-40"
     src="/videos/IMG_6776.mp4"
     autoplay
     muted
     playsinline
   ></video>
+  <div class="absolute inset-0 z-[1] bg-white/82" aria-hidden="true"></div>
 
   <!-- Foreground contents wrapper -->
   <div class="relative z-10 px-[clamp(16px,4vw,64px)]">
-    <div class="text-center mb-[clamp(40px,6vw,80px)]">
-      <p class="m-0 text-[11px] font-bold tracking-[0.38em] text-card-blue/70 uppercase">
+    <div class="text-center mb-[clamp(48px,7vw,88px)]">
+      <p class="eyebrow">
         Our Evolution
       </p>
       <h2
@@ -80,13 +75,13 @@ const milestones = [
               >
                 {index % 2 === 0 && (
                   <div class="timeline-text-container">
-                    <p class="text-[13px] font-bold tracking-[0.32em] text-card-blue/60 uppercase">
+                    <p class="text-base font-semibold tracking-[0.16em] text-card-blue uppercase">
                       {milestone.year}
                     </p>
                     <h3 class="mt-2 text-[clamp(22px,2vw,28px)] font-extrabold text-heading">
                       {milestone.title}
                     </h3>
-                    <p class="mt-2 text-[14px] leading-[1.4] text-heading/70 max-w-140 ml-auto max-[800px]:ml-0">
+                    <p class="mt-2 text-base leading-relaxed text-body max-w-140 ml-auto max-[800px]:ml-0">
                       {milestone.description}
                     </p>
                   </div>
@@ -134,13 +129,13 @@ const milestones = [
               >
                 {index % 2 === 1 && (
                   <div class="timeline-text-container">
-                    <p class="text-[13px] font-bold tracking-[0.32em] text-card-blue/60 uppercase">
+                    <p class="text-base font-semibold tracking-[0.16em] text-card-blue uppercase">
                       {milestone.year}
                     </p>
                     <h3 class="mt-2 text-[clamp(22px,2vw,28px)] font-extrabold text-heading">
                       {milestone.title}
                     </h3>
-                    <p class="mt-2 text-[14px] leading-[1.4] text-heading/70 max-w-140">
+                    <p class="mt-2 text-base leading-relaxed text-body max-w-140">
                       {milestone.description}
                     </p>
                   </div>
