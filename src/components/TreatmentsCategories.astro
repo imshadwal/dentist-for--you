@@ -1,208 +1,115 @@
 ---
-// src/components/TreatmentsCategories.astro
 const treatmentCategories = [
   {
     id: "pain-relief",
     title: "Pain Relief",
-    iconType: "pain",
-    tagline: "Stop the Pain, Start the relief",
-    description: "Turning toothaches back into happy smiles.",
-    color: "from-blue-600 to-indigo-600",
-    glowColor: "shadow-blue-100/50 bg-blue-500/10",
-    image: "/images/treatments/3d_pain_relief.png",
-    treatments: [
-      "Root Canal Treatment",
-      "Disimpaction",
-      "Composite fillings",
-    ],
+    tagline: "Stop the pain, start the relief.",
+    treatments: ["Root canal treatment", "Disimpaction", "Composite fillings"],
   },
   {
     id: "teeth-replacement",
     title: "Teeth Replacement",
-    iconType: "replacement",
-    tagline: "Smile out loud again",
-    description: "The confidence of a complete smile.",
-    color: "from-blue-600 to-indigo-600",
-    glowColor: "shadow-blue-100/50 bg-blue-500/10",
-    image: "/images/treatments/3d_replacement.png",
-    treatments: [
-      "Bridges & Crown",
-      "Dental implants",
-      "Complete & RPD Dentures",
-    ],
+    tagline: "The confidence of a complete smile.",
+    treatments: ["Bridges & crowns", "Dental implants", "Complete & RPD dentures"],
   },
   {
     id: "cosmetic-dentistry",
     title: "Cosmetic Dentistry",
-    iconType: "cosmetic",
-    tagline: "Your dream smile, art fully created.",
-    description: "Designing smiles as unique as you are.",
-    color: "from-blue-600 to-indigo-600",
-    glowColor: "shadow-blue-100/50 bg-blue-500/10",
-    image: "/images/treatments/3d_cosmetic.png",
+    tagline: "A smile designed to look like yours — brighter and more balanced.",
     treatments: [
-      "Smile Makeover",
-      "Teeth Whitening",
-      "Clear Aligners",
-      "Braces & Aligners",
-      "Laminates & Veneers",
+      "Smile makeover",
+      "Teeth whitening",
+      "Clear aligners",
+      "Braces",
+      "Laminates & veneers",
     ],
   },
   {
     id: "preventive-dentistry",
     title: "Preventive Dentistry",
-    iconType: "preventive",
-    tagline: "Protecting your smile today for a healthier tomorrow.",
-    description: "Smart care to keep your natural smile for life",
-    color: "from-blue-600 to-indigo-600",
-    glowColor: "shadow-blue-100/50 bg-blue-500/10",
-    image: "/images/treatments/excellence_shield.png",
+    tagline: "Keep your natural teeth healthy for longer.",
     treatments: [
-      "Advanced Gum Treatment",
-      "Bad Breath Treatment",
-      "Teeth Cleaning",
-      "Mouth Ulcers",
+      "Advanced gum treatment",
+      "Bad breath treatment",
+      "Teeth cleaning",
+      "Mouth ulcers",
     ],
   },
   {
     id: "kids-dentistry",
     title: "Kids Dentistry",
-    iconType: "kids",
-    tagline: "When little smile get gentle care",
-    description: "Making dental visit fun, one smile at a time.",
-    color: "from-blue-600 to-indigo-600",
-    glowColor: "shadow-blue-100/50 bg-blue-500/10",
-    image: "/images/treatments/3d_kids_dentistry.png",
+    tagline: "Gentle visits that make the next one easier.",
     treatments: [
-      "Pediatric Dental Checkup",
-      "Kids Cavity Treatment",
-      "Fluoride Treatment",
-      "Habit Counseling",
+      "Pediatric checkup",
+      "Kids cavity treatment",
+      "Fluoride treatment",
+      "Habit counseling",
     ],
   },
 ];
+
+const whatsappNumber = "919935027027";
+
+const bookingLink = (title: string) => {
+  const message = `Hello, I would like to book an appointment for ${title} at Dentist for you.`;
+  return `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+};
 ---
 
 <section
-  class="mx-auto w-full max-w-[1760px] px-4 sm:px-5 md:px-8 py-20 md:py-28 overflow-visible"
+  class="mx-auto w-full max-w-[1760px] px-4 sm:px-5 md:px-8 py-20 md:py-28"
   id="treatment-categories"
   aria-labelledby="categories-title"
 >
-  <div class="text-center mb-16">
-    <p class="eyebrow">
-      Treatment Menu
-    </p>
-    <h2
-      id="categories-title"
-      class="mt-3 text-[clamp(32px,4vw,56px)] font-extrabold leading-[1.18] text-heading tracking-tight capitalize"
-    >
-      Every Smile Deserves Specialized Care
-    </h2>
-    <p class="mx-auto mt-4 max-w-lg text-lg text-body leading-relaxed">
-      Explore our premium interactive horizontal menu, showcasing advanced clinical concepts and specialized care.
-    </p>
+  <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-10">
+    <div class="max-w-xl">
+      <p class="eyebrow">Treatment menu</p>
+      <h2
+        id="categories-title"
+        class="mt-3 text-[clamp(32px,4vw,52px)] font-extrabold leading-[1.18] text-heading tracking-tight"
+      >
+        Every smile deserves specialized care
+      </h2>
+      <p class="mt-4 text-lg leading-relaxed text-body">
+        Five focused paths — from pain relief to kids’ visits — led by Dr. Shukla.
+      </p>
+    </div>
   </div>
 
-  <!-- Centered Scroll-Reveal Treatments List -->
-  <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-24">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
     {
       treatmentCategories.map((category, idx) => (
-        <div
+        <article
           id={category.id}
-          class={`reveal-text-block text-center flex flex-col items-center scroll-mt-40 ${
-            idx === 4 ? "md:col-span-2 max-w-3xl mx-auto" : ""
+          class={`scroll-mt-40 flex flex-col rounded-[28px] border border-[#d6e6fb] bg-white p-6 sm:p-8 shadow-[0_12px_32px_rgba(31,63,117,0.06)] ${
+            idx === 4 ? "md:col-span-2" : ""
           }`}
-          data-reveal-block
         >
-          <!-- Badge -->
-          <span class="text-base font-semibold tracking-[0.16em] text-card-blue uppercase">
-            Category 0{idx + 1}
-          </span>
-          
-          <!-- Blue Theme Icon + Title -->
-          <div class="flex items-center justify-center gap-3.5 mt-4">
-            <span class="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-linear-to-br from-[#2b5d9e] to-[#58b3fa] text-white shadow-md shadow-[#2b5d9e]/20">
-              {category.iconType === "pain" && (
-                <svg class="h-5.5 w-5.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
-                </svg>
-              )}
-              {category.iconType === "replacement" && (
-                <svg class="h-5.5 w-5.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/>
-                </svg>
-              )}
-              {category.iconType === "cosmetic" && (
-                <svg class="h-5.5 w-5.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M6 3h12l4 6-10 12L2 9z"/>
-                  <path d="M11 3v18M2 9h20"/>
-                </svg>
-              )}
-              {category.iconType === "preventive" && (
-                <svg class="h-5.5 w-5.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                  <path d="m9 12 2 2 4-4"/>
-                </svg>
-              )}
-              {category.iconType === "kids" && (
-                <svg class="h-5.5 w-5.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
-                </svg>
-              )}
-            </span>
-            <h3 class="text-[clamp(24px,2.5vw,36px)] font-extrabold text-heading tracking-tight leading-tight transition-colors duration-500">
-              {category.title}
-            </h3>
-          </div>
-
-          <!-- Tagline -->
-          <p class="mt-2 text-base font-bold text-slate-500 tracking-wide">
-            {category.tagline}
+          <p class="m-0 text-base font-extrabold tabular-nums tracking-tight text-card-blue">
+            {String(idx + 1).padStart(2, "0")}
           </p>
-
-          <!-- Description -->
-          <p class="mt-4 text-base text-body leading-relaxed max-w-2xl">
-            {category.description}
-          </p>
-
-          <!-- Treatments List -->
-          <div class="mt-6 flex flex-wrap justify-center gap-2 max-w-2xl">
+          <h3 class="mt-3 text-[clamp(22px,2vw,30px)] font-extrabold leading-tight text-heading">
+            {category.title}
+          </h3>
+          <p class="mt-2 text-lg leading-relaxed text-body">{category.tagline}</p>
+          <div class="mt-5 flex flex-wrap gap-2">
             {category.treatments.map((treatment) => (
-              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-50 border border-slate-200/60 text-base font-semibold text-heading shadow-3xs transition-all hover:scale-[1.02] hover:bg-white duration-300">
-                <span class="inline-flex h-3.5 w-3.5 items-center justify-center rounded-full bg-linear-to-br from-[#2b5d9e] to-[#58b3fa] text-xs text-white">✓</span>
+              <span class="rounded-full border border-[#d6e6fb] bg-[#f8fbff] px-3 py-1.5 text-base font-semibold text-heading">
                 {treatment}
               </span>
             ))}
           </div>
-
-          <!-- Action Button -->
           <a
-            href="/contact-us"
-            class="mt-8 inline-flex items-center gap-2 text-base font-extrabold tracking-widest text-[#2b5d9e] uppercase transition-all duration-300 hover:gap-3 hover:text-accent-blue"
+            href={bookingLink(category.title)}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="mt-6 inline-flex items-center gap-2 text-base font-extrabold text-card-blue no-underline hover:text-heading"
           >
-            <span>Book {category.title}</span>
-            <span class="text-base">→</span>
+            Book {category.title}
+            <span aria-hidden="true">→</span>
           </a>
-        </div>
+        </article>
       ))
     }
   </div>
 </section>
-
-<script>
-  const revealBlocks = document.querySelectorAll('[data-reveal-block]');
-
-  const revealObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-revealed');
-          revealObserver.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.2 }
-  );
-
-  revealBlocks.forEach((block) => revealObserver.observe(block));
-</script>

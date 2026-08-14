@@ -1,186 +1,69 @@
 ---
-// src/components/TreatmentsGuarantee.astro
 const features = [
   {
-    id: "advanced-tech",
-    title: "Advanced Tech",
-    tagline: "Standard-setting clinical gear",
-    description: "Equipped with state-of-the-art diagnostic tools, 3D intraoral scanners, and soft-tissue lasers to ensure high surgical precision and comfortable recovery.",
-    iconType: "tech",
-    color: "from-blue-600 to-indigo-600",
-    glowColor: "shadow-blue-100/50 bg-blue-500/10",
-    image: "/images/treatments/3d_technology.png",
+    title: "Modern diagnostics",
+    description:
+      "Careful exams and contemporary tools so treatment is planned before it starts — not guessed in the chair.",
   },
   {
-    id: "expert-specs",
-    title: "Principal dentist",
-    tagline: "Care led by Dr. Shukla",
-    description: "Every treatment is directed by Dr. Samanvaya Shukla, principal dentist, with two decades of family dentistry and orthodontics.",
-    iconType: "expert",
-    color: "from-blue-600 to-indigo-600",
-    glowColor: "shadow-indigo-100/50 bg-indigo-500/10",
-    image: "/images/treatments/3d_specialists.png",
+    title: "Principal-led care",
+    description:
+      "Every visit is directed by Dr. Samanvaya Shukla, with two decades of family dentistry and orthodontics.",
   },
   {
-    id: "pain-free",
-    title: "Pain-Free Care",
-    tagline: "Sanctuary of clinical comfort",
-    description: "Our comfort pathways combine gentle manual techniques, modern sedation options, and aromatherapy to completely eliminate treatment anxiety.",
-    iconType: "pain-free",
-    color: "from-blue-600 to-indigo-600",
-    glowColor: "shadow-teal-100/50 bg-teal-500/10",
-    image: "/images/treatments/3d_pain_free.png",
+    title: "Comfort first",
+    description:
+      "Unhurried appointments, clear explanations, and a calm clinic — so you know what happens next.",
   },
   {
-    id: "custom-plans",
-    title: "Customized Plans",
-    tagline: "Pathways built for your timeline",
-    description: "No templates. We design custom treatment plans fully mapped to your specific jaw structure, aesthetic goals, comfort choices, and schedule.",
-    iconType: "plans",
-    color: "from-blue-600 to-indigo-600",
-    glowColor: "shadow-amber-100/50 bg-amber-500/10",
-    image: "/images/treatments/3d_plans.png",
+    title: "Plans that fit you",
+    description:
+      "No template pathway. Treatment is mapped to your teeth, timeline, and what you actually want to change.",
   },
   {
-    id: "fast-results",
-    title: "Fast Results",
-    tagline: "Shorter timelines, high accuracy",
-    description: "Leveraging 3D printing and digital setups to deliver extremely fast, precise treatments with significantly minimized healing downtime.",
-    iconType: "fast",
-    color: "from-blue-600 to-indigo-600",
-    glowColor: "shadow-rose-100/50 bg-rose-500/10",
-    image: "/images/treatments/3d_fast_results.png",
+    title: "Clear next steps",
+    description:
+      "You leave knowing the plan, the visits involved, and how to reach us if something feels off.",
   },
   {
-    id: "warranty-guar",
-    title: "Warranty Policy",
-    tagline: "Standing behind our artistry",
-    description: "We are committed to delivering standard-setting clinical longevity. Every major procedure is backed by our comprehensive warranty policy.",
-    iconType: "warranty",
-    color: "from-blue-600 to-indigo-600",
-    glowColor: "shadow-emerald-100/50 bg-emerald-500/10",
-    image: "/images/treatments/3d_warranty.png",
+    title: "We stand by the work",
+    description:
+      "Major procedures are followed through. If something needs attention after treatment, we take it seriously.",
   },
 ];
 ---
 
 <section
-  class="mx-auto w-full max-w-[1760px] px-4 sm:px-5 md:px-8 py-20 md:py-28 overflow-visible"
+  class="mx-auto w-full max-w-[1760px] px-4 sm:px-5 md:px-8 py-20 md:py-28"
   id="treatment-guarantees"
   aria-labelledby="guarantees-title"
 >
-  <div class="text-center mb-24 max-[620px]:mb-16">
-    <p class="eyebrow">
-      Clinical Guarantees
-    </p>
-    <h2
-      id="guarantees-title"
-      class="mt-3 text-[clamp(32px,4vw,56px)] font-extrabold leading-[1.18] text-heading tracking-tight capitalize"
-    >
-      Our Promises To You
-    </h2>
-    <p class="mx-auto mt-4 max-w-lg text-lg text-body leading-relaxed">
-      Explore our core clinical commitments, designed to ensure safety, comfort, and standard-setting outcomes.
-    </p>
+  <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-10">
+    <div class="max-w-xl">
+      <p class="eyebrow">How we work</p>
+      <h2
+        id="guarantees-title"
+        class="mt-3 text-[clamp(32px,4vw,52px)] font-extrabold leading-[1.18] text-heading tracking-tight"
+      >
+        Our promises to you
+      </h2>
+      <p class="mt-4 text-lg leading-relaxed text-body">
+        What you can expect from a one-doctor clinic that knows your smile.
+      </p>
+    </div>
   </div>
 
-  <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-24">
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
     {
       features.map((feature, idx) => (
-        <div
-          class="reveal-text-block text-center flex flex-col items-center"
-          data-reveal-block
-        >
-          <!-- Badge -->
-          <span class="text-base font-semibold tracking-[0.16em] text-card-blue uppercase">
-            Promise 0{idx + 1}
-          </span>
-          
-          <!-- Blue Theme Icon + Title -->
-          <div class="flex items-center justify-center gap-3.5 mt-4">
-            <span class="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-linear-to-br from-[#2b5d9e] to-[#58b3fa] text-white shadow-md shadow-[#2b5d9e]/20">
-              {feature.iconType === "tech" && (
-                <svg class="h-5.5 w-5.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
-                </svg>
-              )}
-              {feature.iconType === "expert" && (
-                <svg class="h-5.5 w-5.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/>
-                  <circle cx="12" cy="7" r="4"/>
-                </svg>
-              )}
-              {feature.iconType === "pain-free" && (
-                <svg class="h-5.5 w-5.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
-                </svg>
-              )}
-              {feature.iconType === "plans" && (
-                <svg class="h-5.5 w-5.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/>
-                  <rect x="8" y="2" width="8" height="4" rx="1" ry="1"/>
-                  <path d="M9 12h6M9 16h6"/>
-                </svg>
-              )}
-              {feature.iconType === "fast" && (
-                <svg class="h-5.5 w-5.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
-                </svg>
-              )}
-              {feature.iconType === "warranty" && (
-                <svg class="h-5.5 w-5.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                  <path d="m9 12 2 2 4-4"/>
-                </svg>
-              )}
-            </span>
-            <h3 class="text-[clamp(24px,2.5vw,36px)] font-extrabold text-heading tracking-tight leading-tight transition-colors duration-500">
-              {feature.title}
-            </h3>
-          </div>
-
-          <!-- Tagline -->
-          <p class="mt-2 text-base font-bold text-slate-500 tracking-wide">
-            {feature.tagline}
+        <article class="flex flex-col gap-3 rounded-[28px] border border-[#d6e6fb] bg-white p-7 sm:p-8 shadow-[0_12px_32px_rgba(31,63,117,0.06)]">
+          <p class="m-0 text-base font-extrabold tabular-nums tracking-tight text-card-blue">
+            {String(idx + 1).padStart(2, "0")}
           </p>
-
-          <!-- Description -->
-          <p class="mt-4 text-base text-body leading-relaxed max-w-2xl">
-            {feature.description}
-          </p>
-
-          <!-- Action button -->
-          <div class="mt-6">
-            <a
-              href="/contact-us"
-              class="inline-flex items-center gap-2 text-base font-bold uppercase tracking-wider text-accent-blue hover:text-card-blue transition-colors duration-300 no-underline"
-            >
-              Inspect Guarantee
-              <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-              </svg>
-            </a>
-          </div>
-        </div>
+          <h3 class="m-0 text-xl font-extrabold leading-snug text-heading">{feature.title}</h3>
+          <p class="m-0 text-base leading-relaxed text-body">{feature.description}</p>
+        </article>
       ))
     }
   </div>
 </section>
-
-<script>
-  const revealBlocks = document.querySelectorAll('#treatment-guarantees [data-reveal-block]');
-
-  const revealObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-revealed');
-          revealObserver.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.2 }
-  );
-
-  revealBlocks.forEach((block) => revealObserver.observe(block));
-</script>
