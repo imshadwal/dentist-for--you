@@ -4,37 +4,43 @@ const services = [
     title: "Aesthetic dentistry",
     image: "/images/services/aesthetic_dentistry.png",
     alt: "Aesthetic dentistry",
+    headline: "Aesthetic artistry",
     summary: "Veneers, bonding, and contouring for a balanced, luminous smile.",
   },
   {
     title: "Orthodontics",
     image: "/images/services/orthodontics.png",
     alt: "Orthodontic aligners",
+    headline: "Alignment, refined",
     summary: "Clear aligners and braces with gentle, predictable movement.",
   },
   {
     title: "Implantology",
     image: "/images/services/implantology.png",
     alt: "Dental implant",
-    summary: "Permanent, natural-looking replacements created with precision and comfort.",
+    headline: "Smile restoration, built to last",
+    summary:
+      "Permanent, natural-looking replacements created with precision and comfort.",
   },
   {
     title: "Whitening",
     image: "/images/services/whitening.png",
     alt: "Teeth whitening",
+    headline: "Brightness, tailored",
     summary: "Lift stains safely while protecting enamel for a radiant finish.",
   },
   {
     title: "Surgical dentistry",
     image: "/images/services/surgical.png",
     alt: "Surgical dentistry",
+    headline: "Precision surgical care",
     summary: "Guided procedures and expert aftercare for confident recovery.",
   },
 ];
 ---
 
 <section
-  class="mx-auto w-full max-w-[1760px] px-2 sm:px-4 md:px-6 py-20 md:py-28"
+  class="mx-auto w-full max-w-[1760px] px-4 sm:px-5 md:px-8 py-20 md:py-28"
   id="treatments"
   aria-labelledby="services-title"
 >
@@ -52,25 +58,62 @@ const services = [
     </p>
   </div>
 
-  <div class="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5">
+  <div
+    class="services-grid mt-[clamp(22px,3.6vw,40px)] flex flex-wrap gap-[clamp(12px,1.8vw,22px)]"
+    data-services-grid
+  >
     {
       services.map((service) => (
-        <article class="flex flex-col overflow-hidden rounded-2xl border border-[#d6e6fb] bg-white shadow-[0_12px_28px_rgba(31,63,117,0.12)]">
-          <div class="relative h-48 overflow-hidden bg-slate-100">
+        <article
+          class="service-card group relative flex h-65 w-full min-w-40 flex-[1_1_0%] items-stretch overflow-hidden rounded-2xl border border-[#d6e6fb] p-2 shadow-[0_18px_34px_rgba(31,63,117,0.18)] transition duration-300 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-blue/70 focus-visible:ring-offset-2 focus-visible:ring-offset-white max-[900px]:h-60 max-[620px]:min-w-full"
+          data-service-card
+          tabindex="0"
+        >
+          <div class="service-media relative flex h-full min-w-0 flex-[1_1_100%] items-end overflow-hidden rounded-xl">
             <img
-              class="h-full w-full object-cover"
+              class="service-image h-full w-full object-cover"
               src={service.image}
               alt={service.alt}
               loading="lazy"
             />
-          </div>
-          <div class="flex flex-1 flex-col p-5">
-            <h3 class="text-xl font-extrabold text-heading tracking-tight">
+            <p class="service-title absolute inset-x-0 bottom-3 mx-auto w-fit max-w-[90%] rounded-full bg-slate-900/90 px-4 py-1.5 text-center text-[13px] font-extrabold text-white border border-white/25 shadow-lg backdrop-blur-md">
               {service.title}
-            </h3>
-            <p class="mt-2 text-base leading-relaxed text-body">
-              {service.summary}
             </p>
+          </div>
+
+          <div class="service-info flex h-full min-w-0 flex-[0_0_0%] overflow-hidden opacity-0">
+            <div class="service-panel flex h-full w-full flex-col justify-between rounded-xl bg-slate-900/95 p-3.5 text-white shadow-[0_16px_36px_rgba(0,0,0,0.4)] border border-white/20 backdrop-blur-md">
+              <div class="flex justify-end">
+                <span class="inline-flex h-7 w-7 items-center justify-center rounded-full border border-white/30 bg-white/20 text-white">
+                  <svg
+                    class="h-4 w-4"
+                    viewBox="0 0 24 24"
+                    role="img"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M7 17L17 7m0 0H9m8 0v8"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </span>
+              </div>
+              <div>
+                <p class="text-[10px] font-bold tracking-[0.32em] text-white/70 uppercase">
+                  Service
+                </p>
+                <p class="mt-2 text-[14px] font-extrabold leading-tight text-white">
+                  {service.headline}
+                </p>
+                <p class="mt-2 text-[11px] leading-snug text-white/90">
+                  {service.summary}
+                </p>
+              </div>
+            </div>
           </div>
         </article>
       ))
@@ -96,3 +139,128 @@ const services = [
     </a>
   </div>
 </section>
+
+<style>
+  .services-grid {
+    align-items: stretch;
+  }
+
+  .service-card {
+    cursor: pointer;
+    transition:
+      flex 260ms ease,
+      box-shadow 260ms ease;
+  }
+
+  .service-media {
+    transition:
+      flex 260ms ease,
+      transform 260ms ease;
+  }
+
+  .service-image {
+    transition: transform 420ms ease;
+  }
+
+  .service-info {
+    pointer-events: none;
+    transition:
+      flex 260ms ease,
+      opacity 220ms ease;
+  }
+
+  .service-panel {
+    transform: translateX(8px);
+    transition: transform 220ms ease;
+  }
+
+  .services-grid.has-active .service-card {
+    flex: 0.85 1 0%;
+  }
+
+  .services-grid.has-active .service-card.is-active {
+    flex: 1.35 1 0%;
+    gap: 12px;
+    z-index: 2;
+  }
+
+  .services-grid.has-active .service-card.is-active .service-media {
+    flex: 0 0 56%;
+    transform: translateX(-8px);
+  }
+
+  .services-grid.has-active .service-card.is-active .service-image {
+    transform: scale(1.04);
+  }
+
+  .services-grid.has-active .service-card.is-active .service-info {
+    flex: 0 0 44%;
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .services-grid.has-active .service-card.is-active .service-panel {
+    transform: translateX(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .service-card,
+    .service-image,
+    .service-media,
+    .service-info,
+    .service-panel {
+      transition-duration: 0ms;
+    }
+  }
+</style>
+
+<script>
+  const serviceGrids = document.querySelectorAll("[data-services-grid]");
+
+  serviceGrids.forEach((grid) => {
+    const cards = Array.from(
+      grid.querySelectorAll<HTMLElement>("[data-service-card]"),
+    );
+
+    const clearActive = () => {
+      grid.classList.remove("has-active");
+      cards.forEach((card) => card.classList.remove("is-active"));
+    };
+
+    const setActive = (card: HTMLElement) => {
+      grid.classList.add("has-active");
+      cards.forEach((item) => item.classList.remove("is-active"));
+      card.classList.add("is-active");
+    };
+
+    const canHover = window.matchMedia("(hover: hover)").matches;
+
+    cards.forEach((card) => {
+      card.addEventListener("focusin", () => setActive(card));
+      card.addEventListener("focusout", () => {
+        requestAnimationFrame(() => {
+          if (!grid.contains(document.activeElement)) {
+            clearActive();
+          }
+        });
+      });
+
+      if (canHover) {
+        card.addEventListener("mouseenter", () => setActive(card));
+        card.addEventListener("mouseleave", () => {
+          if (!card.matches(":focus-within")) {
+            clearActive();
+          }
+        });
+      } else {
+        card.addEventListener("click", () => {
+          if (card.classList.contains("is-active")) {
+            clearActive();
+          } else {
+            setActive(card);
+          }
+        });
+      }
+    });
+  });
+</script>

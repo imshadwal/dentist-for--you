@@ -84,7 +84,7 @@ const treatmentCategories = [
 ---
 
 <section
-  class="mx-auto w-full max-w-[1760px] px-2 sm:px-4 md:px-6 py-20 md:py-28 overflow-visible"
+  class="mx-auto w-full max-w-[1760px] px-4 sm:px-5 md:px-8 py-20 md:py-28 overflow-visible"
   id="treatment-categories"
   aria-labelledby="categories-title"
 >
@@ -108,7 +108,8 @@ const treatmentCategories = [
     {
       treatmentCategories.map((category, idx) => (
         <div
-          class={`reveal-text-block text-center flex flex-col items-center ${
+          id={category.id}
+          class={`reveal-text-block text-center flex flex-col items-center scroll-mt-40 ${
             idx === 4 ? "md:col-span-2 max-w-3xl mx-auto" : ""
           }`}
           data-reveal-block

@@ -17,78 +17,55 @@ const faqs = [
   },
   {
     question: "For RCT how many times I need to visit dental clinic?",
-    answer:
-      "Single time.",
+    answer: "Single time.",
   },
 ];
 ---
 
 <section
-  class="mx-auto w-full max-w-[1760px] px-2 sm:px-4 md:px-6 py-20 md:py-28"
+  class="mx-auto w-full max-w-[1760px] px-4 sm:px-5 md:px-8 py-20 md:py-28"
   id="contact-faq"
   aria-labelledby="faq-title"
 >
-  <div class="text-center mb-[clamp(48px,7vw,88px)]">
-    <h2
-      id="faq-title"
-      class="m-0 text-[clamp(32px,4vw,48px)] font-extrabold tracking-tight text-[#294073]"
-    >
-      FAQs
-    </h2>
-  </div>
+  <div class="grid grid-cols-1 lg:grid-cols-[minmax(260px,0.9fr)_minmax(0,1.4fr)] gap-12 lg:gap-20 items-start">
+    <div class="lg:sticky lg:top-40">
+      <p class="eyebrow">Common questions</p>
+      <h2
+        id="faq-title"
+        class="mt-3 text-[clamp(32px,4vw,52px)] font-extrabold leading-[1.18] tracking-tight text-heading"
+      >
+        FAQs
+      </h2>
+      <p class="mt-4 max-w-md text-lg leading-relaxed text-body">
+        Quick answers from the chair — so you know what to expect before you visit.
+      </p>
+      <a
+        class="mt-8 inline-flex min-h-13 items-center gap-2 rounded-full bg-linear-to-r from-accent-blue to-card-blue py-0 px-7 text-base font-extrabold text-white no-underline shadow-[0_12px_24px_rgba(43,93,158,0.2)] transition duration-200 hover:-translate-y-0.5 hover:shadow-[0_16px_32px_rgba(43,93,158,0.3)]"
+        href="/contact-us#contact-form-section"
+      >
+        Ask us directly
+        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+      </a>
+    </div>
 
-  <!-- FAQ Accordion -->
-  <div class="max-w-3xl mx-auto space-y-4">
-    {
-      faqs.map((faq, index) => (
-        <details class="group relative rounded-2xl border border-[#d6e6fb] shadow-[0_8px_16px_rgba(31,63,117,0.08)] transition-all duration-300 hover:shadow-[0_12px_24px_rgba(31,63,117,0.12)] hover:border-card-blue/50 open:shadow-[0_12px_24px_rgba(31,63,117,0.12)]">
-          <summary class="flex cursor-pointer items-center justify-between p-[clamp(20px,2.5vw,28px)] text-heading font-semibold hover:text-card-blue transition-colors">
-            <span class="text-[clamp(16px,1.05vw,18px)]">{faq.question}</span>
-            <svg
-              class="h-6 w-6 shrink-0 transition-transform duration-300 group-open:rotate-180"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <polyline points="6 9 12 15 18 9" />
-            </svg>
-          </summary>
-
-          <div class="border-t border-[#e8f0f8] px-[clamp(20px,2.5vw,28px)] pb-[clamp(20px,2.5vw,28px)] bg-linear-to-br from-white to-accent-blue/3">
-            <p class="text-lg leading-relaxed text-body">
+    <ol class="m-0 list-none divide-y divide-[#d6e6fb] rounded-3xl border border-[#d6e6fb] bg-white shadow-[0_16px_40px_rgba(31,63,117,0.08)] overflow-hidden">
+      {
+        faqs.map((faq, index) => (
+          <li class="group grid grid-cols-[auto_1fr] gap-x-5 gap-y-2 px-6 py-7 sm:px-8 sm:py-8 transition-colors duration-200 hover:bg-[#f6f9fd]">
+            <span class="row-span-2 pt-0.5 text-xl font-extrabold tabular-nums tracking-tight text-card-blue">
+              {String(index + 1).padStart(2, "0")}
+            </span>
+            <h3 class="m-0 text-[clamp(17px,1.15vw,20px)] font-extrabold leading-snug text-heading">
+              {faq.question}
+            </h3>
+            <p class="m-0 col-start-2 text-base leading-relaxed text-body sm:text-lg">
               {faq.answer}
             </p>
-          </div>
-        </details>
-      ))
-    }
-  </div>
-
-  <!-- Additional Help CTA -->
-  <div
-    class="mt-[clamp(40px,8vw,60px)] p-[clamp(24px,3vw,40px)] rounded-2xl bg-linear-to-br from-accent-blue/10 to-card-blue/10 border border-accent-blue/20 text-center"
-  >
-    <p class="text-[clamp(16px,1.05vw,18px)] text-heading font-semibold mb-4">
-      Didn't find what you're looking for?
-    </p>
-    <a
-      class="inline-flex min-h-13 items-center gap-2 rounded-full bg-linear-to-r from-accent-blue to-card-blue py-0 px-7 text-base font-extrabold text-white no-underline shadow-[0_12px_24px_rgba(43,93,158,0.2)] transition duration-200 hover:-translate-y-0.5 hover:shadow-[0_16px_32px_rgba(43,93,158,0.3)]"
-      href="/contact-us#contact-form-section"
-    >
-      Contact us directly
-      <svg
-        class="h-4 w-4"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-      >
-        <path
-          d="M5 12h14M12 5l7 7-7 7"
-          stroke-linecap="round"
-          stroke-linejoin="round"></path>
-      </svg>
-    </a>
+          </li>
+        ))
+      }
+    </ol>
   </div>
 </section>
