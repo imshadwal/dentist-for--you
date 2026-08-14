@@ -1,0 +1,54 @@
+---
+import Layout from "../layouts/Layout.astro";
+import LegalPage from "../components/LegalPage.astro";
+import "../styles/global.css";
+---
+
+<Layout
+  title="Cookie Policy - Dentist For You"
+  description="How Dentist For You uses cookies and similar technologies."
+>
+  <main>
+    <LegalPage
+      title="Cookie Policy"
+      description="This page explains cookies and similar tools used on our website."
+    >
+      <section>
+        <h2>What cookies are</h2>
+        <p>
+          Cookies are small text files stored on your device. Similar tools (such as local storage or analytics pixels)
+          may also be used to remember preferences or understand traffic.
+        </p>
+      </section>
+
+      <section>
+        <h2>How we use them</h2>
+        <ul>
+          <li><strong>Essential:</strong> needed for the site to load, keep pages secure, and remember basic settings</li>
+          <li>
+            <strong>Analytics:</strong> Vercel Analytics helps us see anonymous or aggregated visit data such as page views
+            so we can improve the website. This is not used to sell ads.
+          </li>
+        </ul>
+        <p>We do not run third-party advertising cookies on this site.</p>
+      </section>
+
+      <section>
+        <h2>Your choices</h2>
+        <p>
+          You can block or delete cookies in your browser settings. If you block essential cookies, parts of the site may not work.
+          Analytics collection can also be limited by browser privacy features and ad blockers.
+        </p>
+      </section>
+
+      <section>
+        <h2>More information</h2>
+        <p>
+          See our <a href="/privacy-policy">Privacy policy</a> for how personal information is handled.
+          Questions: <a href="mailto:hello@dentalforyou.com">hello@dentalforyou.com</a>
+          or <a href="tel:+919935027027">+91 99350 27027</a>.
+        </p>
+      </section>
+    </LegalPage>
+  </main>
+</Layout>
