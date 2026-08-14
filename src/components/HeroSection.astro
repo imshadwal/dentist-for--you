@@ -1,15 +1,14 @@
 <section
   class="relative mx-auto w-full max-w-[1760px] px-2 sm:px-4 md:px-6 py-1.5 md:py-2.5 overflow-hidden"
   id="home"
-  aria-labelledby="hero-title"
+  aria-label="Dentist For You"
 >
-  <!-- 1. Wide Hero Video Card Frame with Ultra-Slim Side Gap -->
-  <div class="relative w-full min-h-[calc(100svh-100px)] rounded-2xl md:rounded-3xl overflow-hidden shadow-[0_32px_80px_rgba(41,64,115,0.22)] flex flex-col justify-between p-6 sm:p-10 md:p-14 lg:p-16">
-
-    <!-- Background Video -->
+  <h1 class="sr-only">Dentist For You</h1>
+  <!-- Wide Hero Video Card -->
+  <div class="relative w-full min-h-[calc(100svh-100px)] rounded-2xl md:rounded-3xl overflow-hidden shadow-[0_32px_80px_rgba(41,64,115,0.22)]">
     <video
       id="hero-video"
-      class="absolute inset-0 h-full w-full object-cover z-0"
+      class="absolute inset-0 h-full w-full object-cover"
       src="/videos/testimonial.mp4"
       autoplay
       muted
@@ -17,54 +16,6 @@
       playsinline
       preload="auto"
     ></video>
-
-    <!-- Balanced Dark Overlay Gradient -->
-    <div class="absolute inset-0 bg-gradient-to-r from-black/65 via-black/35 to-black/45 z-1 pointer-events-none"></div>
-    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/30 z-1 pointer-events-none"></div>
-
-    <!-- Content Grid Overlaid on Video -->
-    <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center w-full my-auto max-w-[1400px] mx-auto">
-      
-      <!-- Left Column: Pure White Bold Main Title & Sub-paragraph -->
-      <div class="lg:col-span-8 flex flex-col justify-center">
-        <h1
-          id="hero-title"
-          class="m-0 text-[clamp(42px,5.2vw,86px)] font-black leading-[1.08] tracking-tight capitalize drop-shadow-[0_4px_24px_rgba(0,0,0,0.9)]"
-          style="color: #ffffff !important;"
-        >
-          Luxury Care<br />Made<br />Personal
-        </h1>
-
-        <p
-          class="mt-8 sm:mt-10 md:mt-12 max-w-180 text-[clamp(17px,1.25vw,22px)] leading-relaxed font-semibold drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)]"
-          style="color: #ffffff !important; opacity: 0.95;"
-        >
-          We are a premium orthodontic and aesthetic clinic crafting confident
-          smiles for those who settle for nothing ordinary.
-        </p>
-      </div>
-
-      <!-- Right Column: Overlay Schedule A Visit Button -->
-      <div class="lg:col-span-4 flex flex-col items-start lg:items-end justify-center h-full pt-4 lg:pt-0">
-        <a
-          class="inline-flex min-h-14.5 items-center gap-3 rounded-full bg-linear-to-r from-accent-blue to-card-blue py-0 pr-7 pl-3 text-base font-extrabold text-white no-underline shadow-[0_18px_34px_rgba(0,0,0,0.5)] transition duration-200 hover:-translate-y-0.5 hover:shadow-[0_22px_42px_rgba(43,93,158,0.6)] active:scale-95"
-          href="#contact-us"
-        >
-          <span
-            class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/30 bg-white/20"
-            aria-hidden="true"
-          >
-            <svg class="h-4.5 w-4.5" viewBox="0 0 24 24" role="img">
-              <path
-                d="M7 2.75a.75.75 0 0 1 .75.75V5h8.5V3.5a.75.75 0 0 1 1.5 0V5H19a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3V8a3 3 0 0 1 3-3h1.25V3.5A.75.75 0 0 1 7 2.75ZM3.5 10v8A1.5 1.5 0 0 0 5 19.5h14a1.5 1.5 0 0 0 1.5-1.5v-8h-17Zm3 3.25a.75.75 0 0 1 .75-.75h2.5a.75.75 0 0 1 0 1.5h-2.5a.75.75 0 0 1-.75-.75Zm0 3a.75.75 0 0 1 .75-.75h7.5a.75.75 0 0 1 0 1.5h-7.5a.75.75 0 0 1-.75-.75Z"
-                fill="currentColor"></path>
-            </svg>
-          </span>
-          Schedule a visit
-        </a>
-      </div>
-
-    </div>
   </div>
 
   <!-- 2. Section Below Video: "Not All Smiles Need Fixing, Some Need Vision" Big Heading + Tooth Visual -->

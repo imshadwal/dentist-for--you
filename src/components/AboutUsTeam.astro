@@ -5,69 +5,58 @@ const team = [
     role: "Principal Dentist & Founder",
     specialty: "Orthodontics",
     bio: "Dedicated 20 year experience practitioner delivering exceptional stress free dental care for the whole family.",
-    image: "/images/photoshoot/IMG_6835.jpg",
+    image: "/images/photoshoot/IMG_6918.jpg",
   },
 ];
 ---
 
 <section 
-  class="mx-auto w-full max-w-[1760px] py-16 md:py-24 px-2 sm:px-4 md:px-6 grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-12 items-start overflow-hidden" 
+  class="mx-auto w-full max-w-[1760px] py-16 md:py-24 px-2 sm:px-4 md:px-6 overflow-hidden" 
   id="meet-team"
   aria-labelledby="team-title"
 >
-  <div class="lg:col-span-1 lg:sticky lg:top-24 flex flex-col justify-between h-full z-10 bg-white">
+  <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-8">
     <div>
-      <div class="flex items-center gap-3">
-        <span id="team-title" class="text-xs font-bold tracking-[0.3em] text-slate-400 uppercase">
-          Specialists
-        </span>
-        <div class={`flex -space-x-2 overflow-hidden ${team.length <= 1 ? 'hidden' : ''}`}>
-          <div class="inline-block h-5 w-5 rounded-full ring-2 ring-white bg-slate-200"></div>
-          <div class="inline-block h-5 w-5 rounded-full ring-2 ring-white bg-slate-300"></div>
-          <div class="inline-block h-5 w-5 rounded-full ring-2 ring-white bg-slate-400"></div>
-          <div class="inline-block h-5 w-5 rounded-full ring-2 ring-white bg-[#2b5d9e] flex items-center justify-center text-[8px] font-bold text-white">+3</div>
-        </div>
-      </div>
-
-      <h2 class="mt-4 text-[clamp(32px,4vw,52px)] font-extrabold leading-[1.2] text-[#294073] tracking-tight capitalize">
-        Meet The Minds<br />Behind Your Smile
+      <span id="team-title" class="text-xs font-bold tracking-[0.3em] text-slate-400 uppercase">
+        Specialists
+      </span>
+      <h2 class="mt-3 text-[clamp(32px,4vw,52px)] font-extrabold leading-[1.2] text-[#294073] tracking-tight capitalize">
+        Meet The Minds Behind Your Smile
       </h2>
-      
-      <p class="mt-6 text-base leading-relaxed text-[#294073]/70 max-w-sm">
+      <p class="mt-4 text-base leading-relaxed text-[#294073]/70 max-w-2xl">
         Our principal specialist brings precision, empathy, and artistry to every treatment — combining years of experience with a passion for truly personalized care.
       </p>
-      
-      <a href="#all-specialists" class={`inline-flex items-center text-sm font-bold text-[#2b5d9e] mt-6 hover:opacity-80 transition-opacity ${team.length <= 1 ? 'hidden' : ''}`}>
-        View all specialists <span class="ml-2">→</span>
-      </a>
     </div>
+    <a href="#all-specialists" class={`inline-flex items-center text-sm font-bold text-[#2b5d9e] hover:opacity-80 transition-opacity shrink-0 ${team.length <= 1 ? 'hidden' : ''}`}>
+      View all specialists <span class="ml-2">→</span>
+    </a>
+  </div>
 
-    <div class={`flex items-center space-x-6 mt-16 lg:mt-32 ${team.length <= 1 ? 'hidden' : ''}`}>
-      <span class="text-sm font-bold text-[#294073]">
-        <span id="carousel-counter">01</span> <span class="text-slate-300 font-normal">/ {String(team.length).padStart(2, '0')}</span>
-      </span>
-      <div class="flex space-x-2">
-        <button id="slide-prev" class="w-10 h-10 rounded-full border border-slate-200 flex items-center justify-center text-slate-400 hover:border-slate-400 hover:text-[#294073] transition-colors cursor-pointer" aria-label="Previous specialist">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
-        </button>
-        <button id="slide-next" class="w-10 h-10 rounded-full border border-slate-200 flex items-center justify-center text-slate-400 hover:border-slate-400 hover:text-[#294073] transition-colors cursor-pointer" aria-label="Next specialist">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-        </button>
-      </div>
+  <div class={`flex items-center space-x-6 mb-6 ${team.length <= 1 ? 'hidden' : ''}`}>
+    <span class="text-sm font-bold text-[#294073]">
+      <span id="carousel-counter">01</span> <span class="text-slate-300 font-normal">/ {String(team.length).padStart(2, '0')}</span>
+    </span>
+    <div class="flex space-x-2">
+      <button id="slide-prev" class="w-10 h-10 rounded-full border border-slate-200 flex items-center justify-center text-slate-400 hover:border-slate-400 hover:text-[#294073] transition-colors cursor-pointer" aria-label="Previous specialist">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+      </button>
+      <button id="slide-next" class="w-10 h-10 rounded-full border border-slate-200 flex items-center justify-center text-slate-400 hover:border-slate-400 hover:text-[#294073] transition-colors cursor-pointer" aria-label="Next specialist">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+      </button>
     </div>
   </div>
 
-  <div class="lg:col-span-2 w-full relative">
+  <div class="w-full relative">
     {
       team.length === 1 ? (
         <div class="w-full bg-[#f8fafc] border border-slate-100 rounded-3xl shadow-xs overflow-hidden transition-all duration-300 hover:shadow-md grid grid-cols-1 md:grid-cols-12">
           <!-- Image Column (7 cols) -->
-          <div class="md:col-span-7 relative h-[420px] md:h-[520px] bg-slate-100">
+          <div class="md:col-span-5 relative h-[420px] md:h-auto md:min-h-[520px] bg-slate-100 overflow-hidden">
             {team[0].image ? (
               <img
                 src={team[0].image}
                 alt={team[0].name}
-                class="h-full w-full object-cover grayscale-[15%] transition-transform duration-300 hover:scale-103 pointer-events-none"
+                class="absolute inset-0 h-full w-full object-cover object-center pointer-events-none"
                 loading="lazy"
               />
             ) : (
@@ -83,7 +72,7 @@ const team = [
           </div>
 
           <!-- Details Column (5 cols) -->
-          <div class="md:col-span-5 p-8 md:p-10 flex flex-col justify-between">
+          <div class="md:col-span-7 p-8 md:p-10 flex flex-col justify-between">
             <div>
               <span class="text-[10px] font-extrabold uppercase tracking-widest text-[#2b5d9e]">Principal Specialist</span>
               <h3 class="text-[clamp(24px,2.8vw,32px)] font-extrabold text-[#294073] tracking-tight mt-1 mb-1.5 capitalize">
@@ -102,7 +91,7 @@ const team = [
                 <div class="flex items-start gap-3">
                   <span class="mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#58b3fa]/15 text-[#58b3fa] font-bold text-[10px] font-mono">✓</span>
                   <div>
-                    <h4 class="text-xs font-bold text-[#294073]">M.D.S. in Orthodontics</h4>
+                    <h4 class="text-xs font-bold text-[#294073]">P.G.D. in Orthodontics</h4>
                     <p class="text-[10px] text-slate-400 mt-0.5 leading-normal">Advanced specialization in jaw alignment</p>
                   </div>
                 </div>

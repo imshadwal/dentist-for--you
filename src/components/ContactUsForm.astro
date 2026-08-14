@@ -23,7 +23,7 @@
 
   <!-- Contact Form -->
   <div class="max-w-2xl mx-auto">
-    <form class="space-y-6" method="POST" action="/api/contact">
+    <form id="clinic-contact-form" class="space-y-6">
       <div class="grid grid-cols-2 gap-6 max-[620px]:grid-cols-1">
         <!-- Name -->
         <div class="flex flex-col">
@@ -66,7 +66,7 @@
             id="phone"
             name="phone"
             type="tel"
-            placeholder="+91 99350 27527"
+            placeholder="+91 99350 27027"
             class="px-4 py-3 rounded-lg border border-[#d6e6fb] bg-white text-heading placeholder:text-heading/50 transition-all duration-200 focus:outline-none focus:border-card-blue focus:ring-2 focus:ring-accent-blue/30"
           />
         </div>
@@ -156,3 +156,18 @@
     </p>
   </div>
 </section>
+
+<script>
+  const contactForm = document.getElementById("clinic-contact-form") as HTMLFormElement | null;
+  contactForm?.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const data = new FormData(contactForm);
+    const name = String(data.get("name") || "").trim();
+    const email = String(data.get("email") || "").trim();
+    const phone = String(data.get("phone") || "Not provided").trim();
+    const service = String(data.get("service") || "Not specified");
+    const message = String(data.get("message") || "").trim();
+    const text = `Hello, I would like to get in touch.\nName: ${name}\nEmail: ${email}\nPhone: ${phone}\nService: ${service}\nMessage: ${message}`;
+    window.open(`https://wa.me/919935027027?text=${encodeURIComponent(text)}`, "_blank");
+  });
+</script>

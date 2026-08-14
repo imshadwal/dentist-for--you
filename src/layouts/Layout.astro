@@ -12,6 +12,7 @@ const {
 
 import Footer from "../components/Footer.astro";
 import SiteHeader from "../components/SiteHeader.astro";
+import Analytics from "@vercel/analytics/astro";
 ---
 
 <!doctype html>
@@ -32,6 +33,7 @@ import SiteHeader from "../components/SiteHeader.astro";
     />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+    <Analytics />
   </head>
   <body>
     <!-- Beautiful, glowing gradient background canvas that matches the dentist-for-you page theme -->
