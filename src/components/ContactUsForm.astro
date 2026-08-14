@@ -1,159 +1,140 @@
 ---
-
+const fieldClass =
+  "mt-2 w-full rounded-xl border border-[#d6e6fb] bg-[#f8fbff] px-4 py-3 text-base font-semibold text-heading placeholder:text-muted focus:border-card-blue focus:outline-none focus:ring-2 focus:ring-accent-blue/30";
 ---
 
 <section
-  class="mx-auto w-full max-w-[1760px] px-4 sm:px-5 md:px-8 py-20 md:py-28"
+  class="mx-auto w-full max-w-[1760px] px-4 sm:px-5 md:px-8 py-8 md:py-10"
   id="contact-form-section"
   aria-labelledby="form-title"
 >
-  <div class="text-center mb-[clamp(48px,7vw,88px)]">
-    <p
-      class="eyebrow"
-    >
-      Reach Out
-    </p>
-    <h2
-      id="form-title"
-      class="mt-3 text-[clamp(32px,4vw,56px)] font-extrabold leading-[1.18] text-heading capitalize"
-    >
-      We're Just A Message Away
-    </h2>
-  </div>
-
-  <!-- Contact Form -->
-  <div class="max-w-2xl mx-auto">
-    <form id="clinic-contact-form" class="space-y-6">
-      <div class="grid grid-cols-2 gap-6 max-[620px]:grid-cols-1">
-        <!-- Name -->
-        <div class="flex flex-col">
-          <label for="name" class="text-base font-semibold text-heading mb-2">
-            Full Name *
-          </label>
-          <input
-            id="name"
-            name="name"
-            type="text"
-            required
-            placeholder="Your full name"
-            class="px-4 py-3 rounded-lg border border-[#d6e6fb] bg-white text-base text-heading placeholder:text-muted transition-all duration-200 focus:outline-none focus:border-card-blue focus:ring-2 focus:ring-accent-blue/30"
-          />
-        </div>
-
-        <!-- Email -->
-        <div class="flex flex-col">
-          <label for="email" class="text-base font-semibold text-heading mb-2">
-            Email Address *
-          </label>
-          <input
-            id="email"
-            name="email"
-            type="email"
-            required
-            placeholder="your@email.com"
-            class="px-4 py-3 rounded-lg border border-[#d6e6fb] bg-white text-base text-heading placeholder:text-muted transition-all duration-200 focus:outline-none focus:border-card-blue focus:ring-2 focus:ring-accent-blue/30"
-          />
-        </div>
-      </div>
-
-      <div class="grid grid-cols-2 gap-6 max-[620px]:grid-cols-1">
-        <!-- Phone -->
-        <div class="flex flex-col">
-          <label for="phone" class="text-base font-semibold text-heading mb-2">
-            Phone Number
-          </label>
-          <input
-            id="phone"
-            name="phone"
-            type="tel"
-            placeholder="+91 99350 27027"
-            class="px-4 py-3 rounded-lg border border-[#d6e6fb] bg-white text-base text-heading placeholder:text-muted transition-all duration-200 focus:outline-none focus:border-card-blue focus:ring-2 focus:ring-accent-blue/30"
-          />
-        </div>
-
-        <!-- Service Interest -->
-        <div class="flex flex-col">
-          <label for="service" class="text-base font-semibold text-heading mb-2">
-            Service Interest *
-          </label>
-          <select
-            id="service"
-            name="service"
-            required
-            class="px-4 py-3 rounded-lg border border-[#d6e6fb] bg-white text-base text-heading transition-all duration-200 focus:outline-none focus:border-card-blue focus:ring-2 focus:ring-accent-blue/30"
+  <div class="grid grid-cols-1 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] overflow-hidden rounded-[28px] border border-[#d6e6fb] bg-white shadow-[0_18px_40px_rgba(31,63,117,0.08)]">
+    <div class="relative flex min-h-[320px] flex-col justify-between overflow-hidden">
+      <img
+        class="absolute inset-0 h-full w-full object-cover"
+        src="/images/photoshoot/IMG_6774.jpg"
+        alt="Dentist for you clinic"
+        loading="lazy"
+      />
+      <div class="absolute inset-0 bg-linear-to-t from-card-blue via-card-blue/80 to-card-blue/45"></div>
+      <div class="relative z-10 flex h-full flex-col justify-between gap-10 p-8 sm:p-10 lg:p-12">
+        <div>
+          <p class="m-0 text-base font-semibold uppercase tracking-[0.14em]" style="color: #fff">
+            Get in touch
+          </p>
+          <h1
+            id="form-title"
+            class="mt-3 max-w-md text-[clamp(32px,3.6vw,48px)] font-extrabold leading-[1.15]"
+            style="color: #fff"
           >
-            <option value="">Select a service</option>
-            <option value="pain-relief">Pain Relief</option>
-            <option value="teeth-replacement">Teeth Replacement</option>
-            <option value="cosmetic">Cosmetic Dentistry</option>
-            <option value="preventive">Preventive Dentistry</option>
-            <option value="kids">Kids Dentistry</option>
-            <option value="other">Other</option>
-          </select>
+            Let’s start with a conversation
+          </h1>
+          <p class="mt-4 max-w-md text-lg leading-relaxed" style="color: #e8eef8">
+            Fill in the form and we’ll reply on WhatsApp. Or call if you’d rather talk now.
+          </p>
         </div>
-      </div>
 
-      <!-- Message -->
-      <div class="flex flex-col">
-        <label for="message" class="text-base font-semibold text-heading mb-2">
+        <ul class="m-0 flex list-none flex-col gap-3 p-0 text-base font-semibold" style="color: #fff">
+          <li>
+            <a class="hover:underline" href="tel:+919935027027" style="color: #fff">+91 99350 27027</a>
+          </li>
+          <li>
+            <a class="hover:underline" href="mailto:dentist4ushukla@gmail.com" style="color: #fff">
+              dentist4ushukla@gmail.com
+            </a>
+          </li>
+          <li>Mon–Sat: 10:30–2, 6–9 · Sun closed</li>
+          <li>Central Jail Road, opp. Varuna Garden, Varanasi</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="p-6 sm:p-8 lg:p-10">
+      <form id="clinic-contact-form" class="flex flex-col gap-5">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+          <label class="block text-base font-semibold text-heading" for="name">
+            Full name *
+            <input
+              id="name"
+              name="name"
+              type="text"
+              required
+              autocomplete="name"
+              placeholder="Your full name"
+              class={fieldClass}
+            />
+          </label>
+          <label class="block text-base font-semibold text-heading" for="email">
+            Email *
+            <input
+              id="email"
+              name="email"
+              type="email"
+              required
+              autocomplete="email"
+              placeholder="you@email.com"
+              class={fieldClass}
+            />
+          </label>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+          <label class="block text-base font-semibold text-heading" for="phone">
+            Phone
+            <input
+              id="phone"
+              name="phone"
+              type="tel"
+              autocomplete="tel"
+              placeholder="+91"
+              class={fieldClass}
+            />
+          </label>
+          <label class="relative block text-base font-semibold text-heading" for="service">
+            Service *
+            <select id="service" name="service" required class={`${fieldClass} appearance-none pr-10`}>
+              <option value="">Choose a treatment</option>
+              <option value="Pain Relief">Pain Relief</option>
+              <option value="Teeth Replacement">Teeth Replacement</option>
+              <option value="Cosmetic Dentistry">Cosmetic Dentistry</option>
+              <option value="Preventive Dentistry">Preventive Dentistry</option>
+              <option value="Kids Dentistry">Kids Dentistry</option>
+              <option value="Other">Other</option>
+            </select>
+          </label>
+        </div>
+
+        <label class="block text-base font-semibold text-heading" for="message">
           Message *
+          <textarea
+            id="message"
+            name="message"
+            required
+            rows="5"
+            placeholder="What would you like help with?"
+            class={`${fieldClass} resize-none font-sans`}
+          ></textarea>
         </label>
-        <textarea
-          id="message"
-          name="message"
-          required
-          rows="6"
-          placeholder="Tell us about your dental needs and how we can help..."
-          class="px-4 py-3 rounded-lg border border-[#d6e6fb] bg-white text-base text-heading placeholder:text-muted transition-all duration-200 focus:outline-none focus:border-card-blue focus:ring-2 focus:ring-accent-blue/30 resize-none font-sans"
-        ></textarea>
-      </div>
 
-      <!-- Checkbox -->
-      <div class="flex items-start gap-3">
-        <input
-          id="consent"
-          name="consent"
-          type="checkbox"
-          required
-          class="mt-1 rounded border-[#d6e6fb] cursor-pointer accent-card-blue"
-        />
-        <label for="consent" class="text-base text-body">
-          I agree to be contacted about my inquiry and consent to receiving
-          communications from Dentist for you.
+        <label class="flex items-start gap-3 text-base text-body" for="consent">
+          <input
+            id="consent"
+            name="consent"
+            type="checkbox"
+            required
+            class="mt-1 rounded border-[#d6e6fb] accent-card-blue"
+          />
+          I agree to be contacted about this inquiry by Dentist for you.
         </label>
-      </div>
 
-      <!-- Submit Button -->
-      <div class="flex gap-4 pt-4">
         <button
           type="submit"
-          class="flex-1 inline-flex min-h-14.5 items-center justify-center gap-3 rounded-full bg-linear-to-r from-accent-blue to-card-blue py-0 pr-7 pl-3 text-base font-extrabold text-white no-underline shadow-[0_18px_34px_rgba(43,93,158,0.26)] transition duration-200 hover:-translate-y-0.5 hover:shadow-[0_22px_42px_rgba(43,93,158,0.32)] max-[620px]:min-h-13 max-[620px]:text-base"
+          class="inline-flex min-h-14 items-center justify-center rounded-full bg-linear-to-r from-accent-blue to-card-blue px-7 text-base font-extrabold text-white border-0 cursor-pointer shadow-[0_18px_34px_rgba(43,93,158,0.26)] transition duration-200 hover:-translate-y-0.5"
         >
-          <span
-            class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/30 bg-white/20"
-            aria-hidden="true"
-          >
-            <svg
-              class="h-4.5 w-4.5"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <path
-                d="M5 12h14M12 5l7 7-7 7"
-                stroke-linecap="round"
-                stroke-linejoin="round"></path>
-            </svg>
-          </span>
-          Send Message
+          Send on WhatsApp
         </button>
-      </div>
-    </form>
-
-    <p class="mt-6 text-center text-base text-muted">
-      We'll get back to you within 24 hours. Your information is safe with us.
-    </p>
+      </form>
+    </div>
   </div>
 </section>
 

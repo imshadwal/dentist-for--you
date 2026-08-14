@@ -1,135 +1,75 @@
 ---
-const locations = [
-  {
-    name: "Varanasi Head Office",
-    address: "Central Jail Road, opp. Varuna Garden",
-    city: "Varanasi, UP, India",
-    phone: "+91 99350 27027",
-    email: "dentist4ushukla@gmail.com",
-    hours: [
-      "Mon–Sat Morning: 10:30 AM – 2:00 PM",
-      "Mon–Sat Evening: 6:00 PM – 9:00 PM",
-      "Sun: Closed"
-    ],
-    icon: "🏥",
-  },
-];
+const mapsUrl = "https://maps.app.goo.gl/42Bx53rT6SRn2Ko5A";
+const mapsEmbed =
+  "https://maps.google.com/maps?q=Central+Jail+Road+opp.+Varuna+Garden+Varanasi&z=16&output=embed";
 ---
 
 <section
-  class="mx-auto w-full max-w-[1760px] px-4 sm:px-5 md:px-8 py-20 md:py-28"
+  class="mx-auto w-full max-w-[1760px] px-4 sm:px-5 md:px-8 pt-8 pb-20 md:pt-10 md:pb-28"
   id="office-locations"
   aria-labelledby="locations-title"
 >
-  <div class="text-center mb-[clamp(48px,7vw,88px)]">
-    <p class="eyebrow">
-      Visit Us
-    </p>
-    <h2
-      id="locations-title"
-      class="mt-3 text-[clamp(32px,4vw,56px)] font-extrabold leading-[1.18] text-heading capitalize"
-    >
-      Our Office
-    </h2>
-  </div>
+  <div class="overflow-hidden rounded-[28px] border border-[#d6e6fb] bg-white shadow-[0_18px_40px_rgba(31,63,117,0.08)]">
+    <div class="grid grid-cols-1 lg:grid-cols-2 items-stretch">
+      <div class="flex flex-col justify-between gap-8 p-8 sm:p-10 lg:p-12">
+        <div>
+          <p class="eyebrow">Visit us</p>
+          <h2
+            id="locations-title"
+            class="mt-3 text-[clamp(32px,3.6vw,48px)] font-extrabold leading-[1.15] text-heading"
+          >
+            Our clinic
+          </h2>
+          <p class="mt-3 max-w-md text-lg leading-relaxed text-body">
+            One practice on Central Jail Road. Walk in during hours, or message before you come.
+          </p>
+        </div>
 
-  <!-- Locations Grid -->
-  <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
-    {
-      locations.map((location) => (
-        <article
-          class="group relative overflow-hidden rounded-2xl border border-[#d6e6fb] shadow-[0_12px_24px_rgba(31,63,117,0.12)]"
-        >
-          <!-- Background -->
-          <div
-            class="absolute inset-0 opacity-0 group-hover:opacity-5 bg-linear-to-br from-accent-blue to-card-blue transition-opacity duration-300"
-            aria-hidden="true"
-          ></div>
-
-          <!-- Content -->
-          <div class="relative z-1 p-[clamp(24px,3vw,40px)]">
-            <div class="flex items-start gap-3 mb-6">
-              <span class="text-4xl">{location.icon}</span>
-              <div>
-                <h3 class="text-[clamp(18px,1.8vw,22px)] font-extrabold text-heading">
-                  {location.name}
-                </h3>
-              </div>
-            </div>
-
-            <div class="space-y-4">
-              <!-- Address -->
-              <div class="flex items-start gap-3">
-                <svg class="h-5 w-5 text-card-blue mt-0.5 flex-shrink-0" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm3.5-9c.83 0 1.5-.67 1.5-1.5S16.33 8 15.5 8 14 8.67 14 9.5s.67 1.5 1.5 1.5z"/>
-                </svg>
-                <div>
-                  <p class="text-base font-semibold text-heading">{location.address}</p>
-                  <p class="text-base text-body">{location.city}</p>
-                </div>
-              </div>
-
-              <!-- Phone -->
-              <a href={`tel:${location.phone.replace(/\s/g, "")}`} class="flex items-start gap-3 group/link">
-                <svg class="h-5 w-5 text-card-blue mt-0.5 flex-shrink-0" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
-                </svg>
-                <div>
-                  <p class="text-base font-semibold text-heading group-hover/link:text-card-blue transition-colors">
-                    {location.phone}
-                  </p>
-                </div>
-              </a>
-
-              <!-- Email -->
-              <a href={`mailto:${location.email}`} class="flex items-start gap-3 group/link">
-                <svg class="h-5 w-5 text-card-blue mt-0.5 flex-shrink-0" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-                </svg>
-                <div>
-                  <p class="text-base font-semibold text-heading group-hover/link:text-card-blue transition-colors">
-                    {location.email}
-                  </p>
-                </div>
-              </a>
-
-              <!-- Hours -->
-              <div class="flex items-start gap-3 pt-2 border-t border-[#e8f0f8]">
-                <svg class="h-5 w-5 text-card-blue mt-0.5 flex-shrink-0" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M11.99 5C6.47 5 2 8.82 2 13.5S6.47 22 12 22s10-3.82 10-8.5S17.52 5 11.99 5zM12 20c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/>
-                </svg>
-                <div>
-                  {location.hours.map((hour) => (
-                    <p class="text-base text-body">{hour}</p>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            <!-- Direction Button -->
-            <a
-              href="https://maps.app.goo.gl/42Bx53rT6SRn2Ko5A"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="mt-6 inline-flex items-center gap-2 text-base font-semibold text-card-blue hover:text-accent-blue transition-colors group"
-            >
-              Get directions
-              <svg class="h-4 w-4 transform transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" />
-              </svg>
-            </a>
+        <dl class="m-0 grid gap-5 text-base">
+          <div>
+            <dt class="font-bold text-card-blue">Address</dt>
+            <dd class="mt-1 font-semibold text-heading">
+              Central Jail Road, opp. Varuna Garden<br />Varanasi
+            </dd>
           </div>
-        </article>
-      ))
-    }
-    <div class="overflow-hidden rounded-2xl border border-[#d6e6fb] shadow-[0_12px_24px_rgba(31,63,117,0.12)] min-h-[320px]">
-      <iframe
-        title="Dentist for you on Google Maps"
-        class="h-full w-full min-h-[320px] lg:min-h-full border-0"
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"
-        src="https://maps.google.com/maps?q=Central+Jail+Road+opp.+Varuna+Garden+Varanasi&z=16&output=embed"
-      ></iframe>
+          <div>
+            <dt class="font-bold text-card-blue">Hours</dt>
+            <dd class="mt-1 font-semibold text-heading">
+              Mon–Sat: 10:30–2, 6–9<br />Sun: Closed
+            </dd>
+          </div>
+          <div>
+            <dt class="font-bold text-card-blue">Contact</dt>
+            <dd class="mt-1 flex flex-col gap-1 font-semibold text-heading">
+              <a class="text-heading no-underline hover:text-card-blue" href="tel:+919935027027">
+                +91 99350 27027
+              </a>
+              <a class="text-heading no-underline hover:text-card-blue" href="mailto:dentist4ushukla@gmail.com">
+                dentist4ushukla@gmail.com
+              </a>
+            </dd>
+          </div>
+        </dl>
+
+        <a
+          href={mapsUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex min-h-12 w-fit items-center justify-center rounded-full bg-card-blue px-6 text-base font-extrabold text-white no-underline hover:brightness-110"
+        >
+          Open in Maps
+        </a>
+      </div>
+
+      <div class="min-h-[280px] lg:min-h-[480px] border-t lg:border-t-0 lg:border-l border-[#d6e6fb]">
+        <iframe
+          title="Dentist for you on Google Maps"
+          class="h-full w-full min-h-[280px] lg:min-h-full border-0"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          src={mapsEmbed}
+        ></iframe>
+      </div>
     </div>
   </div>
 </section>

@@ -85,19 +85,19 @@ h6 {
 }
 
 main {
-	padding-top: 148px;
+	padding-top: 128px;
 }
 
 main section[id] {
-	scroll-margin-top: 148px;
+	scroll-margin-top: 128px;
 }
 
 @media (max-width: 760px) {
 	main {
-		padding-top: 132px;
+		padding-top: 112px;
 	}
 
 	main section[id] {
-		scroll-margin-top: 132px;
+		scroll-margin-top: 112px;
 	}
 }
