@@ -88,102 +88,62 @@ const defaultTab = testimonials[0];
   aria-labelledby="testimonials-title"
   data-testimonials
 >
-  <div class="text-center">
-    <p
-      class="eyebrow"
-    >
-      Testimonials
-    </p>
-    <h2
-      id="testimonials-title"
-      class="mt-3 text-[clamp(32px,4.2vw,56px)] font-extrabold leading-[1.18] text-heading capitalize"
-    >
-      Real Stories. Real Smiles.
-    </h2>
-    <p
-      class="mx-auto mt-4 max-w-180 text-[clamp(17px,1.2vw,20px)] leading-relaxed text-body"
-    >
-      Nothing speaks louder than the words of those who've experienced true,
-      visible transformation firsthand.
-    </p>
-  </div>
-
-  <div
-    class="mt-[clamp(18px,3vw,34px)] flex flex-wrap justify-center gap-[clamp(16px,3.4vw,44px)] border-b border-[#d6e6fb] pb-4 text-base font-semibold"
-    role="tablist"
-    aria-label="Testimonial categories"
-  >
-    {
-      testimonials.map((tab, index) => (
-        <button
-          type="button"
-          role="tab"
-          data-tab-trigger
-          data-tab-index={index}
-          aria-controls="testimonial-panel"
-          aria-selected={index === 0 ? "true" : "false"}
-          tabindex={index === 0 ? "0" : "-1"}
-          class={`relative border-b-2 pb-2 transition duration-200 ${
-            index === 0
-              ? "border-card-blue text-card-blue"
-              : "border-transparent text-muted hover:text-heading"
-          }`}
-        >
-          {tab.tab}
-        </button>
-      ))
-    }
-  </div>
-
-  <div
-    class="mt-[clamp(24px,4.5vw,60px)] grid grid-cols-[minmax(220px,0.95fr)_minmax(280px,1.1fr)_minmax(220px,0.9fr)] gap-[clamp(18px,2.6vw,40px)] items-start max-[1100px]:grid-cols-1 max-[1100px]:gap-8"
-  >
-    <div role="tabpanel" id="testimonial-panel" data-tab-panel>
-      <h3
-        class="m-0 text-[clamp(22px,2.4vw,28px)] font-extrabold leading-[1.08] text-heading"
+  <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8">
+    <div class="max-w-xl">
+      <p class="eyebrow">Testimonials</p>
+      <h2
+        id="testimonials-title"
+        class="mt-3 text-[clamp(32px,4.2vw,56px)] font-extrabold leading-[1.18] text-heading"
       >
-        <span data-tab-title>{defaultTab.title}</span>
-        <span class="block" data-tab-subtitle>{defaultTab.subtitle}</span>
-      </h3>
-      <p
-        class="mt-4 max-w-170 text-base leading-relaxed text-body"
-        data-tab-summary
-      >
-        {defaultTab.summary}
+        Real stories. Real smiles.
+      </h2>
+      <p class="mt-4 text-lg leading-relaxed text-body">
+        Visible change, told by the people who sat in the chair.
       </p>
-
-      <div class="mt-6">
-        <p class="m-0 text-base font-bold text-heading">What we did</p>
-        <ul
-          class="mt-3 space-y-2 text-base leading-relaxed text-body"
-          data-tab-list
-        >
-          {
-            defaultTab.highlights.map((item) => (
-              <li class="flex items-start gap-2">
-                <span
-                  class="mt-2 h-1.5 w-1.5 rounded-full bg-card-blue"
-                  aria-hidden="true"
-                />
-                <span>{item}</span>
-              </li>
-            ))
-          }
-        </ul>
-      </div>
     </div>
 
     <div
-      class="compare-slider relative isolate w-full overflow-hidden rounded-2xl border border-[#d6e6fb] bg-[#f4f7fd] shadow-[0_24px_44px_rgba(31,63,117,0.18)]"
+      class="flex flex-wrap gap-2"
+      role="tablist"
+      aria-label="Testimonial categories"
+    >
+      {
+        testimonials.map((tab, index) => (
+          <button
+            type="button"
+            role="tab"
+            data-tab-trigger
+            data-tab-index={index}
+            aria-controls="testimonial-panel"
+            aria-selected={index === 0 ? "true" : "false"}
+            tabindex={index === 0 ? "0" : "-1"}
+            class={`rounded-full border px-4 py-2 text-base font-semibold transition duration-200 ${
+              index === 0
+                ? "border-card-blue bg-card-blue text-white"
+                : "border-[#d6e6fb] bg-white text-body hover:border-card-blue hover:text-heading"
+            }`}
+          >
+            {tab.tab}
+          </button>
+        ))
+      }
+    </div>
+  </div>
+
+  <div
+    class="mt-10 grid grid-cols-1 lg:grid-cols-[minmax(0,1.15fr)_minmax(280px,0.85fr)] overflow-hidden rounded-[28px] border border-[#d6e6fb] bg-white shadow-[0_18px_40px_rgba(31,63,117,0.08)]"
+  >
+    <div
+      class="compare-slider relative isolate min-h-[280px] w-full overflow-hidden bg-[#e8f1fb] lg:min-h-[520px]"
       data-compare
     >
       <div
-        class="absolute left-4 top-4 z-10 rounded-full bg-white/85 px-3 py-1 text-base font-bold text-heading shadow-[0_12px_24px_rgba(21,52,96,0.16)]"
+        class="absolute left-4 top-4 z-10 rounded-full bg-white px-3 py-1 text-base font-bold text-heading shadow-sm"
       >
         Before
       </div>
       <div
-        class="absolute right-4 top-4 z-10 rounded-full bg-white/85 px-3 py-1 text-base font-bold text-heading shadow-[0_12px_24px_rgba(21,52,96,0.16)]"
+        class="absolute right-4 top-4 z-10 rounded-full bg-white px-3 py-1 text-base font-bold text-heading shadow-sm"
       >
         After
       </div>
@@ -203,10 +163,9 @@ const defaultTab = testimonials[0];
         loading="lazy"
       />
 
-      <div class="compare-divider absolute inset-y-0 z-10 w-0.5 bg-accent-blue">
-      </div>
+      <div class="compare-divider absolute inset-y-0 z-10 w-0.5 bg-white"></div>
       <div
-        class="compare-handle absolute top-1/2 z-20 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 text-base font-bold text-heading shadow-[0_18px_34px_rgba(18,44,88,0.25)] backdrop-blur-sm"
+        class="compare-handle absolute top-1/2 z-20 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white text-sm font-extrabold text-heading shadow-[0_10px_24px_rgba(41,64,115,0.28)]"
         aria-hidden="true"
       >
         Drag
@@ -221,26 +180,61 @@ const defaultTab = testimonials[0];
         data-compare-range
         aria-label="Drag to compare"
       />
-      <div class="pointer-events-none aspect-4/3 w-full"></div>
+      <div class="pointer-events-none aspect-4/3 w-full lg:hidden"></div>
     </div>
 
-    <figure
-      class="m-0 w-full max-w-[320px] justify-self-end rounded-2xl border border-[#d6e6fb] bg-[#f4f7fd] p-3 shadow-[0_18px_36px_rgba(31,63,117,0.16)] max-[1100px]:justify-self-start"
+    <div
+      class="flex flex-col justify-center gap-6 p-6 sm:p-8 lg:p-10"
+      role="tabpanel"
+      id="testimonial-panel"
+      data-tab-panel
     >
-      <img
-        class="h-55 w-full rounded-xl object-cover"
-        src={defaultTab.portrait}
-        alt={defaultTab.portraitAlt}
-        data-portrait-image
-        loading="lazy"
-      />
-      <figcaption
-        class="mt-4 text-base leading-[1.45] text-body"
+      <div class="flex items-center gap-4">
+        <img
+          class="h-16 w-16 shrink-0 rounded-full object-cover ring-2 ring-[#d6e6fb]"
+          src={defaultTab.portrait}
+          alt={defaultTab.portraitAlt}
+          data-portrait-image
+          loading="lazy"
+        />
+        <h3 class="m-0 text-[clamp(22px,2.2vw,30px)] font-extrabold leading-[1.15] text-heading">
+          <span data-tab-title>{defaultTab.title}</span>
+          <span class="block" data-tab-subtitle>{defaultTab.subtitle}</span>
+        </h3>
+      </div>
+
+      <p class="m-0 text-lg leading-relaxed text-body" data-tab-summary>
+        {defaultTab.summary}
+      </p>
+
+      <div>
+        <p class="m-0 text-base font-bold uppercase tracking-[0.12em] text-card-blue">
+          What we did
+        </p>
+        <ul class="mt-3 flex flex-col gap-2.5" data-tab-list>
+          {
+            defaultTab.highlights.map((item) => (
+              <li class="flex items-start gap-3 text-base leading-relaxed text-heading">
+                <span
+                  class="mt-1.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#2b5d9e] text-[11px] font-bold text-white"
+                  aria-hidden="true"
+                >
+                  ✓
+                </span>
+                <span>{item}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <p
+        class="m-0 border-t border-[#d6e6fb] pt-5 text-base leading-relaxed text-body"
         data-portrait-caption
       >
         {defaultTab.caption}
-      </figcaption>
-    </figure>
+      </p>
+    </div>
   </div>
   <script
     type="application/json"
@@ -297,8 +291,14 @@ const defaultTab = testimonials[0];
     );
     const panelEl = section.querySelector<HTMLElement>("[data-tab-panel]");
 
-    const activeClasses = ["border-card-blue", "text-card-blue"];
-    const inactiveClasses = ["border-transparent", "text-muted"];
+    const activeClasses = ["border-card-blue", "bg-card-blue", "text-white"];
+    const inactiveClasses = [
+      "border-[#d6e6fb]",
+      "bg-white",
+      "text-body",
+      "hover:border-card-blue",
+      "hover:text-heading",
+    ];
 
     const renderHighlights = (items: string[]) => {
       if (!listEl) {
@@ -309,16 +309,19 @@ const defaultTab = testimonials[0];
 
       items.forEach((item) => {
         const listItem = document.createElement("li");
-        listItem.className = "flex items-start gap-2";
+        listItem.className =
+          "flex items-start gap-3 text-base leading-relaxed text-heading";
 
-        const dot = document.createElement("span");
-        dot.className = "mt-2 h-1.5 w-1.5 rounded-full bg-card-blue";
-        dot.setAttribute("aria-hidden", "true");
+        const mark = document.createElement("span");
+        mark.className =
+          "mt-1.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#2b5d9e] text-[11px] font-bold text-white";
+        mark.setAttribute("aria-hidden", "true");
+        mark.textContent = "✓";
 
         const text = document.createElement("span");
         text.textContent = item;
 
-        listItem.append(dot, text);
+        listItem.append(mark, text);
         listEl.appendChild(listItem);
       });
     };
