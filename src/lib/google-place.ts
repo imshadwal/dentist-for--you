@@ -11,3 +11,5 @@ export const GOOGLE_WRITE_REVIEW_URL = `https://search.google.com/local/writerev
 
 export const GOOGLE_MAPS_EMBED_URL =
   "https://maps.google.com/maps?q=Dentist+For+You+Central+Jail+Road+opp.+Varuna+Garden+Varanasi&z=16&output=embed";
+
+export const FEATURABLE_WIDGET_ID = "8bf7575c-f8ef-4fa1-8eb7-4c4439b6f87c";

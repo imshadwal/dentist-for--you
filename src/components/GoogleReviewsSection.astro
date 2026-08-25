@@ -1,13 +1,15 @@
 ---
 import GoogleReviewsWidget from "./GoogleReviewsWidget";
 import {
+  FEATURABLE_WIDGET_ID,
   GOOGLE_MAPS_EMBED_URL,
   GOOGLE_MAPS_SHARE_URL,
   GOOGLE_REVIEWS_URL,
   GOOGLE_WRITE_REVIEW_URL,
 } from "../lib/google-place";
 
-const featurableId = (import.meta.env.PUBLIC_FEATURABLE_WIDGET_ID ?? "").trim();
+const featurableId =
+  (import.meta.env.PUBLIC_FEATURABLE_WIDGET_ID ?? "").trim() || FEATURABLE_WIDGET_ID;
 ---
 
 <section
