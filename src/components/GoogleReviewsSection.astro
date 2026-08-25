@@ -13,7 +13,7 @@ const featurableId =
 ---
 
 <section
-  class="mx-auto w-full max-w-[1760px] px-4 sm:px-5 md:px-8 py-20 md:py-28"
+  class="mx-auto w-full max-w-[1760px] overflow-x-hidden px-4 sm:px-5 md:px-8 py-20 md:py-28"
   id="google-reviews"
   aria-labelledby="google-reviews-title"
 >
@@ -32,12 +32,12 @@ const featurableId =
       </p>
     </div>
 
-    <div class="flex flex-wrap items-center gap-3">
+    <div class="flex w-full min-w-0 flex-wrap items-center gap-3">
       <a
         href={GOOGLE_WRITE_REVIEW_URL}
         target="_blank"
         rel="noopener noreferrer"
-        class="inline-flex min-h-12 items-center justify-center rounded-full bg-card-blue px-6 text-base font-extrabold text-white no-underline hover:brightness-110"
+        class="inline-flex min-h-12 w-full items-center justify-center rounded-full bg-card-blue px-6 text-base font-extrabold text-white no-underline hover:brightness-110 sm:w-auto"
       >
         Write a Google review
       </a>
@@ -45,7 +45,7 @@ const featurableId =
         href={GOOGLE_REVIEWS_URL}
         target="_blank"
         rel="noopener noreferrer"
-        class="inline-flex min-h-12 items-center justify-center rounded-full border border-[#d6e6fb] bg-white px-6 text-base font-extrabold text-heading no-underline hover:border-card-blue"
+        class="inline-flex min-h-12 w-full items-center justify-center rounded-full border border-[#d6e6fb] bg-white px-6 text-base font-extrabold text-heading no-underline hover:border-card-blue sm:w-auto"
       >
         See all reviews
       </a>
@@ -53,9 +53,9 @@ const featurableId =
   </div>
 
   <div
-    class="mt-10 grid grid-cols-1 xl:grid-cols-[minmax(280px,0.72fr)_minmax(0,1.28fr)] overflow-hidden rounded-[28px] border border-[#d6e6fb] bg-white shadow-[0_18px_40px_rgba(31,63,117,0.08)]"
+    class="mt-10 grid min-w-0 grid-cols-1 overflow-hidden rounded-[28px] border border-[#d6e6fb] bg-white shadow-[0_18px_40px_rgba(31,63,117,0.08)] xl:grid-cols-[minmax(0,0.72fr)_minmax(0,1.28fr)]"
   >
-    <div class="flex items-center justify-center bg-[#f4f8fd] p-6 sm:p-8 google-reviews-badge">
+    <div class="flex min-w-0 items-center justify-center bg-[#f4f8fd] p-6 sm:p-8 google-reviews-badge">
       {
         featurableId ? (
           <GoogleReviewsWidget client:visible featurableId={featurableId} layout="badge" />
@@ -70,10 +70,10 @@ const featurableId =
       }
     </div>
 
-    <div class="min-h-[280px] border-t xl:border-t-0 xl:border-l border-[#d6e6fb]">
+    <div class="min-h-[240px] min-w-0 overflow-hidden border-t xl:border-t-0 xl:border-l border-[#d6e6fb] xl:min-h-[420px]">
       <iframe
         title="Dentist For You on Google Maps"
-        class="h-full w-full min-h-[280px] xl:min-h-[420px] border-0"
+        class="block h-full w-full min-h-[240px] max-w-full min-w-0 border-0 xl:min-h-[420px]"
         loading="lazy"
         referrerpolicy="no-referrer-when-downgrade"
         src={GOOGLE_MAPS_EMBED_URL}
@@ -83,7 +83,7 @@ const featurableId =
 
   {
     featurableId ? (
-      <div class="mt-8 pb-4 md:pb-0 google-reviews-carousel">
+      <div class="mt-8 min-w-0 max-w-full overflow-x-hidden pb-4 md:pb-0 google-reviews-carousel">
         <GoogleReviewsWidget client:visible featurableId={featurableId} layout="carousel" />
       </div>
     ) : null
@@ -104,6 +104,14 @@ const featurableId =
 </section>
 
 <style is:global>
+  #google-reviews {
+    max-width: 100%;
+  }
+
+  #google-reviews iframe {
+    max-width: 100% !important;
+  }
+
   #google-reviews .badge__container,
   #google-reviews .carousel__card {
     border: 1px solid #d6e6fb !important;
@@ -129,7 +137,8 @@ const featurableId =
   }
 
   #google-reviews .google-reviews-carousel {
-    overflow: hidden;
+    overflow-x: hidden;
+    max-width: 100%;
   }
 
   #google-reviews .google-reviews-carousel .carousel {
@@ -139,6 +148,7 @@ const featurableId =
 
   #google-reviews .google-reviews-carousel .slick-list {
     overflow: hidden;
+    max-width: 100%;
   }
 
   #google-reviews .google-reviews-carousel .slick-track {
