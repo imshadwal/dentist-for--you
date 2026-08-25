@@ -62,6 +62,7 @@ export default function GoogleReviewsWidget({ featurableId, layout }: Props) {
       carouselAutoplay
       carouselSpeed={4500}
       maxItems={maxItems}
+      showDots={false}
       hideEmptyReviews
       logoVariant="icon"
     />

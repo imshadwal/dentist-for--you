@@ -83,7 +83,7 @@ const featurableId =
 
   {
     featurableId ? (
-      <div class="mt-8 google-reviews-carousel">
+      <div class="mt-8 pb-4 md:pb-0 google-reviews-carousel">
         <GoogleReviewsWidget client:visible featurableId={featurableId} layout="carousel" />
       </div>
     ) : null
@@ -134,7 +134,7 @@ const featurableId =
 
   #google-reviews .google-reviews-carousel .carousel {
     position: relative;
-    padding: 0 2.75rem 2.75rem;
+    padding: 0 3rem 0.5rem;
   }
 
   #google-reviews .google-reviews-carousel .slick-list {
@@ -172,6 +172,8 @@ const featurableId =
     color: #fff !important;
     border: none !important;
     z-index: 2;
+    width: 2.5rem !important;
+    height: 2.5rem !important;
   }
 
   #google-reviews .carousel__btn--left {
@@ -182,13 +184,17 @@ const featurableId =
     right: 0 !important;
   }
 
-  #google-reviews .slick-dots > li.slick-active > button::before {
-    color: #2b5d9e !important;
+  #google-reviews .slick-dots {
+    display: none !important;
   }
 
   @media (max-width: 767px) {
+    #google-reviews .google-reviews-carousel {
+      margin-top: 1.5rem;
+    }
+
     #google-reviews .google-reviews-carousel .carousel {
-      padding: 0 2.5rem 2.5rem;
+      padding: 0 0 0.25rem;
     }
 
     #google-reviews .google-reviews-carousel .slick-slide {
@@ -197,6 +203,19 @@ const featurableId =
 
     #google-reviews .google-reviews-carousel .slick-slide > div {
       padding: 0;
+    }
+
+    #google-reviews .carousel__btn {
+      width: 2.25rem !important;
+      height: 2.25rem !important;
+    }
+
+    #google-reviews .carousel__btn--left {
+      left: 0.35rem !important;
+    }
+
+    #google-reviews .carousel__btn--right {
+      right: 0.35rem !important;
     }
   }
 </style>
