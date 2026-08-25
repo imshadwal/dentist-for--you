@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { ReactGoogleReviews } from "react-google-reviews";
 import "react-google-reviews/dist/index.css";
 
@@ -6,7 +7,32 @@ type Props = {
   layout: "badge" | "carousel";
 };
 
+function useCarouselItems() {
+  const [maxItems, setMaxItems] = useState(1);
+
+  useEffect(() => {
+    const update = () => {
+      const width = window.innerWidth;
+      if (width >= 1100) {
+        setMaxItems(3);
+      } else if (width >= 768) {
+        setMaxItems(2);
+      } else {
+        setMaxItems(1);
+      }
+    };
+
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
+
+  return maxItems;
+}
+
 export default function GoogleReviewsWidget({ featurableId, layout }: Props) {
+  const maxItems = useCarouselItems();
+
   if (layout === "badge") {
     return (
       <ReactGoogleReviews
@@ -24,6 +50,7 @@ export default function GoogleReviewsWidget({ featurableId, layout }: Props) {
 
   return (
     <ReactGoogleReviews
+      key={maxItems}
       layout="carousel"
       featurableId={featurableId}
       widgetVersion="v2"
@@ -34,7 +61,7 @@ export default function GoogleReviewsWidget({ featurableId, layout }: Props) {
       maxCharacters={220}
       carouselAutoplay
       carouselSpeed={4500}
-      maxItems={3}
+      maxItems={maxItems}
       hideEmptyReviews
       logoVariant="icon"
     />

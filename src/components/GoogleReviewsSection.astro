@@ -115,6 +115,7 @@ const featurableId =
 
   #google-reviews .badge__container {
     width: 100%;
+    max-width: 100%;
     padding: 1.5rem !important;
   }
 
@@ -127,13 +128,75 @@ const featurableId =
     color: #2b5d9e !important;
   }
 
+  #google-reviews .google-reviews-carousel {
+    overflow: hidden;
+  }
+
+  #google-reviews .google-reviews-carousel .carousel {
+    position: relative;
+    padding: 0 2.75rem 2.75rem;
+  }
+
+  #google-reviews .google-reviews-carousel .slick-list {
+    overflow: hidden;
+  }
+
+  #google-reviews .google-reviews-carousel .slick-track {
+    display: flex !important;
+    align-items: stretch;
+  }
+
+  #google-reviews .google-reviews-carousel .slick-slide {
+    float: none !important;
+    height: auto !important;
+    flex-shrink: 0 !important;
+  }
+
+  #google-reviews .google-reviews-carousel .slick-slide > div {
+    height: 100%;
+    min-width: 0;
+    padding: 0 8px;
+    box-sizing: border-box;
+  }
+
+  #google-reviews .google-reviews-carousel .carousel__card {
+    height: 100%;
+    min-width: 0;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow-wrap: break-word;
+  }
+
   #google-reviews .carousel__btn {
     background: #2b5d9e !important;
     color: #fff !important;
     border: none !important;
+    z-index: 2;
+  }
+
+  #google-reviews .carousel__btn--left {
+    left: 0 !important;
+  }
+
+  #google-reviews .carousel__btn--right {
+    right: 0 !important;
   }
 
   #google-reviews .slick-dots > li.slick-active > button::before {
     color: #2b5d9e !important;
+  }
+
+  @media (max-width: 767px) {
+    #google-reviews .google-reviews-carousel .carousel {
+      padding: 0 2.5rem 2.5rem;
+    }
+
+    #google-reviews .google-reviews-carousel .slick-slide {
+      width: 100% !important;
+    }
+
+    #google-reviews .google-reviews-carousel .slick-slide > div {
+      padding: 0;
+    }
   }
 </style>
