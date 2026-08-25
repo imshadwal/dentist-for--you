@@ -1,0 +1,137 @@
+---
+import GoogleReviewsWidget from "./GoogleReviewsWidget";
+import {
+  GOOGLE_MAPS_EMBED_URL,
+  GOOGLE_MAPS_SHARE_URL,
+  GOOGLE_REVIEWS_URL,
+  GOOGLE_WRITE_REVIEW_URL,
+} from "../lib/google-place";
+
+const featurableId = (import.meta.env.PUBLIC_FEATURABLE_WIDGET_ID ?? "").trim();
+---
+
+<section
+  class="mx-auto w-full max-w-[1760px] px-4 sm:px-5 md:px-8 py-20 md:py-28"
+  id="google-reviews"
+  aria-labelledby="google-reviews-title"
+>
+  <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8">
+    <div class="max-w-xl">
+      <p class="eyebrow">Google reviews</p>
+      <h2
+        id="google-reviews-title"
+        class="mt-3 text-[clamp(32px,4.2vw,56px)] font-extrabold leading-[1.18] text-heading"
+      >
+        Live from Google Maps
+      </h2>
+      <p class="mt-4 text-lg leading-relaxed text-body">
+        Honest patient feedback from our Google listing — updated as new reviews
+        arrive.
+      </p>
+    </div>
+
+    <div class="flex flex-wrap items-center gap-3">
+      <a
+        href={GOOGLE_WRITE_REVIEW_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex min-h-12 items-center justify-center rounded-full bg-card-blue px-6 text-base font-extrabold text-white no-underline hover:brightness-110"
+      >
+        Write a Google review
+      </a>
+      <a
+        href={GOOGLE_REVIEWS_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex min-h-12 items-center justify-center rounded-full border border-[#d6e6fb] bg-white px-6 text-base font-extrabold text-heading no-underline hover:border-card-blue"
+      >
+        See all reviews
+      </a>
+    </div>
+  </div>
+
+  <div
+    class="mt-10 grid grid-cols-1 xl:grid-cols-[minmax(280px,0.72fr)_minmax(0,1.28fr)] overflow-hidden rounded-[28px] border border-[#d6e6fb] bg-white shadow-[0_18px_40px_rgba(31,63,117,0.08)]"
+  >
+    <div class="flex items-center justify-center bg-[#f4f8fd] p-6 sm:p-8 google-reviews-badge">
+      {
+        featurableId ? (
+          <GoogleReviewsWidget client:visible featurableId={featurableId} layout="badge" />
+        ) : (
+          <div class="text-center">
+            <p class="m-0 text-lg font-extrabold text-heading">Google reviews</p>
+            <p class="mt-2 text-base leading-relaxed text-body">
+              Open our listing to read live comments, or leave one after your visit.
+            </p>
+          </div>
+        )
+      }
+    </div>
+
+    <div class="min-h-[280px] border-t xl:border-t-0 xl:border-l border-[#d6e6fb]">
+      <iframe
+        title="Dentist For You on Google Maps"
+        class="h-full w-full min-h-[280px] xl:min-h-[420px] border-0"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        src={GOOGLE_MAPS_EMBED_URL}
+      ></iframe>
+    </div>
+  </div>
+
+  {
+    featurableId ? (
+      <div class="mt-8 google-reviews-carousel">
+        <GoogleReviewsWidget client:visible featurableId={featurableId} layout="carousel" />
+      </div>
+    ) : null
+  }
+
+  <p class="mt-5 text-base text-body">
+    Review content is provided by
+    <a
+      class="font-semibold text-card-blue no-underline hover:underline"
+      href={GOOGLE_MAPS_SHARE_URL}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Google
+    </a>
+    and shown unedited.
+  </p>
+</section>
+
+<style is:global>
+  #google-reviews .badge__container,
+  #google-reviews .carousel__card {
+    border: 1px solid #d6e6fb !important;
+    border-radius: 28px !important;
+    box-shadow: 0 18px 40px rgba(31, 63, 117, 0.08) !important;
+    background: #fff !important;
+    font-family: inherit !important;
+  }
+
+  #google-reviews .badge__container {
+    width: 100%;
+    padding: 1.5rem !important;
+  }
+
+  #google-reviews .badge__rating {
+    color: #294073 !important;
+  }
+
+  #google-reviews .badge__label,
+  #google-reviews .badge__link {
+    color: #2b5d9e !important;
+  }
+
+  #google-reviews .carousel__btn {
+    background: #2b5d9e !important;
+    color: #fff !important;
+    border: none !important;
+  }
+
+  #google-reviews .slick-dots > li.slick-active > button::before {
+    color: #2b5d9e !important;
+  }
+</style>
