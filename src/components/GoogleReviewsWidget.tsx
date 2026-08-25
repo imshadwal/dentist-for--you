@@ -112,7 +112,7 @@ function ReviewsCarousel({ reviews }: { reviews: ReviewCard[] }) {
 
     const timer = window.setInterval(() => {
       setIndex((current) => (current + 1) % reviews.length);
-    }, 4500);
+    }, 2500);
     return () => window.clearInterval(timer);
   }, [paused, reviews.length, step]);
 
