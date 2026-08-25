@@ -79,6 +79,7 @@ function GoogleGLogo() {
 function ReviewsCarousel({ reviews }: { reviews: ReviewCard[] }) {
   const [index, setIndex] = useState(0);
   const [visible, setVisible] = useState(1);
+  const [paused, setPaused] = useState(false);
 
   useEffect(() => {
     const update = () => {
@@ -100,19 +101,39 @@ function ReviewsCarousel({ reviews }: { reviews: ReviewCard[] }) {
     });
   }, [reviews.length, visible]);
 
-  if (reviews.length === 0) {
-    return null;
-  }
-
-  const step = Math.min(visible, reviews.length);
+  const step = Math.min(visible, reviews.length || 1);
   const go = (direction: -1 | 1) => {
     setIndex((current) => (current + direction + reviews.length) % reviews.length);
   };
 
+  useEffect(() => {
+    if (paused || reviews.length <= step) return undefined;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return undefined;
+
+    const timer = window.setInterval(() => {
+      setIndex((current) => (current + 1) % reviews.length);
+    }, 4500);
+    return () => window.clearInterval(timer);
+  }, [paused, reviews.length, step]);
+
+  if (reviews.length === 0) {
+    return null;
+  }
+
   const cards = Array.from({ length: step }, (_, offset) => reviews[(index + offset) % reviews.length]);
 
   return (
-    <div className="google-reviews-pager">
+    <div
+      className="google-reviews-pager"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+      onFocusCapture={() => setPaused(true)}
+      onBlurCapture={(event) => {
+        if (!event.currentTarget.contains(event.relatedTarget as Node | null)) {
+          setPaused(false);
+        }
+      }}
+    >
       <div className={`grid gap-4 ${step === 3 ? "grid-cols-3" : step === 2 ? "grid-cols-2" : "grid-cols-1"}`}>
         {cards.map((review) => (
           <article
