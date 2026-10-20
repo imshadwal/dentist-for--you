@@ -91,11 +91,20 @@ const goals = [
           id="calc-jaw-image"
           src="/images/treatment_calculator/implants.png"
           alt="Treatment preview"
-          class="h-full max-h-[460px] w-full cursor-pointer object-contain p-3 sm:p-4 transition-[filter,transform] duration-500"
+          class="h-full max-h-[460px] w-full cursor-pointer object-contain p-3 sm:p-4 opacity-0 transition-[filter,opacity] duration-300"
         />
+        <div
+          id="calc-preview-loader"
+          class="absolute inset-0 flex items-center justify-center bg-white"
+          aria-hidden="true"
+        >
+          <div
+            class="h-10 w-10 animate-spin rounded-full border-[3px] border-[#d6e6fb] border-t-[#2b5d9e]"
+          ></div>
+        </div>
         <p
           id="calc-preview-empty"
-          class="absolute inset-0 hidden items-center justify-center text-center text-base font-semibold text-body"
+          class="absolute inset-0 hidden items-center justify-center text-center text-base font-semibold text-body bg-white"
         >
           Preview coming soon
         </p>
@@ -150,6 +159,7 @@ const goals = [
     const timeEl = calculator.querySelector("#calc-time") as HTMLElement;
     const jawImage = calculator.querySelector("#calc-jaw-image") as HTMLImageElement;
     const previewEmpty = calculator.querySelector("#calc-preview-empty") as HTMLElement;
+    const previewLoader = calculator.querySelector("#calc-preview-loader") as HTMLElement;
     const highlightToggle = calculator.querySelector("#calc-highlight-toggle") as HTMLInputElement;
     const goalInputs = calculator.querySelectorAll<HTMLInputElement>("[data-goal]");
 
@@ -159,23 +169,58 @@ const goals = [
       "rounded-full border border-[#d6e6fb] bg-white px-5 py-2.5 text-base font-bold text-body cursor-pointer hover:border-card-blue";
 
     let selectedMethod = "";
+    let previewRequestId = 0;
 
     const getSelectedGoal = (): GoalId => {
       const checked = calculator.querySelector<HTMLInputElement>("[data-goal]:checked");
       return (checked?.getAttribute("data-goal") as GoalId) || "replace";
     };
 
+    const showLoader = () => {
+      previewLoader.classList.remove("hidden");
+      previewLoader.classList.add("flex");
+      jawImage.classList.add("opacity-0");
+    };
+
+    const hideLoader = () => {
+      previewLoader.classList.add("hidden");
+      previewLoader.classList.remove("flex");
+      jawImage.classList.remove("opacity-0");
+    };
+
     const setPreview = (src: string | undefined) => {
-      if (src) {
-        jawImage.src = src;
-        jawImage.classList.remove("hidden");
-        previewEmpty.classList.add("hidden");
-        previewEmpty.classList.remove("flex");
-      } else {
+      const requestId = ++previewRequestId;
+
+      if (!src) {
         jawImage.removeAttribute("src");
         jawImage.classList.add("hidden");
+        hideLoader();
         previewEmpty.classList.remove("hidden");
         previewEmpty.classList.add("flex");
+        return;
+      }
+
+      previewEmpty.classList.add("hidden");
+      previewEmpty.classList.remove("flex");
+      jawImage.classList.remove("hidden");
+      showLoader();
+
+      const reveal = () => {
+        if (requestId !== previewRequestId) return;
+        hideLoader();
+      };
+
+      if (jawImage.src.endsWith(src) && jawImage.complete && jawImage.naturalWidth > 0) {
+        reveal();
+        return;
+      }
+
+      jawImage.onload = reveal;
+      jawImage.onerror = reveal;
+      jawImage.src = src;
+
+      if (jawImage.complete && jawImage.naturalWidth > 0) {
+        reveal();
       }
     };
 
