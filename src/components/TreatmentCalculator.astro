@@ -1,12 +1,11 @@
 ---
 const goals = [
   { id: "straight", label: "Straighter teeth", checked: false },
-  { id: "replace", label: "Replace missing tooth", checked: true },
+  { id: "replace", label: "Replace missing tooth / Gaps", checked: true },
   { id: "white", label: "Whiter smile", checked: false },
   { id: "makeover", label: "Complete makeover", checked: false },
+  { id: "caries", label: "Dental caries", checked: false },
 ];
-
-const methods = ["Aligners", "Veneers", "Implants"];
 ---
 
 <section
@@ -52,23 +51,8 @@ const methods = ["Aligners", "Veneers", "Implants"];
 
       <div>
         <p class="text-base font-bold uppercase tracking-[0.14em] text-card-blue">02 · Method</p>
-        <div class="mt-4 flex flex-wrap gap-2">
-          {
-            methods.map((method) => (
-              <button
-                type="button"
-                data-method-btn={method}
-                class={
-                  method === "Implants"
-                    ? "rounded-full border border-transparent bg-[#2b5d9e] px-5 py-2.5 text-base font-bold text-white cursor-pointer active-method"
-                    : "rounded-full border border-[#d6e6fb] bg-white px-5 py-2.5 text-base font-bold text-body cursor-pointer hover:border-card-blue"
-                }
-              >
-                {method}
-              </button>
-            ))
-          }
-        </div>
+        <div class="mt-4 flex flex-wrap gap-2" id="calc-method-list"></div>
+        <p class="mt-3 text-sm text-body hidden" id="calc-method-empty">No method options for this goal.</p>
       </div>
 
       <div class="mt-auto rounded-2xl bg-[#f4f8fd] p-5 sm:p-6">
@@ -86,8 +70,8 @@ const methods = ["Aligners", "Veneers", "Implants"];
       </div>
     </div>
 
-    <div class="relative flex min-h-[360px] flex-col bg-[#e8f1fb] p-6 sm:p-8">
-      <div class="flex items-center justify-between">
+    <div class="relative flex min-h-[420px] flex-col bg-[#f3f7fc] p-5 sm:p-6 lg:p-7">
+      <div class="flex shrink-0 items-center justify-between mb-4">
         <p class="text-base font-bold uppercase tracking-[0.14em] text-card-blue">03 · Preview</p>
         <label class="flex cursor-pointer select-none items-center gap-2 text-base font-semibold text-heading">
           <input
@@ -100,14 +84,21 @@ const methods = ["Aligners", "Veneers", "Implants"];
         </label>
       </div>
 
-      <div class="relative mx-auto my-auto flex h-72 w-72 items-center justify-center sm:h-80 sm:w-80">
-        <div class="absolute inset-6 rounded-full bg-[#2b5d9e]/10"></div>
+      <div
+        class="relative flex flex-1 items-center justify-center overflow-hidden rounded-2xl border border-[#d6e6fb] bg-white shadow-[inset_0_1px_0_rgba(255,255,255,0.8)]"
+      >
         <img
           id="calc-jaw-image"
-          src="/images/treatment_calculator/3d_transparent.png"
+          src="/images/treatment_calculator/implants.png"
           alt="Treatment preview"
-          class="relative z-10 h-full w-full cursor-pointer object-contain mix-blend-multiply transition-transform duration-500"
+          class="h-full max-h-[460px] w-full cursor-pointer object-contain p-3 sm:p-4 transition-[filter,transform] duration-500"
         />
+        <p
+          id="calc-preview-empty"
+          class="absolute inset-0 hidden items-center justify-center text-center text-base font-semibold text-body"
+        >
+          Preview coming soon
+        </p>
       </div>
     </div>
   </div>
@@ -118,96 +109,131 @@ const methods = ["Aligners", "Veneers", "Implants"];
     const calculator = document.querySelector("[data-calculator]");
     if (!calculator) return;
 
-    const straightCheck = calculator.querySelector('[data-goal="straight"]') as HTMLInputElement;
-    const replaceCheck = calculator.querySelector('[data-goal="replace"]') as HTMLInputElement;
-    const whiteCheck = calculator.querySelector('[data-goal="white"]') as HTMLInputElement;
-    const makeoverCheck = calculator.querySelector('[data-goal="makeover"]') as HTMLInputElement;
-    const methodButtons = calculator.querySelectorAll("[data-method-btn]");
+    type GoalId = "straight" | "replace" | "white" | "makeover" | "caries";
+
+    const goalMethods: Record<GoalId, string[]> = {
+      straight: ["Aligners", "Metallic Braces", "Ceramic Braces"],
+      replace: ["Implant", "Removable partial denture", "Complete Denture", "Veneers"],
+      white: ["Scaling"],
+      makeover: [],
+      caries: ["Filling", "Root Canal treatment"],
+    };
+
+    const methodImages: Record<string, string> = {
+      Aligners: "/images/treatment_calculator/aligners.png",
+      "Metallic Braces": "/images/treatment_calculator/metallic-braces.png",
+      "Ceramic Braces": "/images/treatment_calculator/ceramic-braces.png",
+      Implant: "/images/treatment_calculator/implants.png",
+      "Removable partial denture": "/images/treatment_calculator/partial-denture.png",
+      "Complete Denture": "/images/treatment_calculator/full-denture.png",
+      Veneers: "/images/treatment_calculator/veneers.png",
+      Scaling: "/images/treatment_calculator/scaling.png",
+      Filling: "",
+      "Root Canal treatment": "",
+    };
+
+    const goalImages: Partial<Record<GoalId, string>> = {
+      makeover: "/images/treatment_calculator/complete-makeover.png",
+    };
+
+    const estimates: Record<GoalId, { complexity: string; time: string }> = {
+      straight: { complexity: "Medium", time: "12 – 18 months" },
+      replace: { complexity: "High", time: "15 days" },
+      white: { complexity: "Low", time: "1 visit" },
+      makeover: { complexity: "High", time: "1 month" },
+      caries: { complexity: "Medium", time: "1 – 2 visits" },
+    };
+
+    const methodList = calculator.querySelector("#calc-method-list") as HTMLElement;
+    const methodEmpty = calculator.querySelector("#calc-method-empty") as HTMLElement;
     const complexityEl = calculator.querySelector("#calc-complexity") as HTMLElement;
     const timeEl = calculator.querySelector("#calc-time") as HTMLElement;
     const jawImage = calculator.querySelector("#calc-jaw-image") as HTMLImageElement;
+    const previewEmpty = calculator.querySelector("#calc-preview-empty") as HTMLElement;
     const highlightToggle = calculator.querySelector("#calc-highlight-toggle") as HTMLInputElement;
-
-    let selectedMethod = "Implants";
+    const goalInputs = calculator.querySelectorAll<HTMLInputElement>("[data-goal]");
 
     const methodActive =
       "rounded-full border border-transparent bg-[#2b5d9e] px-5 py-2.5 text-base font-bold text-white cursor-pointer active-method";
     const methodIdle =
       "rounded-full border border-[#d6e6fb] bg-white px-5 py-2.5 text-base font-bold text-body cursor-pointer hover:border-card-blue";
 
-    const handleGoalChange = (changedGoal: string) => {
-      if (changedGoal === "straight") updateMethodActive("Aligners");
-      else if (changedGoal === "replace") updateMethodActive("Implants");
-      else if (changedGoal === "white") updateMethodActive("Veneers");
-      else if (changedGoal === "makeover") updateMethodActive("Veneers");
+    let selectedMethod = "";
+
+    const getSelectedGoal = (): GoalId => {
+      const checked = calculator.querySelector<HTMLInputElement>("[data-goal]:checked");
+      return (checked?.getAttribute("data-goal") as GoalId) || "replace";
     };
 
-    const updateMethodActive = (methodName: string) => {
-      selectedMethod = methodName;
-      methodButtons.forEach((btn) => {
-        const btnMethod = btn.getAttribute("data-method-btn");
-        btn.className = btnMethod === methodName ? methodActive : methodIdle;
-      });
-      calculateOutput();
+    const setPreview = (src: string | undefined) => {
+      if (src) {
+        jawImage.src = src;
+        jawImage.classList.remove("hidden");
+        previewEmpty.classList.add("hidden");
+        previewEmpty.classList.remove("flex");
+      } else {
+        jawImage.removeAttribute("src");
+        jawImage.classList.add("hidden");
+        previewEmpty.classList.remove("hidden");
+        previewEmpty.classList.add("flex");
+      }
     };
 
-    const calculateOutput = () => {
-      const isStraight = straightCheck.checked;
-      const isReplace = replaceCheck.checked;
-      const isWhite = whiteCheck.checked;
-      const isMakeover = makeoverCheck.checked;
+    const updateEstimate = (goal: GoalId) => {
+      const estimate = estimates[goal];
+      complexityEl.textContent = estimate.complexity;
+      complexityEl.style.color = "#2b5d9e";
+      timeEl.textContent = estimate.time;
+    };
 
-      if (!isStraight && !isReplace && !isWhite && !isMakeover) {
-        complexityEl.textContent = "None selected";
-        complexityEl.style.color = "#3d5278";
-        timeEl.textContent = "—";
+    const updatePreview = (goal: GoalId) => {
+      if (goal === "makeover") {
+        setPreview(goalImages.makeover);
+        return;
+      }
+      setPreview(methodImages[selectedMethod] ?? "");
+    };
+
+    const renderMethods = (goal: GoalId) => {
+      const methods = goalMethods[goal];
+      methodList.innerHTML = "";
+
+      if (methods.length === 0) {
+        selectedMethod = "";
+        methodEmpty.classList.remove("hidden");
+        updateEstimate(goal);
+        updatePreview(goal);
         return;
       }
 
-      let complexity = "Low";
-      let complexityColor = "#2b5d9e";
-      let timeText = "1 week";
+      methodEmpty.classList.add("hidden");
+      selectedMethod = methods[0];
 
-      if (isMakeover) {
-        complexity = "High";
-        complexityColor = "#2b5d9e";
-        timeText = "1 month";
-      } else if (isReplace) {
-        complexity = "High";
-        complexityColor = "#2b5d9e";
-        timeText = "15 days";
-      } else if (isStraight) {
-        complexity = "Medium";
-        complexityColor = "#2b5d9e";
-        timeText = "12 – 18 months";
-      } else if (isWhite) {
-        complexity = "Low";
-        complexityColor = "#2b5d9e";
-        timeText = "2 visits";
-      }
+      methods.forEach((method) => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.setAttribute("data-method-btn", method);
+        btn.textContent = method;
+        btn.className = method === selectedMethod ? methodActive : methodIdle;
+        btn.addEventListener("click", () => {
+          selectedMethod = method;
+          methodList.querySelectorAll("[data-method-btn]").forEach((el) => {
+            const name = el.getAttribute("data-method-btn");
+            el.className = name === method ? methodActive : methodIdle;
+          });
+          updatePreview(goal);
+        });
+        methodList.appendChild(btn);
+      });
 
-      complexityEl.textContent = complexity;
-      complexityEl.style.color = complexityColor;
-      timeEl.textContent = timeText;
-
-      if (isMakeover) jawImage.src = "/images/treatment_calculator/3d_makeover.png";
-      else if (isReplace) jawImage.src = "/images/treatment_calculator/3d_transparent.png";
-      else if (isStraight) jawImage.src = "/images/treatment_calculator/3d_aligners.png";
-      else if (isWhite) jawImage.src = "/images/treatment_calculator/3d_whitening.png";
+      updateEstimate(goal);
+      updatePreview(goal);
     };
 
-    [straightCheck, replaceCheck, whiteCheck, makeoverCheck].forEach((input) => {
+    goalInputs.forEach((input) => {
       input.addEventListener("change", () => {
         if (!input.checked) return;
-        handleGoalChange(input.getAttribute("data-goal") || "");
-        calculateOutput();
-      });
-    });
-
-    methodButtons.forEach((btn) => {
-      btn.addEventListener("click", () => {
-        const method = btn.getAttribute("data-method-btn");
-        if (method) updateMethodActive(method);
+        renderMethods(getSelectedGoal());
       });
     });
 
@@ -219,6 +245,6 @@ const methods = ["Aligners", "Veneers", "Implants"];
       }
     });
 
-    calculateOutput();
+    renderMethods(getSelectedGoal());
   });
 </script>
